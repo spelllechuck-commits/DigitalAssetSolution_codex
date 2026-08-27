@@ -1,13 +1,12 @@
-import json, math, os, time, urllib.request, urllib.parse
-from datetime import datetime, timezone
+import json,time,urllib.request,urllib.parse
+from datetime import datetime,timezone
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]; DATA=ROOT/'docs/cpa/data'; DATA.mkdir(parents=True,exist_ok=True)
-UA={'User-Agent':'CPA-Monitor/3.0'}
+UA={'User-Agent':'CPA-Monitor/3.1'}
 STABLE={'usdt','usdc','dai','fdusd','tusd','usde','usds','pyusd','frax','usdd','gusd','lusd','usdb','rlusd'}
 def get(url,retries=3):
     for i in range(retries):
-        try:
-            req=urllib.request.Request(url,headers=UA);return json.loads(urllib.request.urlopen(req,timeout=20).read().decode())
+        try:return json.loads(urllib.request.urlopen(urllib.request.Request(url,headers=UA),timeout=20).read().decode())
         except Exception:
             if i==retries-1:return None
             time.sleep(2*(i+1))
@@ -32,59 +31,56 @@ def rsi(a,n=14):
     if len(a)<=n:return None
     g=l=0
     for i in range(len(a)-n,len(a)):
-        d=a[i]-a[i-1]
-        if d>0:g+=d
-        else:l-=d
-    if l==0:return 100
-    return 100-100/(1+(g/n)/(l/n))
+        d=a[i]-a[i-1];g+=max(d,0);l+=max(-d,0)
+    return 100 if l==0 else 100-100/(1+(g/n)/(l/n))
 def enrich(c):
-    sym=c['symbol'].upper()+'USDT'; out={'ok':False,'deriv':False}
-    d4=get('https://api.binance.com/api/v3/klines?'+urllib.parse.urlencode({'symbol':sym,'interval':'4h','limit':220}))
-    dd=get('https://api.binance.com/api/v3/klines?'+urllib.parse.urlencode({'symbol':sym,'interval':'1d','limit':220}))
-    prem=get('https://fapi.binance.com/fapi/v1/premiumIndex?'+urllib.parse.urlencode({'symbol':sym}))
-    hist=get('https://fapi.binance.com/futures/data/openInterestHist?'+urllib.parse.urlencode({'symbol':sym,'period':'1h','limit':25}))
+    sym=c['symbol'].upper()+'USDT';out={'ok':False,'deriv':False}
+    q=lambda u,p:get(u+'?'+urllib.parse.urlencode(p))
+    d4=q('https://api.binance.com/api/v3/klines',{'symbol':sym,'interval':'4h','limit':220});dd=q('https://api.binance.com/api/v3/klines',{'symbol':sym,'interval':'1d','limit':220});prem=q('https://fapi.binance.com/fapi/v1/premiumIndex',{'symbol':sym});hist=q('https://fapi.binance.com/futures/data/openInterestHist',{'symbol':sym,'period':'1h','limit':25})
     if isinstance(d4,list) and isinstance(dd,list):
-        cd=[float(x[4]) for x in dd]; c4=[float(x[4]) for x in d4]; out.update(ok=True,e20=ema(cd,20),e50=ema(cd,50),e200=ema(cd,200),rsi=rsi(c4))
-    if isinstance(prem,dict) and prem.get('lastFundingRate') is not None: out.update(deriv=True,funding=float(prem['lastFundingRate'])*100)
+        cd=[float(x[4]) for x in dd];c4=[float(x[4]) for x in d4];out.update(ok=True,e20=ema(cd,20),e50=ema(cd,50),e200=ema(cd,200),rsi=rsi(c4))
+    if isinstance(prem,dict) and prem.get('lastFundingRate') is not None:out.update(deriv=True,funding=float(prem['lastFundingRate'])*100)
     if isinstance(hist,list) and len(hist)>1:
-        f=float(hist[0]['sumOpenInterest']); l=float(hist[-1]['sumOpenInterest']); out.update(deriv=True,oi24=((l-f)/f*100 if f else None))
+        f=float(hist[0]['sumOpenInterest']);l=float(hist[-1]['sumOpenInterest']);out.update(deriv=True,oi24=((l-f)/f*100 if f else None))
     return out
 def classify(c,s,e):
-    p=c['current_price']; d=((p-e['e20'])/e['e20']*100) if e.get('e20') else None
-    if s['pen']>=10 or (d is not None and d>15) or (e.get('funding') is not None and e['funding']>.08) or (e.get('oi24') is not None and e['oi24']>25 and s['d7']>15): return 'OVEREXTENDED'
-    if e.get('e50') and p<e['e50']*.97:return 'INVALIDATED'
-    if e.get('e20') and abs(d)<=5 and (e.get('rsi') is None or e['rsi']<68) and (e.get('funding') is None or e['funding']<.05):return 'READY'
-    if e.get('e20') and abs(d)<=9:return 'NEAR ENTRY'
-    return 'WAIT'
+    p=c['current_price'];d=((p-e['e20'])/e['e20']*100) if e.get('e20') else None
+    if s['pen']>=10 or (d is not None and d>15) or (e.get('funding') is not None and e['funding']>.08) or (e.get('oi24') is not None and e['oi24']>25 and s['d7']>15):return'OVEREXTENDED'
+    if e.get('e50') and p<e['e50']*.97:return'INVALIDATED'
+    if e.get('e20') and abs(d)<=5 and (e.get('rsi') is None or e['rsi']<68) and (e.get('funding') is None or e['funding']<.05):return'READY'
+    if e.get('e20') and abs(d)<=9:return'NEAR ENTRY'
+    return'WAIT'
+def row(c,s,e=None,tier='OPPORTUNITY'):
+    if e is None:return {'id':c['id'],'symbol':c['symbol'].upper(),'name':c['name'],'rank':c['market_cap_rank'],'price':c['current_price'],'tier':tier,'quality':s['score'],'status':'RADAR','d7':round(s['d7'],2),'d30':round(s['d30'],2),'rs':round(s['rs'],2)}
+    st=classify(c,s,e);conf=min(100,55+(22 if e.get('ok') else 0)+(15 if e.get('deriv') else 0)+(8 if e.get('oi24') is not None else 0));final=s['score']-(5 if e.get('funding') is not None and e['funding']>.05 else 0)-(6 if e.get('oi24') is not None and e['oi24']>20 and s['d7']>10 else 0)+(4 if st=='READY' else 0)
+    return {'id':c['id'],'symbol':c['symbol'].upper(),'name':c['name'],'rank':c['market_cap_rank'],'price':c['current_price'],'tier':tier,'quality':s['score'],'final':max(0,round(final)),'confidence':conf,'status':st,'d7':round(s['d7'],2),'d30':round(s['d30'],2),'rs':round(s['rs'],2),'funding':e.get('funding'),'oi24':e.get('oi24'),'e20':e.get('e20'),'e50':e.get('e50')}
 def regime(coins):
-    btc=next(x for x in coins if x['id']=='bitcoin'); eth=next(x for x in coins if x['id']=='ethereum'); alts=[x for x in coins if x['market_cap_rank']>10 and not excluded(x)]
-    br=sum(1 for x in alts if (x.get('price_change_percentage_7d_in_currency') or 0)>0)/max(1,len(alts))*100
-    s=50+max(-15,min(15,(btc.get('price_change_percentage_30d_in_currency') or 0)*.45))+max(-10,min(10,(eth.get('price_change_percentage_30d_in_currency') or 0)*.3))+(br-50)*.18
-    s=round(max(0,min(100,s))); name='RISK-ON' if s>=80 else 'SELECTIVE RISK-ON' if s>=65 else 'NEUTRAL' if s>=50 else 'RISK-OFF' if s>=35 else 'DEFENSIVE'
-    return {'score':s,'name':name,'breadth':round(br,1),'btc7':btc.get('price_change_percentage_7d_in_currency'),'eth7':eth.get('price_change_percentage_7d_in_currency'),'btc30':btc.get('price_change_percentage_30d_in_currency')}
-def meaningful(a,b): return bool(a and a!=b and f'{a}>{b}' in {'WAIT>NEAR ENTRY','WAIT>READY','NEAR ENTRY>READY','READY>INVALIDATED','READY>OVEREXTENDED','NEAR ENTRY>INVALIDATED','WAIT>INVALIDATED'})
+    btc=next(x for x in coins if x['id']=='bitcoin');eth=next(x for x in coins if x['id']=='ethereum');alts=[x for x in coins if x['market_cap_rank']>10 and not excluded(x)];br=sum(1 for x in alts if (x.get('price_change_percentage_7d_in_currency') or 0)>0)/max(1,len(alts))*100
+    s=round(max(0,min(100,50+max(-15,min(15,(btc.get('price_change_percentage_30d_in_currency') or 0)*.45))+max(-10,min(10,(eth.get('price_change_percentage_30d_in_currency') or 0)*.3))+(br-50)*.18)))
+    return {'score':s,'name':'RISK-ON' if s>=80 else 'SELECTIVE RISK-ON' if s>=65 else 'NEUTRAL' if s>=50 else 'RISK-OFF' if s>=35 else 'DEFENSIVE','breadth':round(br,1)}
+def meaningful(a,b):return bool(a and a!=b and f'{a}>{b}' in {'WAIT>NEAR ENTRY','WAIT>READY','NEAR ENTRY>READY','READY>INVALIDATED','READY>OVEREXTENDED','NEAR ENTRY>INVALIDATED','WAIT>INVALIDATED'})
 def main():
-    coins=universe()
-    if not coins: raise SystemExit('market data unavailable')
-    btc=next(x for x in coins if x['id']=='bitcoin'); usable=[]; excluded_n=trend_n=0
-    for c in coins:
-        if excluded(c):excluded_n+=1;continue
+    coins=universe();
+    if not coins:raise SystemExit('market data unavailable')
+    btc=next(x for x in coins if x['id']=='bitcoin');investable=[c for c in coins if not excluded(c)];core=investable[:25];opp=investable[25:100];disc=investable[100:300]
+    core_rows=[]
+    for c in core:
+        s=score(c,btc);core_rows.append(row(c,s,enrich(c),'CORE'))
+    opp_rows=[row(c,score(c,btc),None,'OPPORTUNITY') for c in opp];opp_rows=sorted(opp_rows,key=lambda x:(x['quality'],x['rs'],x['d7']),reverse=True)[:15]
+    promotions=[x for x in opp_rows if x['quality']>=60 and x['d30']>0 and x['rs']>0][:8]
+    disc_candidates=[]
+    for c in disc:
         s=score(c,btc)
-        if s['d30']<0 or s['score']<48:trend_n+=1;continue
-        usable.append((c,s))
-    prelim=sorted(usable,key=lambda x:x[1]['score'],reverse=True)[:18]; rows=[]
-    for c,s in prelim[:12]:
-        e=enrich(c); st=classify(c,s,e); conf=min(100,55+(22 if e.get('ok') else 0)+(15 if e.get('deriv') else 0)+(8 if e.get('oi24') is not None else 0)); final=s['score']-(5 if e.get('funding') is not None and e['funding']>.05 else 0)-(6 if e.get('oi24') is not None and e['oi24']>20 and s['d7']>10 else 0)+(4 if st=='READY' else 0)
-        rows.append({'id':c['id'],'symbol':c['symbol'].upper(),'name':c['name'],'rank':c['market_cap_rank'],'price':c['current_price'],'quality':s['score'],'final':max(0,round(final)),'confidence':conf,'status':st,'d7':round(s['d7'],2),'d30':round(s['d30'],2),'rs':round(s['rs'],2),'funding':e.get('funding'),'oi24':e.get('oi24'),'e20':e.get('e20'),'e50':e.get('e50')})
-    prev={}
-    sp=DATA/'monitor_state.json'
+        if s['score']>=64 and s['d30']>0 and s['rs']>5:disc_candidates.append(row(c,s,None,'DISCOVERY'))
+    disc_candidates=sorted(disc_candidates,key=lambda x:x['quality'],reverse=True)[:10]
+    sp=DATA/'monitor_state.json';prev={}
     if sp.exists():
         try:prev=json.loads(sp.read_text()).get('states',{})
         except Exception:pass
-    states={r['id']:r['status'] for r in rows}; alerts=[]
-    for r in rows:
+    states={r['id']:r['status'] for r in core_rows};alerts=[]
+    for r in core_rows:
         old=prev.get(r['id'])
-        if meaningful(old,r['status']):alerts.append({'id':r['id'],'symbol':r['symbol'],'name':r['name'],'from':old,'to':r['status'],'price':r['price'],'final':r['final']})
-    result={'version':'3.0','updated_at':datetime.now(timezone.utc).isoformat(),'regime':regime(coins),'audit':{'universe':len(coins),'excluded':excluded_n,'trend_failed':trend_n,'enriched':len(rows)},'setups':rows,'alerts':alerts}
-    (DATA/'latest.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)); sp.write_text(json.dumps({'updated_at':result['updated_at'],'states':states},ensure_ascii=False,indent=2)); (DATA/'alerts.json').write_text(json.dumps(alerts,ensure_ascii=False,indent=2))
+        if meaningful(old,r['status']):alerts.append({'id':r['id'],'symbol':r['symbol'],'name':r['name'],'from':old,'to':r['status'],'price':r['price'],'final':r['final'],'tier':'CORE'})
+    result={'version':'3.1','updated_at':datetime.now(timezone.utc).isoformat(),'regime':regime(coins),'tiers':{'core_count':len(core),'opportunity_count':len(opp),'discovery_count':len(disc)},'core':core_rows,'opportunity':opp_rows,'promotions':promotions,'discovery':disc_candidates,'setups':core_rows,'alerts':alerts}
+    (DATA/'latest.json').write_text(json.dumps(result,ensure_ascii=False,indent=2));sp.write_text(json.dumps({'updated_at':result['updated_at'],'states':states},ensure_ascii=False,indent=2));(DATA/'alerts.json').write_text(json.dumps(alerts,ensure_ascii=False,indent=2))
 if __name__=='__main__':main()

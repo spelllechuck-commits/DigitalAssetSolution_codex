@@ -1,20 +1,22 @@
 import json,time,urllib.request,urllib.parse
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime,timezone
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]; DATA=ROOT/'docs/cpa/data'; DATA.mkdir(parents=True,exist_ok=True)
-UA={'User-Agent':'CPA-Monitor/3.1'}
+UA={'User-Agent':'CPA-Monitor/3.1.1'}
 STABLE={'usdt','usdc','dai','fdusd','tusd','usde','usds','pyusd','frax','usdd','gusd','lusd','usdb','rlusd'}
-def get(url,retries=3):
+def get(url,retries=2,timeout=8):
     for i in range(retries):
-        try:return json.loads(urllib.request.urlopen(urllib.request.Request(url,headers=UA),timeout=20).read().decode())
+        try:return json.loads(urllib.request.urlopen(urllib.request.Request(url,headers=UA),timeout=timeout).read().decode())
         except Exception:
             if i==retries-1:return None
-            time.sleep(2*(i+1))
+            time.sleep(1.0*(i+1))
 def excluded(c):
     n=c['name'].lower();return c['symbol'].lower() in STABLE or 'wrapped' in n or 'bridged' in n or 'staked ether' in n
 def universe():
     base='https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&sparkline=false&price_change_percentage=24h,7d,30d&per_page='
-    a=get(base+'250&page=1') or []; b=get(base+'50&page=6') or []
+    with ThreadPoolExecutor(max_workers=2) as ex:
+        a,b=[f.result() or [] for f in [ex.submit(get,base+'250&page=1'),ex.submit(get,base+'50&page=6')]]
     return sorted([x for x in a+b if x.get('market_cap_rank') and x['market_cap_rank']<=300],key=lambda x:x['market_cap_rank'])
 def score(c,btc):
     d7=c.get('price_change_percentage_7d_in_currency') or 0; d30=c.get('price_change_percentage_30d_in_currency') or 0; d24=c.get('price_change_percentage_24h_in_currency') or 0
@@ -36,7 +38,12 @@ def rsi(a,n=14):
 def enrich(c):
     sym=c['symbol'].upper()+'USDT';out={'ok':False,'deriv':False}
     q=lambda u,p:get(u+'?'+urllib.parse.urlencode(p))
-    d4=q('https://api.binance.com/api/v3/klines',{'symbol':sym,'interval':'4h','limit':220});dd=q('https://api.binance.com/api/v3/klines',{'symbol':sym,'interval':'1d','limit':220});prem=q('https://fapi.binance.com/fapi/v1/premiumIndex',{'symbol':sym});hist=q('https://fapi.binance.com/futures/data/openInterestHist',{'symbol':sym,'period':'1h','limit':25})
+    reqs=[('d4','https://api.binance.com/api/v3/klines',{'symbol':sym,'interval':'4h','limit':220}),('dd','https://api.binance.com/api/v3/klines',{'symbol':sym,'interval':'1d','limit':220}),('prem','https://fapi.binance.com/fapi/v1/premiumIndex',{'symbol':sym}),('hist','https://fapi.binance.com/futures/data/openInterestHist',{'symbol':sym,'period':'1h','limit':25})]
+    vals={}
+    with ThreadPoolExecutor(max_workers=4) as ex:
+        fut={ex.submit(q,u,p):k for k,u,p in reqs}
+        for f in as_completed(fut): vals[fut[f]]=f.result()
+    d4,dd,prem,hist=vals.get('d4'),vals.get('dd'),vals.get('prem'),vals.get('hist')
     if isinstance(d4,list) and isinstance(dd,list):
         cd=[float(x[4]) for x in dd];c4=[float(x[4]) for x in d4];out.update(ok=True,e20=ema(cd,20),e50=ema(cd,50),e200=ema(cd,200),rsi=rsi(c4))
     if isinstance(prem,dict) and prem.get('lastFundingRate') is not None:out.update(deriv=True,funding=float(prem['lastFundingRate'])*100)
@@ -60,18 +67,19 @@ def regime(coins):
     return {'score':s,'name':'RISK-ON' if s>=80 else 'SELECTIVE RISK-ON' if s>=65 else 'NEUTRAL' if s>=50 else 'RISK-OFF' if s>=35 else 'DEFENSIVE','breadth':round(br,1)}
 def meaningful(a,b):return bool(a and a!=b and f'{a}>{b}' in {'WAIT>NEAR ENTRY','WAIT>READY','NEAR ENTRY>READY','READY>INVALIDATED','READY>OVEREXTENDED','NEAR ENTRY>INVALIDATED','WAIT>INVALIDATED'})
 def main():
-    coins=universe();
+    coins=universe()
     if not coins:raise SystemExit('market data unavailable')
     btc=next(x for x in coins if x['id']=='bitcoin');investable=[c for c in coins if not excluded(c)];core=investable[:25];opp=investable[25:100];disc=investable[100:300]
+    scored={c['id']:score(c,btc) for c in investable}
     core_rows=[]
-    for c in core:
-        s=score(c,btc);core_rows.append(row(c,s,enrich(c),'CORE'))
-    opp_rows=[row(c,score(c,btc),None,'OPPORTUNITY') for c in opp];opp_rows=sorted(opp_rows,key=lambda x:(x['quality'],x['rs'],x['d7']),reverse=True)[:15]
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        fut={ex.submit(enrich,c):c for c in core}
+        for f in as_completed(fut):
+            c=fut[f];core_rows.append(row(c,scored[c['id']],f.result(),'CORE'))
+    core_rows=sorted(core_rows,key=lambda x:x['rank'])
+    opp_rows=[row(c,scored[c['id']],None,'OPPORTUNITY') for c in opp];opp_rows=sorted(opp_rows,key=lambda x:(x['quality'],x['rs'],x['d7']),reverse=True)[:15]
     promotions=[x for x in opp_rows if x['quality']>=60 and x['d30']>0 and x['rs']>0][:8]
-    disc_candidates=[]
-    for c in disc:
-        s=score(c,btc)
-        if s['score']>=64 and s['d30']>0 and s['rs']>5:disc_candidates.append(row(c,s,None,'DISCOVERY'))
+    disc_candidates=[row(c,scored[c['id']],None,'DISCOVERY') for c in disc if scored[c['id']]['score']>=64 and scored[c['id']]['d30']>0 and scored[c['id']]['rs']>5]
     disc_candidates=sorted(disc_candidates,key=lambda x:x['quality'],reverse=True)[:10]
     sp=DATA/'monitor_state.json';prev={}
     if sp.exists():
@@ -81,6 +89,6 @@ def main():
     for r in core_rows:
         old=prev.get(r['id'])
         if meaningful(old,r['status']):alerts.append({'id':r['id'],'symbol':r['symbol'],'name':r['name'],'from':old,'to':r['status'],'price':r['price'],'final':r['final'],'tier':'CORE'})
-    result={'version':'3.1','updated_at':datetime.now(timezone.utc).isoformat(),'regime':regime(coins),'tiers':{'core_count':len(core),'opportunity_count':len(opp),'discovery_count':len(disc)},'core':core_rows,'opportunity':opp_rows,'promotions':promotions,'discovery':disc_candidates,'setups':core_rows,'alerts':alerts}
+    result={'version':'3.1.1','updated_at':datetime.now(timezone.utc).isoformat(),'regime':regime(coins),'tiers':{'core_count':len(core),'opportunity_count':len(opp),'discovery_count':len(disc)},'core':core_rows,'opportunity':opp_rows,'promotions':promotions,'discovery':disc_candidates,'setups':core_rows,'alerts':alerts}
     (DATA/'latest.json').write_text(json.dumps(result,ensure_ascii=False,indent=2));sp.write_text(json.dumps({'updated_at':result['updated_at'],'states':states},ensure_ascii=False,indent=2));(DATA/'alerts.json').write_text(json.dumps(alerts,ensure_ascii=False,indent=2))
 if __name__=='__main__':main()

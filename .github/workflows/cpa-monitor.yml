@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: '7,37 * * * *'
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/cpa-monitor-trigger.txt'
 
 permissions:
   contents: write
@@ -38,7 +42,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           python - <<'PY'
-          import json, os, subprocess
+          import json, subprocess
           from pathlib import Path
           p=Path('docs/cpa/data/alerts.json')
           alerts=json.loads(p.read_text()) if p.exists() else []

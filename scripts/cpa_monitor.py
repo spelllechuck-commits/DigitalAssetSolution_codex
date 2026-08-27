@@ -1,17 +1,18 @@
 import json,time,urllib.request,urllib.parse
-from concurrent.futures import ThreadPoolExecutor,as_completed
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime,timezone
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1];DATA=ROOT/'docs/cpa/data';DATA.mkdir(parents=True,exist_ok=True)
-UA={'User-Agent':'CPA-Monitor/3.2'}
+CACHE_PATH=DATA/'tech_cache.json'
+UA={'User-Agent':'CPA-Monitor/3.2.1'}
 STABLE={'usdt','usdc','dai','fdusd','tusd','usde','usds','pyusd','frax','usdd','gusd','lusd','usdb','rlusd','usd1','usdg','usdf','usdy','usdp','usdk'}
 EXCLUDED_IDS={'figure-heloc','usd1-wlfi','global-dollar'};NAME_HINTS=('stablecoin','wrapped','bridged','staked ether','synthetic dollar')
-def get(url,retries=2,timeout=10):
+def get(url,retries=3,timeout=12):
     for i in range(retries):
         try:return json.loads(urllib.request.urlopen(urllib.request.Request(url,headers=UA),timeout=timeout).read().decode())
         except Exception:
             if i==retries-1:return None
-            time.sleep(i+1)
+            time.sleep(2.0*(i+1))
 def excluded(c):
     n=c['name'].lower();s=c['symbol'].lower();return c.get('id') in EXCLUDED_IDS or s in STABLE or any(h in n for h in NAME_HINTS)
 def cg(path,params):return get('https://api.coingecko.com/api/v3'+path+'?'+urllib.parse.urlencode(params))
@@ -34,14 +35,24 @@ def rsi(a,n=14):
     for i in range(len(a)-n,len(a)):
         d=a[i]-a[i-1];g+=max(d,0);l+=max(-d,0)
     return 100 if l==0 else 100-100/(1+(g/n)/(l/n))
-def tech_coingecko(c):
-    out={'ok':False,'deriv':False,'source':'coingecko'}
-    with ThreadPoolExecutor(max_workers=2) as ex:
-        fd=ex.submit(cg,f"/coins/{c['id']}/market_chart",{'vs_currency':'usd','days':'365','interval':'daily'});fh=ex.submit(cg,f"/coins/{c['id']}/market_chart",{'vs_currency':'usd','days':'30'});d=fd.result();h=fh.result()
+def load_cache():
+    if not CACHE_PATH.exists():return {}
+    try:return json.loads(CACHE_PATH.read_text())
+    except Exception:return {}
+def tech_coingecko(c,cache):
+    now=time.time();old=cache.get(c['id']) or {};age=now-float(old.get('ts',0) or 0)
+    if old.get('ok') and age<7200:return {**old,'source':'coingecko-cache'}
+    out={'ok':False,'deriv':False,'source':'coingecko-live'}
+    d=cg(f"/coins/{c['id']}/market_chart",{'vs_currency':'usd','days':'365','interval':'daily'});time.sleep(1.4)
+    h=cg(f"/coins/{c['id']}/market_chart",{'vs_currency':'usd','days':'30'});time.sleep(1.4)
     try:
         daily=[float(x[1]) for x in d['prices']];hourly=[float(x[1]) for x in h['prices']];four=hourly[::4]
-        if len(daily)>=200 and len(four)>20:out.update(ok=True,e20=ema(daily,20),e50=ema(daily,50),e200=ema(daily,200),rsi=rsi(four,14))
+        if len(daily)>=200 and len(four)>20:out.update(ok=True,e20=ema(daily,20),e50=ema(daily,50),e200=ema(daily,200),rsi=rsi(four,14),ts=now)
     except Exception:pass
+    if out.get('ok'):
+        cache[c['id']]={k:out.get(k) for k in ('ok','e20','e50','e200','rsi','ts')}
+        return out
+    if old.get('ok') and age<86400:return {**old,'source':'coingecko-stale-cache'}
     return out
 def deriv_binance(c):
     sym=c['symbol'].upper()+'USDT';out={'deriv':False,'source':'binance'};q=lambda u,p:get(u+'?'+urllib.parse.urlencode(p),retries=1,timeout=5)
@@ -61,10 +72,10 @@ def deriv_bybit(c):
         rows=list(reversed(o['result']['list']));f=float(rows[0]['openInterest']);l=float(rows[-1]['openInterest']);out.update(deriv=True,oi24=((l-f)/f*100 if f else None))
     except Exception:pass
     return out
-def enrich(c):
-    t=tech_coingecko(c);d=deriv_binance(c)
+def enrich(c,cache):
+    t=tech_coingecko(c,cache);d=deriv_binance(c)
     if not d.get('deriv'):d=deriv_bybit(c)
-    t.update({k:v for k,v in d.items() if k in ('deriv','funding','oi24')});t['source']='coingecko+'+(d.get('source') if d.get('deriv') else 'no-derivatives');return t
+    t.update({k:v for k,v in d.items() if k in ('deriv','funding','oi24')});t['source']=t.get('source','coingecko')+'+'+(d.get('source') if d.get('deriv') else 'no-derivatives');return t
 def classify(c,s,e):
     p=c['current_price'];tech=bool(e.get('ok') and e.get('e20') and e.get('e50') and e.get('rsi') is not None)
     if not tech:return'UNVERIFIED'
@@ -85,17 +96,14 @@ def meaningful(a,b):return bool(a and a!=b and f'{a}>{b}' in {'WAIT>NEAR ENTRY',
 def main():
     coins=universe()
     if not coins:raise SystemExit('market data unavailable')
-    btc=next(x for x in coins if x['id']=='bitcoin');inv=[c for c in coins if not excluded(c)];core=inv[:25];opp=inv[25:100];disc=inv[100:300];scored={c['id']:score(c,btc) for c in inv};core_rows=[]
-    with ThreadPoolExecutor(max_workers=4) as ex:
-        fut={ex.submit(enrich,c):c for c in core}
-        for f in as_completed(fut):
-            c=fut[f];core_rows.append(row(c,scored[c['id']],f.result(),'CORE'))
+    cache=load_cache();btc=next(x for x in coins if x['id']=='bitcoin');inv=[c for c in coins if not excluded(c)];core=inv[:25];opp=inv[25:100];disc=inv[100:300];scored={c['id']:score(c,btc) for c in inv};core_rows=[]
+    for c in core:core_rows.append(row(c,scored[c['id']],enrich(c,cache),'CORE'))
     core_rows.sort(key=lambda x:x['rank']);opp_rows=sorted([row(c,scored[c['id']],None,'OPPORTUNITY') for c in opp],key=lambda x:(x['quality'],x['rs'],x['d7']),reverse=True)[:15];promotions=[x for x in opp_rows if x['quality']>=60 and x['d30']>0 and x['rs']>0][:8];discovery=sorted([row(c,scored[c['id']],None,'DISCOVERY') for c in disc if scored[c['id']]['score']>=64 and scored[c['id']]['d30']>0 and scored[c['id']]['rs']>5],key=lambda x:x['quality'],reverse=True)[:10]
     sp=DATA/'monitor_state.json';prev={}
     if sp.exists():
         try:prev=json.loads(sp.read_text()).get('states',{})
         except Exception:pass
-    states={r['id']:r['status'] for r in core_rows};alerts=[{'id':r['id'],'symbol':r['symbol'],'name':r['name'],'from':prev.get(r['id']),'to':r['status'],'price':r['price'],'final':r['final'],'tier':'CORE'} for r in core_rows if meaningful(prev.get(r['id']),r['status'])];verified=sum(r['status']!='UNVERIFIED' for r in core_rows);deriv=sum(bool(r.get('funding') is not None or r.get('oi24') is not None) for r in core_rows);ready=sum(r['status']=='READY' for r in core_rows)
-    result={'version':'3.2','updated_at':datetime.now(timezone.utc).isoformat(),'regime':regime(coins),'tiers':{'core_count':len(core),'opportunity_count':len(opp),'discovery_count':len(disc)},'data_quality':{'core_verified':verified,'core_unverified':len(core)-verified,'derivatives_verified':deriv,'ready_count':ready},'core':core_rows,'opportunity':opp_rows,'promotions':promotions,'discovery':discovery,'setups':core_rows,'alerts':alerts}
-    (DATA/'latest.json').write_text(json.dumps(result,ensure_ascii=False,indent=2));sp.write_text(json.dumps({'updated_at':result['updated_at'],'states':states},ensure_ascii=False,indent=2));(DATA/'alerts.json').write_text(json.dumps(alerts,ensure_ascii=False,indent=2))
+    states={r['id']:r['status'] for r in core_rows};alerts=[{'id':r['id'],'symbol':r['symbol'],'name':r['name'],'from':prev.get(r['id']),'to':r['status'],'price':r['price'],'final':r['final'],'tier':'CORE'} for r in core_rows if meaningful(prev.get(r['id']),r['status'])];verified=sum(r['status']!='UNVERIFIED' for r in core_rows);deriv=sum(bool(r.get('funding') is not None or r.get('oi24') is not None) for r in core_rows);ready=sum(r['status']=='READY' for r in core_rows);cached=sum('cache' in (r.get('data_source') or '') for r in core_rows)
+    result={'version':'3.2.1','updated_at':datetime.now(timezone.utc).isoformat(),'regime':regime(coins),'tiers':{'core_count':len(core),'opportunity_count':len(opp),'discovery_count':len(disc)},'data_quality':{'core_verified':verified,'core_unverified':len(core)-verified,'derivatives_verified':deriv,'ready_count':ready,'cache_used':cached},'core':core_rows,'opportunity':opp_rows,'promotions':promotions,'discovery':discovery,'setups':core_rows,'alerts':alerts}
+    CACHE_PATH.write_text(json.dumps(cache,ensure_ascii=False,indent=2));(DATA/'latest.json').write_text(json.dumps(result,ensure_ascii=False,indent=2));sp.write_text(json.dumps({'updated_at':result['updated_at'],'states':states},ensure_ascii=False,indent=2));(DATA/'alerts.json').write_text(json.dumps(alerts,ensure_ascii=False,indent=2))
 if __name__=='__main__':main()

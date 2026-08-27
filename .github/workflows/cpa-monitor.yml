@@ -1,0 +1,52 @@
+name: CPA V3 Monitor
+
+on:
+  schedule:
+    - cron: '7,37 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: cpa-v3-monitor
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run CPA monitor
+        run: python scripts/cpa_monitor.py
+      - name: Publish monitor data
+        run: |
+          git config user.name "cpa-monitor[bot]"
+          git config user.email "cpa-monitor[bot]@users.noreply.github.com"
+          git add docs/cpa/data/latest.json docs/cpa/data/monitor_state.json docs/cpa/data/alerts.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(cpa): update monitoring data"
+            git push
+          fi
+      - name: Create alert issue on meaningful transition
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import json, os, subprocess
+          from pathlib import Path
+          p=Path('docs/cpa/data/alerts.json')
+          alerts=json.loads(p.read_text()) if p.exists() else []
+          if not alerts: raise SystemExit(0)
+          lines=['CPA V3 detected meaningful setup transitions:','']
+          for a in alerts:
+              lines.append(f"- {a['symbol']}: {a['from']} → {a['to']} | price {a['price']} | score {a['final']}")
+          lines += ['', 'Dashboard: https://spelllechuck-commits.github.io/DigitalAssetSolution_codex/cpa/']
+          title='CPA Alert · '+', '.join(a['symbol']+' '+a['to'] for a in alerts[:4])
+          subprocess.run(['gh','issue','create','--title',title,'--body','\n'.join(lines)],check=True)
+          PY

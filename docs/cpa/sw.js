@@ -1,4 +1,4 @@
-const CACHE='cpa-v3-20260827-1';
+const CACHE='cpa-v3-20260827-2';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon.svg','./mvp22.js','./mvp23.js','./v3.js'];
 self.addEventListener('install',e=>{self.skipWaiting();e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)))});
 self.addEventListener('activate',e=>e.waitUntil(Promise.all([self.clients.claim(),caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))])));

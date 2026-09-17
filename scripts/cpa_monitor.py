@@ -9,8 +9,10 @@ UA={'User-Agent':'CPA-Monitor/4.2'};STABLE={'usdt','usdc','dai','fdusd','tusd','
 def get(url,retries=3,timeout=12):
  for i in range(retries):
   try:return json.loads(urllib.request.urlopen(urllib.request.Request(url,headers=UA),timeout=timeout).read().decode())
-  except Exception:
-   if i==retries-1:return None
+  except Exception as exc:
+   if i==retries-1:
+    print(json.dumps({'diagnostic':'request_failed','url':url,'error_type':type(exc).__name__,'http_status':getattr(exc,'code',None),'attempts':retries}),flush=True)
+    return None
    time.sleep(2*(i+1))
 def load_json(p,d):
  try:return json.loads(p.read_text()) if p.exists() else d
@@ -38,7 +40,9 @@ def tech(c,cache):
  try:
   daily=[float(x[1]) for x in d['prices']];four=[float(x[1]) for x in h['prices']][::4]
   if len(daily)>=200 and len(four)>20:out.update(ok=True,e20=ema(daily,20),e50=ema(daily,50),e200=ema(daily,200),rsi=rsi(four),four_last=four[-1],four_prev=four[-2],four_prev2=four[-3],ts=now)
- except:pass
+ except Exception as exc:
+  print(json.dumps({'diagnostic':'technical_parse_failed','coin':c['id'],'error_type':type(exc).__name__}),flush=True)
+ print(json.dumps({'diagnostic':'technical_fetch','coin':c['id'],'daily_points':len(d.get('prices',[])) if isinstance(d,dict) else 0,'intraday_points':len(h.get('prices',[])) if isinstance(h,dict) else 0,'ok':out.get('ok'),'cache_age_hours':round(age/3600,2) if old else None}),flush=True)
  if out.get('ok'):cache[c['id']]={k:out.get(k) for k in ('ok','e20','e50','e200','rsi','four_last','four_prev','four_prev2','ts')};return out
  if old.get('ok') and age<86400:return {**old,'source':'coingecko-stale-cache'}
  return out

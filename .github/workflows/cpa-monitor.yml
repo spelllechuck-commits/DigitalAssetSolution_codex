@@ -18,6 +18,16 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  provider-probe:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/cpa_probe.py
   monitor:
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -27,6 +37,9 @@ jobs:
         with:
           python-version: '3.12'
       - name: Run CPA monitor
+        env:
+          COINGECKO_DEMO_API_KEY: ${{ secrets.COINGECKO_DEMO_API_KEY }}
+          COINGECKO_PRO_API_KEY: ${{ secrets.COINGECKO_PRO_API_KEY }}
         run: python scripts/cpa_monitor.py
       - name: Publish monitor data
         run: |

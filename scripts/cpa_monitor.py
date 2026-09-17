@@ -3,22 +3,16 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime,timezone
 from pathlib import Path
 from cpa_calibration import update_calibration
+from cpa_data import CLIENT, coingecko, technical
 ROOT=Path(__file__).resolve().parents[1];DATA=ROOT/'docs/cpa/data';DATA.mkdir(parents=True,exist_ok=True)
 CACHE_PATH=DATA/'tech_cache.json';EVENT_PATH=DATA/'market_events.json';PERF_PATH=DATA/'performance_history.json'
 UA={'User-Agent':'CPA-Monitor/4.2'};STABLE={'usdt','usdc','dai','fdusd','tusd','usde','usds','pyusd','frax','usdd','gusd','lusd','usdb','rlusd','usd1','usdg','usdf','usdy','usdp','usdk'};EXCLUDED_IDS={'figure-heloc','usd1-wlfi','global-dollar'};NAME_HINTS=('stablecoin','wrapped','bridged','staked ether','synthetic dollar');EVENT_BASE={'ETF':3,'ADOPTION':2,'REGULATION':2.5,'HACK':4,'DEPEG':5,'EXCHANGE':3.5,'MACRO':2.5,'PRICE':1.5,'OTHER':1};SEV={'LOW':.5,'MEDIUM':1,'HIGH':1.5,'CRITICAL':2}
-def get(url,retries=3,timeout=12):
- for i in range(retries):
-  try:return json.loads(urllib.request.urlopen(urllib.request.Request(url,headers=UA),timeout=timeout).read().decode())
-  except Exception as exc:
-   if i==retries-1:
-    print(json.dumps({'diagnostic':'request_failed','url':url,'error_type':type(exc).__name__,'http_status':getattr(exc,'code',None),'attempts':retries}),flush=True)
-    return None
-   time.sleep(2*(i+1))
+def get(url,retries=3,timeout=12):return CLIENT.get(url,retries=retries,timeout=timeout)
 def load_json(p,d):
  try:return json.loads(p.read_text()) if p.exists() else d
  except:return d
 def excluded(c):return c.get('id') in EXCLUDED_IDS or c['symbol'].lower() in STABLE or any(h in c['name'].lower() for h in NAME_HINTS)
-def cg(path,p):return get('https://api.coingecko.com/api/v3'+path+'?'+urllib.parse.urlencode(p))
+def cg(path,p):return coingecko(path,p)
 def universe():
  p={'vs_currency':'usd','order':'market_cap_desc','sparkline':'false','price_change_percentage':'24h,7d,30d'}
  with ThreadPoolExecutor(max_workers=2) as ex:a=ex.submit(cg,'/coins/markets',{**p,'per_page':250,'page':1}).result() or [];b=ex.submit(cg,'/coins/markets',{**p,'per_page':50,'page':6}).result() or []
@@ -33,19 +27,7 @@ def ema(a,n):
 def rsi(a,n=14):
  if len(a)<=n:return None
  ds=[a[i]-a[i-1] for i in range(len(a)-n,len(a))];g=sum(max(x,0) for x in ds)/n;l=sum(max(-x,0) for x in ds)/n;return 100 if l==0 else 100-100/(1+g/l)
-def tech(c,cache):
- now=time.time();old=cache.get(c['id']) or {};age=now-float(old.get('ts',0) or 0)
- if old.get('ok') and age<7200:return {**old,'source':'coingecko-cache'}
- out={'ok':False,'source':'coingecko-live'};d=cg(f"/coins/{c['id']}/market_chart",{'vs_currency':'usd','days':'365','interval':'daily'});time.sleep(1.1);h=cg(f"/coins/{c['id']}/market_chart",{'vs_currency':'usd','days':'30'});time.sleep(1.1)
- try:
-  daily=[float(x[1]) for x in d['prices']];four=[float(x[1]) for x in h['prices']][::4]
-  if len(daily)>=200 and len(four)>20:out.update(ok=True,e20=ema(daily,20),e50=ema(daily,50),e200=ema(daily,200),rsi=rsi(four),four_last=four[-1],four_prev=four[-2],four_prev2=four[-3],ts=now)
- except Exception as exc:
-  print(json.dumps({'diagnostic':'technical_parse_failed','coin':c['id'],'error_type':type(exc).__name__}),flush=True)
- print(json.dumps({'diagnostic':'technical_fetch','coin':c['id'],'daily_points':len(d.get('prices',[])) if isinstance(d,dict) else 0,'intraday_points':len(h.get('prices',[])) if isinstance(h,dict) else 0,'ok':out.get('ok'),'cache_age_hours':round(age/3600,2) if old else None}),flush=True)
- if out.get('ok'):cache[c['id']]={k:out.get(k) for k in ('ok','e20','e50','e200','rsi','four_last','four_prev','four_prev2','ts')};return out
- if old.get('ok') and age<86400:return {**old,'source':'coingecko-stale-cache'}
- return out
+def tech(c,cache):return technical(c,cache,cg,ema,rsi)
 def deriv(c):
  sym=c['symbol'].upper()+'USDT';p=get('https://fapi.binance.com/fapi/v1/premiumIndex?'+urllib.parse.urlencode({'symbol':sym}),retries=1,timeout=5);o={'deriv':False}
  if isinstance(p,dict) and p.get('lastFundingRate') is not None:o.update(deriv=True,funding=float(p['lastFundingRate'])*100)
@@ -94,7 +76,7 @@ def action(c,s,e,ev,st):
  if st=='EVENT HOLD':v=min(v,65)
  return round(v)
 def row(c,s,e,events,risk):
- base=classify(c,s,e);base,n,checks=confirm(c,s,e,base);st,ev=overlay(base,c['symbol'].upper(),events,risk);act=action(c,s,e,ev,st);return{'id':c['id'],'symbol':c['symbol'].upper(),'name':c['name'],'rank':c['market_cap_rank'],'price':c['current_price'],'tier':'CORE','quality':s['score'],'final':act,'action_score':act,'confidence':min(100,45+(35 if e.get('ok') else 0)+(15 if e.get('deriv') else 0)),'status':st,'base_status':ev['base_status'],'confirmation_score':n,'confirmation_checks':checks,'entry_signal':st=='CONFIRMED','event_risk':ev['event_risk'],'catalyst':ev['catalyst'],'event_score':ev['event_score'],'events':ev['events'],'data_source':e.get('source'),'d7':round(s['d7'],2),'d30':round(s['d30'],2),'rs':round(s['rs'],2),'funding':e.get('funding'),'e20':e.get('e20'),'e50':e.get('e50'),'rsi4h':e.get('rsi')}
+ base=classify(c,s,e);base,n,checks=confirm(c,s,e,base);st,ev=overlay(base,c['symbol'].upper(),events,risk);act=action(c,s,e,ev,st);return{'id':c['id'],'symbol':c['symbol'].upper(),'name':c['name'],'rank':c['market_cap_rank'],'price':c['current_price'],'tier':'CORE','quality':s['score'],'final':act,'action_score':act,'confidence':min(100,45+(35 if e.get('ok') else 0)+(15 if e.get('deriv') else 0)),'status':st,'base_status':ev['base_status'],'confirmation_score':n,'confirmation_checks':checks,'entry_signal':st=='CONFIRMED','event_risk':ev['event_risk'],'catalyst':ev['catalyst'],'event_score':ev['event_score'],'events':ev['events'],'data_source':e.get('source'),'d7':round(s['d7'],2),'d30':round(s['d30'],2),'rs':round(s['rs'],2),'funding':e.get('funding'),'e20':e.get('e20'),'e50':e.get('e50'),'rsi4h':e.get('rsi'),'technical_components':e.get('technical_components')}
 def regime(coins):
  btc=next(x for x in coins if x['id']=='bitcoin');alts=[x for x in coins if x['market_cap_rank']>10 and not excluded(x)];br=sum((x.get('price_change_percentage_7d_in_currency') or 0)>0 for x in alts)/max(1,len(alts))*100;s=round(max(0,min(100,50+max(-15,min(15,(btc.get('price_change_percentage_30d_in_currency') or 0)*.45))+(br-50)*.18)));return{'score':s,'name':'RISK-ON' if s>=80 else'SELECTIVE RISK-ON' if s>=65 else'NEUTRAL' if s>=50 else'RISK-OFF','breadth':round(br,1)}
 def update_perf(rows):
@@ -110,8 +92,11 @@ def main():
  coins=universe()
  if not coins:raise SystemExit('market unavailable')
  cache=load_json(CACHE_PATH,{});risk,events=active_events();btc=next(x for x in coins if x['id']=='bitcoin');inv=[c for c in coins if not excluded(c)];core=inv[:25];sc={c['id']:score(c,btc) for c in inv};rows=[]
- for c in core:
+ for c in sorted(core,key=lambda x:cache.get(x['id'],{}).get('ts',0)):
   e=tech(c,cache);e.update(deriv(c));e['source']=e.get('source','coingecko')+('+binance' if e.get('deriv') else'+no-derivatives');rows.append(row(c,sc[c['id']],e,events,risk))
+ rows.sort(key=lambda x:x['rank'])
+ print(json.dumps({'collection_calls':CLIENT.calls,'collection_errors':CLIENT.errors,'blocked_providers':CLIENT.blocked}),flush=True)
  opp=sorted([{'id':c['id'],'symbol':c['symbol'].upper(),'name':c['name'],'rank':c['market_cap_rank'],'price':c['current_price'],'tier':'OPPORTUNITY','quality':sc[c['id']]['score'],'status':'RADAR','d7':round(sc[c['id']]['d7'],2),'d30':round(sc[c['id']]['d30'],2),'rs':round(sc[c['id']]['rs'],2)} for c in inv[25:100]],key=lambda x:(x['quality'],x['rs']),reverse=True);prom=[x for x in opp if x['quality']>=62 and x['d30']>0 and x['rs']>2][:10];update_perf(rows);sp=DATA/'monitor_state.json';prev=load_json(sp,{}).get('states',{});states={r['id']:r['status'] for r in rows};alerts=[{'id':r['id'],'symbol':r['symbol'],'from':prev.get(r['id']),'to':r['status'],'price':r['price'],'final':r['final']}for r in rows if prev.get(r['id'])!=r['status'] and r['status'] in('CONFIRMED','EVENT HOLD','INVALIDATED')];res={'version':'4.2','updated_at':datetime.now(timezone.utc).isoformat(),'market_risk':risk,'active_event_count':len(events),'regime':regime(coins),'tiers':{'core_count':25,'opportunity_count':75,'discovery_count':len(inv[100:300])},'data_quality':{'core_verified':sum(r['status']!='UNVERIFIED' for r in rows),'core_unverified':sum(r['status']=='UNVERIFIED' for r in rows),'derivatives_verified':sum(r.get('funding')is not None for r in rows),'confirmed_count':sum(r['status']=='CONFIRMED' for r in rows),'cache_used':sum('cache'in(r.get('data_source')or'')for r in rows)},'core':rows,'opportunity':opp[:15],'promotions':prom,'alerts':alerts,'performance_tracking':{'enabled':True,'entry_basis':'CONFIRMED'}};CACHE_PATH.write_text(json.dumps(cache,ensure_ascii=False,indent=2));(DATA/'latest.json').write_text(json.dumps(res,ensure_ascii=False,indent=2));sp.write_text(json.dumps({'updated_at':res['updated_at'],'states':states},ensure_ascii=False,indent=2));(DATA/'alerts.json').write_text(json.dumps(alerts,ensure_ascii=False,indent=2))
  update_calibration(DATA,rows,res['regime'],res['updated_at'])
 if __name__=='__main__':main()
+

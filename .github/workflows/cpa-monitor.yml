@@ -19,6 +19,7 @@ concurrency:
 
 jobs:
   provider-probe:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     permissions:
       contents: read

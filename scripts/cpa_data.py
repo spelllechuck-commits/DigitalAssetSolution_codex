@@ -101,7 +101,13 @@ def technical(coin, cache, fetch, ema, rsi, now=None):
         ('intraday', {'days': '30'}, 81, 7200-jitter, 21600),
     ):
         part = components.get(key, {})
-        refresh = not part or now - part.get('fetched_at', 0) >= ttl
+        # Validate the source timestamp again on cache hits, not just insertion.
+        try:
+            fresh = (0 <= now - part['fetched_at'] < ttl
+                     and -300 <= now - part['prices'][-1][0]/1000 <= age_limit)
+        except (KeyError, IndexError, TypeError):
+            fresh = False
+        refresh = not fresh
         statuses[key] = 'CACHE'
         if refresh:
             result = fetch('/coins/' + coin['id'] + '/market_chart', {'vs_currency': 'usd', **params})
@@ -119,10 +125,11 @@ def technical(coin, cache, fetch, ema, rsi, now=None):
                 statuses[key] = 'LIVE'
             else:
                 statuses[key] = 'FETCH_FAILED' if prices is None else 'INVALID_OR_SHORT_HISTORY'
-        if not part or now - part.get('fetched_at', 0) >= ttl:
+        if statuses[key] not in ('CACHE', 'LIVE'):
             statuses[key] = 'STALE' if part else statuses[key]
     usable = all(k in components and statuses[k] in ('CACHE', 'LIVE') for k in ('daily', 'intraday'))
-    out = {'ok': False, 'source': 'coingecko-split-cache', 'technical_components': statuses}
+    source = 'coingecko-live' if 'LIVE' in statuses.values() else 'coingecko-cache' if usable else 'coingecko-unavailable'
+    out = {'ok': False, 'source': source, 'technical_components': statuses}
     if usable:
         daily = [p[1] for p in components['daily']['prices']]
         four = [p[1] for p in components['intraday']['prices']][::4]

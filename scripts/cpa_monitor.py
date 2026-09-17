@@ -1,9 +1,11 @@
-import json,time,urllib.request,urllib.parse
+import json,time,math,urllib.request,urllib.parse
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime,timezone
 from pathlib import Path
 from cpa_calibration import update_calibration
 from cpa_data import CLIENT, coingecko, technical
+from cpa_funding import Funding
+FUNDING=Funding(CLIENT)
 ROOT=Path(__file__).resolve().parents[1];DATA=ROOT/'docs/cpa/data';DATA.mkdir(parents=True,exist_ok=True)
 CACHE_PATH=DATA/'tech_cache.json';EVENT_PATH=DATA/'market_events.json';PERF_PATH=DATA/'performance_history.json'
 UA={'User-Agent':'CPA-Monitor/4.2'};STABLE={'usdt','usdc','dai','fdusd','tusd','usde','usds','pyusd','frax','usdd','gusd','lusd','usdb','rlusd','usd1','usdg','usdf','usdy','usdp','usdk'};EXCLUDED_IDS={'figure-heloc','usd1-wlfi','global-dollar'};NAME_HINTS=('stablecoin','wrapped','bridged','staked ether','synthetic dollar');EVENT_BASE={'ETF':3,'ADOPTION':2,'REGULATION':2.5,'HACK':4,'DEPEG':5,'EXCHANGE':3.5,'MACRO':2.5,'PRICE':1.5,'OTHER':1};SEV={'LOW':.5,'MEDIUM':1,'HIGH':1.5,'CRITICAL':2}
@@ -28,10 +30,7 @@ def rsi(a,n=14):
  if len(a)<=n:return None
  ds=[a[i]-a[i-1] for i in range(len(a)-n,len(a))];g=sum(max(x,0) for x in ds)/n;l=sum(max(-x,0) for x in ds)/n;return 100 if l==0 else 100-100/(1+g/l)
 def tech(c,cache):return technical(c,cache,cg,ema,rsi)
-def deriv(c):
- sym=c['symbol'].upper()+'USDT';p=get('https://fapi.binance.com/fapi/v1/premiumIndex?'+urllib.parse.urlencode({'symbol':sym}),retries=1,timeout=5);o={'deriv':False}
- if isinstance(p,dict) and p.get('lastFundingRate') is not None:o.update(deriv=True,funding=float(p['lastFundingRate'])*100)
- return o
+def deriv(c):return FUNDING.get(c)
 def active_events():
  f=load_json(EVENT_PATH,{'market_risk':'LOW','events':[]});now=datetime.now(timezone.utc);seen=set();a=[]
  for e in f.get('events',[]):
@@ -66,7 +65,7 @@ def confirm(c,s,e,base):
  if r is not None and 40<=r<=65:checks.append('RSI balanced')
  if a and b and cc and a>b and b>=cc*.995:checks.append('4H turn up')
  if s['rs']>0:checks.append('BTC relative strength')
- if f is None or f<.05:checks.append('funding not overheated')
+ if e.get('deriv') and isinstance(f,(int,float)) and not isinstance(f,bool) and math.isfinite(f) and f<.05:checks.append('funding not overheated')
  n=len(checks)
  return('CONFIRMED' if n>=4 else'NEAR ENTRY'),n,checks
 def action(c,s,e,ev,st):
@@ -76,7 +75,7 @@ def action(c,s,e,ev,st):
  if st=='EVENT HOLD':v=min(v,65)
  return round(v)
 def row(c,s,e,events,risk):
- base=classify(c,s,e);base,n,checks=confirm(c,s,e,base);st,ev=overlay(base,c['symbol'].upper(),events,risk);act=action(c,s,e,ev,st);return{'id':c['id'],'symbol':c['symbol'].upper(),'name':c['name'],'rank':c['market_cap_rank'],'price':c['current_price'],'tier':'CORE','quality':s['score'],'final':act,'action_score':act,'confidence':min(100,45+(35 if e.get('ok') else 0)+(15 if e.get('deriv') else 0)),'status':st,'base_status':ev['base_status'],'confirmation_score':n,'confirmation_checks':checks,'entry_signal':st=='CONFIRMED','event_risk':ev['event_risk'],'catalyst':ev['catalyst'],'event_score':ev['event_score'],'events':ev['events'],'data_source':e.get('source'),'d7':round(s['d7'],2),'d30':round(s['d30'],2),'rs':round(s['rs'],2),'funding':e.get('funding'),'e20':e.get('e20'),'e50':e.get('e50'),'rsi4h':e.get('rsi'),'technical_components':e.get('technical_components')}
+ base=classify(c,s,e);base,n,checks=confirm(c,s,e,base);st,ev=overlay(base,c['symbol'].upper(),events,risk);act=action(c,s,e,ev,st);return{'id':c['id'],'symbol':c['symbol'].upper(),'name':c['name'],'rank':c['market_cap_rank'],'price':c['current_price'],'tier':'CORE','quality':s['score'],'final':act,'action_score':act,'confidence':min(100,45+(35 if e.get('ok') else 0)+(15 if e.get('deriv') else 0)),'status':st,'base_status':ev['base_status'],'confirmation_score':n,'confirmation_checks':checks,'entry_signal':st=='CONFIRMED','event_risk':ev['event_risk'],'catalyst':ev['catalyst'],'event_score':ev['event_score'],'events':ev['events'],'data_source':e.get('source'),'d7':round(s['d7'],2),'d30':round(s['d30'],2),'rs':round(s['rs'],2),'funding':e.get('funding'),'funding_meta':e.get('funding_meta'),'model_version':'4.3-data-reliability','e20':e.get('e20'),'e50':e.get('e50'),'rsi4h':e.get('rsi'),'technical_components':e.get('technical_components')}
 def regime(coins):
  btc=next(x for x in coins if x['id']=='bitcoin');alts=[x for x in coins if x['market_cap_rank']>10 and not excluded(x)];br=sum((x.get('price_change_percentage_7d_in_currency') or 0)>0 for x in alts)/max(1,len(alts))*100;s=round(max(0,min(100,50+max(-15,min(15,(btc.get('price_change_percentage_30d_in_currency') or 0)*.45))+(br-50)*.18)));return{'score':s,'name':'RISK-ON' if s>=80 else'SELECTIVE RISK-ON' if s>=65 else'NEUTRAL' if s>=50 else'RISK-OFF','breadth':round(br,1)}
 def update_perf(rows):
@@ -92,11 +91,12 @@ def main():
  coins=universe()
  if not coins:raise SystemExit('market unavailable')
  cache=load_json(CACHE_PATH,{});risk,events=active_events();btc=next(x for x in coins if x['id']=='bitcoin');inv=[c for c in coins if not excluded(c)];core=inv[:25];sc={c['id']:score(c,btc) for c in inv};rows=[]
+ funding={c['id']:deriv(c) for c in core}
  for c in sorted(core,key=lambda x:cache.get(x['id'],{}).get('ts',0)):
-  e=tech(c,cache);e.update(deriv(c));e['source']=e.get('source','coingecko')+('+binance' if e.get('deriv') else'+no-derivatives');rows.append(row(c,sc[c['id']],e,events,risk))
+  e=tech(c,cache);e.update(funding[c['id']]);e['source']=e.get('source','coingecko')+('+kraken' if e.get('deriv') else'+no-derivatives');rows.append(row(c,sc[c['id']],e,events,risk))
  rows.sort(key=lambda x:x['rank'])
  print(json.dumps({'collection_calls':CLIENT.calls,'collection_errors':CLIENT.errors,'blocked_providers':CLIENT.blocked}),flush=True)
- opp=sorted([{'id':c['id'],'symbol':c['symbol'].upper(),'name':c['name'],'rank':c['market_cap_rank'],'price':c['current_price'],'tier':'OPPORTUNITY','quality':sc[c['id']]['score'],'status':'RADAR','d7':round(sc[c['id']]['d7'],2),'d30':round(sc[c['id']]['d30'],2),'rs':round(sc[c['id']]['rs'],2)} for c in inv[25:100]],key=lambda x:(x['quality'],x['rs']),reverse=True);prom=[x for x in opp if x['quality']>=62 and x['d30']>0 and x['rs']>2][:10];update_perf(rows);sp=DATA/'monitor_state.json';prev=load_json(sp,{}).get('states',{});states={r['id']:r['status'] for r in rows};alerts=[{'id':r['id'],'symbol':r['symbol'],'from':prev.get(r['id']),'to':r['status'],'price':r['price'],'final':r['final']}for r in rows if prev.get(r['id'])!=r['status'] and r['status'] in('CONFIRMED','EVENT HOLD','INVALIDATED')];res={'version':'4.2','updated_at':datetime.now(timezone.utc).isoformat(),'market_risk':risk,'active_event_count':len(events),'regime':regime(coins),'tiers':{'core_count':25,'opportunity_count':75,'discovery_count':len(inv[100:300])},'data_quality':{'core_verified':sum(r['status']!='UNVERIFIED' for r in rows),'core_unverified':sum(r['status']=='UNVERIFIED' for r in rows),'derivatives_verified':sum(r.get('funding')is not None for r in rows),'confirmed_count':sum(r['status']=='CONFIRMED' for r in rows),'cache_used':sum('cache'in(r.get('data_source')or'')for r in rows)},'core':rows,'opportunity':opp[:15],'promotions':prom,'alerts':alerts,'performance_tracking':{'enabled':True,'entry_basis':'CONFIRMED'}};CACHE_PATH.write_text(json.dumps(cache,ensure_ascii=False,indent=2));(DATA/'latest.json').write_text(json.dumps(res,ensure_ascii=False,indent=2));sp.write_text(json.dumps({'updated_at':res['updated_at'],'states':states},ensure_ascii=False,indent=2));(DATA/'alerts.json').write_text(json.dumps(alerts,ensure_ascii=False,indent=2))
+ opp=sorted([{'id':c['id'],'symbol':c['symbol'].upper(),'name':c['name'],'rank':c['market_cap_rank'],'price':c['current_price'],'tier':'OPPORTUNITY','quality':sc[c['id']]['score'],'status':'RADAR','d7':round(sc[c['id']]['d7'],2),'d30':round(sc[c['id']]['d30'],2),'rs':round(sc[c['id']]['rs'],2)} for c in inv[25:100]],key=lambda x:(x['quality'],x['rs']),reverse=True);prom=[x for x in opp if x['quality']>=62 and x['d30']>0 and x['rs']>2][:10];update_perf(rows);sp=DATA/'monitor_state.json';prev=load_json(sp,{}).get('states',{});states={r['id']:r['status'] for r in rows};alerts=[{'id':r['id'],'symbol':r['symbol'],'from':prev.get(r['id']),'to':r['status'],'price':r['price'],'final':r['final']}for r in rows if prev.get(r['id'])!=r['status'] and r['status'] in('CONFIRMED','EVENT HOLD','INVALIDATED')];res={'version':'4.3-data-reliability','collection_health':{'calls':CLIENT.calls,'errors':CLIENT.errors,'blocked_providers':CLIENT.blocked},'updated_at':datetime.now(timezone.utc).isoformat(),'market_risk':risk,'active_event_count':len(events),'regime':regime(coins),'tiers':{'core_count':25,'opportunity_count':75,'discovery_count':len(inv[100:300])},'data_quality':{'core_verified':sum(r['status']!='UNVERIFIED' for r in rows),'core_unverified':sum(r['status']=='UNVERIFIED' for r in rows),'derivatives_verified':sum(r.get('funding')is not None for r in rows),'confirmed_count':sum(r['status']=='CONFIRMED' for r in rows),'cache_used':sum('CACHE' in (r.get('technical_components') or {}).values() for r in rows)},'core':rows,'opportunity':opp[:15],'promotions':prom,'alerts':alerts,'performance_tracking':{'enabled':True,'entry_basis':'CONFIRMED'}};CACHE_PATH.write_text(json.dumps(cache,ensure_ascii=False,indent=2));(DATA/'latest.json').write_text(json.dumps(res,ensure_ascii=False,indent=2));sp.write_text(json.dumps({'updated_at':res['updated_at'],'states':states},ensure_ascii=False,indent=2));(DATA/'alerts.json').write_text(json.dumps(alerts,ensure_ascii=False,indent=2))
  update_calibration(DATA,rows,res['regime'],res['updated_at'])
 if __name__=='__main__':main()
 

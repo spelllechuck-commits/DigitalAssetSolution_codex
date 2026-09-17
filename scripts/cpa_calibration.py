@@ -21,13 +21,14 @@ def positive_price(value):
 
 
 def summarize(observations):
-    groups = {key: {} for key in ("confirmation", "action_score", "event_risk", "regime")}
+    groups = {key: {} for key in ("confirmation", "action_score", "event_risk", "regime", "model_version")}
     for item in observations:
         labels = {
             "confirmation": str(item["confirmation_score"]),
             "action_score": "70+" if item["action_score"] >= 70 else "<70",
             "event_risk": item["event_risk"],
             "regime": item["regime"],
+            "model_version": item.get("model_version", "legacy"),
         }
         for dimension, label in labels.items():
             bucket = groups[dimension].setdefault(label, [])
@@ -101,6 +102,8 @@ def advance(state, rows, regime, observed_at):
             "action_score": row["action_score"], "event_risk": row["event_risk"],
             "event_score": row["event_score"], "regime": regime["name"],
             "regime_score": regime["score"], "data_source": row.get("data_source"),
+            "model_version": row.get("model_version", "legacy"),
+            "funding_meta": row.get("funding_meta"),
             "outcomes": {},
         })
         episodes[coin_id] = sample_id

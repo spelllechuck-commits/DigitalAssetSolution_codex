@@ -12,6 +12,18 @@ sys.path.insert(0, str(SCRIPTS))
 
 
 class MonitorTests(unittest.TestCase):
+    def test_missing_or_invalid_funding_never_confirms(self):
+        confirm = runpy.run_path(str(SCRIPTS / 'cpa_monitor.py'))['confirm']
+        coin = {'current_price': 100}
+        tech = {'e20': 100, 'rsi': 50, 'four_last': 102, 'four_prev': 101, 'four_prev2': 100}
+        for funding in (None, float('nan'), float('inf'), True):
+            status, score, checks = confirm(coin, {'rs': 0}, {**tech, 'deriv': True, 'funding': funding}, 'NEAR ENTRY')
+            self.assertEqual((status, score), ('NEAR ENTRY', 3))
+            self.assertNotIn('funding not overheated', checks)
+        status, score, _ = confirm(coin, {'rs': 0}, {**tech, 'deriv': True, 'funding': 0}, 'NEAR ENTRY')
+        self.assertEqual((status, score), ('CONFIRMED', 4))
+        self.assertEqual(confirm(coin, {'rs': 0}, {**tech, 'deriv': False, 'funding': 0}, 'NEAR ENTRY')[1], 3)
+
     def test_main_outputs_and_calibration_without_network(self):
         with tempfile.TemporaryDirectory() as td:
             root = Path(td)

@@ -60,3 +60,13 @@ class DataTests(unittest.TestCase):
     def test_http_date_retry_after(self):
         self.assertEqual(retry_delay('Thu, 01 Jan 1970 00:01:00 GMT',0),60)
         self.assertIsNone(retry_delay('invalid',0))
+
+    def test_recent_cache_cannot_hide_old_source_timestamps(self):
+        now = 10000000
+        cache = {'coin': {'components': {
+            'daily': {'fetched_at': now, 'prices': [[1000*(now-300000),100]]},
+            'intraday': {'fetched_at': now, 'prices': [[1000*(now-300000),100]]}}}}
+        fetch = Mock(return_value=None)
+        result = technical({'id': 'coin'},cache,fetch,Mock(),Mock(),now)
+        self.assertFalse(result['ok'])
+        self.assertEqual(fetch.call_count,2)

@@ -1,0 +1,21 @@
+name: CPA validation
+on:
+  pull_request:
+    paths: ['scripts/**', 'tests/**', '.github/workflows/cpa*.yml']
+  push:
+    branches: [main]
+    paths: ['scripts/**', 'tests/**', '.github/workflows/cpa*.yml']
+permissions:
+  contents: read
+jobs:
+  offline-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile monitor and calibration
+        run: python -m compileall -q scripts tests
+      - name: Run offline regression tests
+        run: python -m unittest discover -s tests -v

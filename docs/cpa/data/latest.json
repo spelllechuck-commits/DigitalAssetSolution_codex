@@ -2,19 +2,19 @@
   "version": "4.3-data-reliability",
   "collection_health": {
     "calls": {
-      "api.coingecko.com": 2,
+      "api.coingecko.com": 31,
       "futures.kraken.com": 20
     },
     "errors": {},
     "blocked_providers": {}
   },
-  "updated_at": "2026-09-26T14:40:50.465443+00:00",
+  "updated_at": "2026-09-26T15:24:50.592547+00:00",
   "market_risk": "HIGH",
   "active_event_count": 17,
   "regime": {
-    "score": 57,
+    "score": 58,
     "name": "NEUTRAL",
-    "breadth": 75.8
+    "breadth": 78.0
   },
   "tiers": {
     "core_count": 25,
@@ -34,7 +34,7 @@
       "symbol": "BTC",
       "name": "Bitcoin",
       "rank": 1,
-      "price": 83992,
+      "price": 84018,
       "tier": "CORE",
       "quality": 52,
       "final": 65,
@@ -144,11 +144,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 3.26,
-      "d30": 5.88,
+      "data_source": "coingecko-live+kraken",
+      "d7": 3.3,
+      "d30": 5.65,
       "rs": 0.0,
-      "funding": -0.0022806833333336,
+      "funding": -0.00140674,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -157,16 +157,16 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_XBTUSD",
-        "observed_at": "2026-09-26T14:00:00Z",
-        "raw_relative_rate": -2.850854166667e-06
+        "observed_at": "2026-09-26T15:00:00Z",
+        "raw_relative_rate": -1.758425e-06
       },
       "model_version": "4.3-data-reliability",
       "e20": 81025.46837725317,
       "e50": 76720.15524885891,
-      "rsi4h": 49.982992902807126,
+      "rsi4h": 44.66139295888724,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -174,18 +174,19 @@
       "symbol": "ETH",
       "name": "Ethereum",
       "rank": 2,
-      "price": 2688.15,
+      "price": 2689.48,
       "tier": "CORE",
       "quality": 52,
       "final": 65,
       "action_score": 65,
       "confidence": 95,
       "status": "EVENT HOLD",
-      "base_status": "NEAR ENTRY",
-      "confirmation_score": 3,
+      "base_status": "CONFIRMED",
+      "confirmation_score": 4,
       "confirmation_checks": [
         "20EMA support",
         "RSI balanced",
+        "4H turn up",
         "funding not overheated"
       ],
       "entry_signal": false,
@@ -285,11 +286,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 1.72,
-      "d30": 7.59,
-      "rs": -1.54,
-      "funding": 0.0041326766666664,
+      "data_source": "coingecko-live+kraken",
+      "d7": 1.92,
+      "d30": 7.68,
+      "rs": -1.38,
+      "funding": 0.00767809,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -298,16 +299,16 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_ETHUSD",
-        "observed_at": "2026-09-26T14:00:00Z",
-        "raw_relative_rate": 5.165845833333e-06
+        "observed_at": "2026-09-26T15:00:00Z",
+        "raw_relative_rate": 9.5976125e-06
       },
       "model_version": "4.3-data-reliability",
       "e20": 2586.2449721495123,
       "e50": 2404.608953356295,
-      "rsi4h": 51.673298501692315,
+      "rsi4h": 49.18641407377441,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -315,19 +316,18 @@
       "symbol": "BNB",
       "name": "BNB",
       "rank": 4,
-      "price": 772.97,
+      "price": 773.98,
       "tier": "CORE",
       "quality": 51,
       "final": 65,
       "action_score": 65,
       "confidence": 95,
       "status": "EVENT HOLD",
-      "base_status": "CONFIRMED",
-      "confirmation_score": 4,
+      "base_status": "NEAR ENTRY",
+      "confirmation_score": 3,
       "confirmation_checks": [
         "20EMA support",
         "RSI balanced",
-        "4H turn up",
         "funding not overheated"
       ],
       "entry_signal": false,
@@ -360,11 +360,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 0.02,
-      "d30": 9.43,
-      "rs": -3.24,
-      "funding": -0.0070708866666664,
+      "data_source": "coingecko-live+kraken",
+      "d7": 0.51,
+      "d30": 9.18,
+      "rs": -2.8,
+      "funding": -0.0034715,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -373,16 +373,16 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_BNBUSD",
-        "observed_at": "2026-09-26T14:00:00Z",
-        "raw_relative_rate": -8.838608333333e-06
+        "observed_at": "2026-09-26T15:00:00Z",
+        "raw_relative_rate": -4.339375e-06
       },
       "model_version": "4.3-data-reliability",
       "e20": 751.2315044392409,
       "e50": 707.4039314278319,
-      "rsi4h": 49.933189535206864,
+      "rsi4h": 48.15227671965399,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -459,11 +459,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 7.66,
-      "d30": 8.31,
-      "rs": 4.4,
-      "funding": 0.001124,
+      "data_source": "coingecko-live+kraken",
+      "d7": 7.54,
+      "d30": 7.46,
+      "rs": 4.24,
+      "funding": 0.0182876866666664,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -472,16 +472,16 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_XRPUSD",
-        "observed_at": "2026-09-26T14:00:00Z",
-        "raw_relative_rate": 1.405e-06
+        "observed_at": "2026-09-26T15:00:00Z",
+        "raw_relative_rate": 2.2859608333333e-05
       },
       "model_version": "4.3-data-reliability",
       "e20": 1.445105138895846,
       "e50": 1.3505894517529204,
-      "rsi4h": 58.357112240831206,
+      "rsi4h": 60.8040890467028,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -489,7 +489,7 @@
       "symbol": "SOL",
       "name": "Solana",
       "rank": 7,
-      "price": 120.92,
+      "price": 121.09,
       "tier": "CORE",
       "quality": 58,
       "final": 68,
@@ -529,11 +529,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 8.12,
-      "d30": 15.62,
-      "rs": 4.86,
-      "funding": 0.01849806,
+      "data_source": "coingecko-live+kraken",
+      "d7": 8.33,
+      "d30": 14.02,
+      "rs": 5.03,
+      "funding": 0.0122733533333336,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -542,16 +542,16 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_SOLUSD",
-        "observed_at": "2026-09-26T14:00:00Z",
-        "raw_relative_rate": 2.3122575e-05
+        "observed_at": "2026-09-26T15:00:00Z",
+        "raw_relative_rate": 1.5341691666667e-05
       },
       "model_version": "4.3-data-reliability",
       "e20": 110.1590233096911,
       "e50": 100.27600649399383,
-      "rsi4h": 71.93291902700818,
+      "rsi4h": 67.00047000299547,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -559,7 +559,7 @@
       "symbol": "TRX",
       "name": "TRON",
       "rank": 8,
-      "price": 0.336372,
+      "price": 0.336591,
       "tier": "CORE",
       "quality": 49,
       "final": 65,
@@ -602,11 +602,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": -0.5,
-      "d30": -0.59,
-      "rs": -3.77,
-      "funding": -0.013447869999999999,
+      "data_source": "coingecko-live+kraken",
+      "d7": -0.48,
+      "d30": -0.32,
+      "rs": -3.78,
+      "funding": -0.020959059999999998,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -615,16 +615,16 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_TRXUSD",
-        "observed_at": "2026-09-26T14:00:00Z",
-        "raw_relative_rate": -1.68098375e-05
+        "observed_at": "2026-09-26T15:00:00Z",
+        "raw_relative_rate": -2.6198825e-05
       },
       "model_version": "4.3-data-reliability",
       "e20": 0.3385075512523706,
       "e50": 0.3360640462533358,
-      "rsi4h": 19.79717773177022,
+      "rsi4h": 24.478699716216795,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -632,7 +632,7 @@
       "symbol": "ZEC",
       "name": "Zcash",
       "rank": 9,
-      "price": 1540.78,
+      "price": 1548.59,
       "tier": "CORE",
       "quality": 57,
       "final": 64,
@@ -672,11 +672,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 0.15,
-      "d30": 96.66,
-      "rs": -3.12,
-      "funding": 0.0028465166666664,
+      "data_source": "coingecko-live+kraken",
+      "d7": 0.95,
+      "d30": 94.91,
+      "rs": -2.36,
+      "funding": 0.008445330000000001,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -685,16 +685,16 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_ZECUSD",
-        "observed_at": "2026-09-26T14:00:00Z",
-        "raw_relative_rate": 3.558145833333e-06
+        "observed_at": "2026-09-26T15:00:00Z",
+        "raw_relative_rate": 1.05566625e-05
       },
       "model_version": "4.3-data-reliability",
       "e20": 1353.2134882183454,
       "e50": 1070.7649858272491,
-      "rsi4h": 53.992804548796826,
+      "rsi4h": 54.19193801269737,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -702,9 +702,9 @@
       "symbol": "HYPE",
       "name": "Hyperliquid",
       "rank": 11,
-      "price": 92.43,
+      "price": 92.25,
       "tier": "CORE",
-      "quality": 53,
+      "quality": 52,
       "final": 65,
       "action_score": 65,
       "confidence": 95,
@@ -747,11 +747,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": -0.47,
-      "d30": 11.79,
-      "rs": -3.74,
-      "funding": -0.012290083333333599,
+      "data_source": "coingecko-live+kraken",
+      "d7": -0.37,
+      "d30": 11.38,
+      "rs": -3.67,
+      "funding": 0.0031243233333336003,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -760,16 +760,16 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_HYPEUSD",
-        "observed_at": "2026-09-26T14:00:00Z",
-        "raw_relative_rate": -1.5362604166667e-05
+        "observed_at": "2026-09-26T15:00:00Z",
+        "raw_relative_rate": 3.905404166667e-06
       },
       "model_version": "4.3-data-reliability",
       "e20": 87.93388906256264,
       "e50": 80.13590006609334,
-      "rsi4h": 47.541222045437664,
+      "rsi4h": 44.82201619702098,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -777,18 +777,17 @@
       "symbol": "DOGE",
       "name": "Dogecoin",
       "rank": 12,
-      "price": 0.097459,
+      "price": 0.09811,
       "tier": "CORE",
-      "quality": 57,
+      "quality": 58,
       "final": 65,
       "action_score": 65,
       "confidence": 95,
       "status": "EVENT HOLD",
-      "base_status": "CONFIRMED",
-      "confirmation_score": 4,
+      "base_status": "NEAR ENTRY",
+      "confirmation_score": 3,
       "confirmation_checks": [
         "20EMA support",
-        "RSI balanced",
         "BTC relative strength",
         "funding not overheated"
       ],
@@ -822,11 +821,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 9.4,
-      "d30": 10.81,
-      "rs": 6.14,
-      "funding": -7.187e-05,
+      "data_source": "coingecko-live+kraken",
+      "d7": 10.1,
+      "d30": 11.02,
+      "rs": 6.8,
+      "funding": 0.0075192366666663995,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -835,16 +834,16 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_DOGEUSD",
-        "observed_at": "2026-09-26T14:00:00Z",
-        "raw_relative_rate": -8.98375e-08
+        "observed_at": "2026-09-26T15:00:00Z",
+        "raw_relative_rate": 9.399045833333e-06
       },
       "model_version": "4.3-data-reliability",
       "e20": 0.09054541925562974,
       "e50": 0.08550936060928153,
-      "rsi4h": 60.21953539432146,
+      "rsi4h": 65.73446932578844,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -892,11 +891,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 14.19,
-      "d30": 21.77,
-      "rs": 10.93,
-      "funding": -0.0404002066666664,
+      "data_source": "coingecko-live+kraken",
+      "d7": 14.98,
+      "d30": 21.61,
+      "rs": 11.68,
+      "funding": -0.0137682266666664,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -905,16 +904,16 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_LINKUSD",
-        "observed_at": "2026-09-26T14:00:00Z",
-        "raw_relative_rate": -5.0500258333333e-05
+        "observed_at": "2026-09-26T15:00:00Z",
+        "raw_relative_rate": -1.7210283333333e-05
       },
       "model_version": "4.3-data-reliability",
       "e20": 12.427079096726011,
       "e50": 11.373692769614529,
-      "rsi4h": 83.92311374613028,
+      "rsi4h": 81.61121398828895,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -922,9 +921,9 @@
       "symbol": "XMR",
       "name": "Monero",
       "rank": 14,
-      "price": 551.37,
+      "price": 553.11,
       "tier": "CORE",
-      "quality": 51,
+      "quality": 52,
       "final": 65,
       "action_score": 65,
       "confidence": 95,
@@ -966,11 +965,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": -5.63,
-      "d30": 19.42,
-      "rs": -8.89,
-      "funding": 0.0382483166666664,
+      "data_source": "coingecko-live+kraken",
+      "d7": -4.85,
+      "d30": 20.51,
+      "rs": -8.15,
+      "funding": -0.0006673233333336,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -979,16 +978,16 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_XMRUSD",
-        "observed_at": "2026-09-26T14:00:00Z",
-        "raw_relative_rate": 4.7810395833333e-05
+        "observed_at": "2026-09-26T15:00:00Z",
+        "raw_relative_rate": -8.34154166667e-07
       },
       "model_version": "4.3-data-reliability",
       "e20": 538.3870894665305,
       "e50": 489.9423166793582,
-      "rsi4h": 46.328520018781376,
+      "rsi4h": 44.69792007724441,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -1004,11 +1003,10 @@
       "confidence": 80,
       "status": "EVENT HOLD",
       "base_status": "NEAR ENTRY",
-      "confirmation_score": 3,
+      "confirmation_score": 2,
       "confirmation_checks": [
         "20EMA support",
-        "RSI balanced",
-        "4H turn up"
+        "RSI balanced"
       ],
       "entry_signal": false,
       "event_risk": "LOW",
@@ -1040,10 +1038,10 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+no-derivatives",
-      "d7": 0.76,
-      "d30": 14.31,
-      "rs": -2.5,
+      "data_source": "coingecko-live+no-derivatives",
+      "d7": 0.79,
+      "d30": 14.22,
+      "rs": -2.51,
       "funding": null,
       "funding_meta": {
         "source": "kraken",
@@ -1056,10 +1054,10 @@
       "model_version": "4.3-data-reliability",
       "e20": 81.04197851766315,
       "e50": 73.96664947612868,
-      "rsi4h": 42.58071803901441,
+      "rsi4h": 42.87150697325697,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -1067,7 +1065,7 @@
       "symbol": "ADA",
       "name": "Cardano",
       "rank": 17,
-      "price": 0.256139,
+      "price": 0.258479,
       "tier": "CORE",
       "quality": 61,
       "final": 64,
@@ -1108,10 +1106,10 @@
         }
       ],
       "data_source": "coingecko-cache+kraken",
-      "d7": 12.75,
-      "d30": 20.75,
-      "rs": 9.49,
-      "funding": 0.0001409566666664,
+      "d7": 13.21,
+      "d30": 20.58,
+      "rs": 9.91,
+      "funding": 0.0065555566666664,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -1120,8 +1118,8 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_ADAUSD",
-        "observed_at": "2026-09-26T14:00:00Z",
-        "raw_relative_rate": 1.76195833333e-07
+        "observed_at": "2026-09-26T15:00:00Z",
+        "raw_relative_rate": 8.194445833333e-06
       },
       "model_version": "4.3-data-reliability",
       "e20": 0.22916201515408713,
@@ -1137,9 +1135,9 @@
       "symbol": "RAIN",
       "name": "Rain",
       "rank": 18,
-      "price": 0.01287862,
+      "price": 0.01281938,
       "tier": "CORE",
-      "quality": 38,
+      "quality": 41,
       "final": 35,
       "action_score": 35,
       "confidence": 80,
@@ -1177,10 +1175,10 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+no-derivatives",
-      "d7": -10.64,
-      "d30": -28.65,
-      "rs": -13.91,
+      "data_source": "coingecko-live+no-derivatives",
+      "d7": -6.84,
+      "d30": -25.53,
+      "rs": -10.14,
       "funding": null,
       "funding_meta": {
         "source": "kraken",
@@ -1193,10 +1191,10 @@
       "model_version": "4.3-data-reliability",
       "e20": 0.013528665194061106,
       "e50": 0.014216466703871174,
-      "rsi4h": 52.84872485994985,
+      "rsi4h": 58.18425063117779,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -1204,18 +1202,19 @@
       "symbol": "LEO",
       "name": "LEO Token",
       "rank": 19,
-      "price": 8.96,
+      "price": 8.98,
       "tier": "CORE",
-      "quality": 49,
+      "quality": 48,
       "final": 62,
       "action_score": 62,
       "confidence": 80,
       "status": "EVENT HOLD",
       "base_status": "NEAR ENTRY",
-      "confirmation_score": 2,
+      "confirmation_score": 3,
       "confirmation_checks": [
         "20EMA support",
-        "RSI balanced"
+        "RSI balanced",
+        "4H turn up"
       ],
       "entry_signal": false,
       "event_risk": "LOW",
@@ -1247,10 +1246,10 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+no-derivatives",
-      "d7": 0.84,
-      "d30": -3.9,
-      "rs": -2.42,
+      "data_source": "coingecko-live+no-derivatives",
+      "d7": 0.83,
+      "d30": -4.08,
+      "rs": -2.47,
       "funding": null,
       "funding_meta": {
         "source": "kraken",
@@ -1263,10 +1262,10 @@
       "model_version": "4.3-data-reliability",
       "e20": 9.014189464483549,
       "e50": 9.201590620933073,
-      "rsi4h": 44.37173610639921,
+      "rsi4h": 48.43144016349372,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -1274,11 +1273,11 @@
       "symbol": "XLM",
       "name": "Stellar",
       "rank": 20,
-      "price": 0.218187,
+      "price": 0.218642,
       "tier": "CORE",
       "quality": 58,
-      "final": 62,
-      "action_score": 62,
+      "final": 63,
+      "action_score": 63,
       "confidence": 95,
       "status": "WAIT",
       "base_status": "WAIT",
@@ -1335,11 +1334,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 9.1,
-      "d30": 17.67,
-      "rs": 5.84,
-      "funding": 0.0007426366666664,
+      "data_source": "coingecko-live+kraken",
+      "d7": 9.49,
+      "d30": 17.09,
+      "rs": 6.18,
+      "funding": 0.00038383666666639996,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -1348,16 +1347,16 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_XLMUSD",
-        "observed_at": "2026-09-26T14:00:00Z",
-        "raw_relative_rate": 9.28295833333e-07
+        "observed_at": "2026-09-26T15:00:00Z",
+        "raw_relative_rate": 4.79795833333e-07
       },
       "model_version": "4.3-data-reliability",
       "e20": 0.1988120791460617,
       "e50": 0.18883002047371084,
-      "rsi4h": 68.13586127482976,
+      "rsi4h": 68.47884309695807,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -1365,7 +1364,7 @@
       "symbol": "BCH",
       "name": "Bitcoin Cash",
       "rank": 21,
-      "price": 334.14,
+      "price": 335.26,
       "tier": "CORE",
       "quality": 69,
       "final": 55,
@@ -1405,11 +1404,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 32.28,
-      "d30": 24.44,
-      "rs": 29.02,
-      "funding": -0.0179582866666664,
+      "data_source": "coingecko-live+kraken",
+      "d7": 32.66,
+      "d30": 24.31,
+      "rs": 29.36,
+      "funding": -0.01578107,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -1418,16 +1417,16 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_BCHUSD",
-        "observed_at": "2026-09-26T14:00:00Z",
-        "raw_relative_rate": -2.2447858333333e-05
+        "observed_at": "2026-09-26T15:00:00Z",
+        "raw_relative_rate": -1.97263375e-05
       },
       "model_version": "4.3-data-reliability",
       "e20": 281.7444229565816,
       "e50": 258.1384771245881,
-      "rsi4h": 49.142883248716544,
+      "rsi4h": 43.04802491920811,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -1435,9 +1434,9 @@
       "symbol": "NEAR",
       "name": "NEAR Protocol",
       "rank": 22,
-      "price": 4.84,
+      "price": 4.85,
       "tier": "CORE",
-      "quality": 76,
+      "quality": 67,
       "final": 55,
       "action_score": 55,
       "confidence": 95,
@@ -1475,11 +1474,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 33.04,
-      "d30": 153.93,
-      "rs": 29.78,
-      "funding": 0.020536,
+      "data_source": "coingecko-live+kraken",
+      "d7": 35.25,
+      "d30": 152.36,
+      "rs": 31.95,
+      "funding": 0.024693533333333604,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -1488,16 +1487,16 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_NEARUSD",
-        "observed_at": "2026-09-26T14:00:00Z",
-        "raw_relative_rate": 2.567e-05
+        "observed_at": "2026-09-26T15:00:00Z",
+        "raw_relative_rate": 3.0866916666667e-05
       },
       "model_version": "4.3-data-reliability",
       "e20": 3.5791553935516287,
       "e50": 2.779752845772978,
-      "rsi4h": 65.72708410081783,
+      "rsi4h": 64.27104680630556,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -1505,7 +1504,7 @@
       "symbol": "UNI",
       "name": "Uniswap",
       "rank": 23,
-      "price": 9.65,
+      "price": 9.75,
       "tier": "CORE",
       "quality": 63,
       "final": 55,
@@ -1545,11 +1544,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 6.49,
-      "d30": 115.7,
-      "rs": 3.23,
-      "funding": 0.0349982633333336,
+      "data_source": "coingecko-live+kraken",
+      "d7": 7.76,
+      "d30": 114.35,
+      "rs": 4.46,
+      "funding": 0.0235462966666664,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -1558,16 +1557,16 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_UNIUSD",
-        "observed_at": "2026-09-26T14:00:00Z",
-        "raw_relative_rate": 4.3747829166667e-05
+        "observed_at": "2026-09-26T15:00:00Z",
+        "raw_relative_rate": 2.9432870833333e-05
       },
       "model_version": "4.3-data-reliability",
       "e20": 8.024711049604539,
       "e50": 6.4363762736356955,
-      "rsi4h": 57.75516486887071,
+      "rsi4h": 61.25359353342631,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -1575,9 +1574,9 @@
       "symbol": "LTC",
       "name": "Litecoin",
       "rank": 24,
-      "price": 72.58,
+      "price": 72.87,
       "tier": "CORE",
-      "quality": 73,
+      "quality": 74,
       "final": 55,
       "action_score": 55,
       "confidence": 95,
@@ -1615,11 +1614,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 24.1,
-      "d30": 44.89,
-      "rs": 20.84,
-      "funding": 0.006319316666666399,
+      "data_source": "coingecko-live+kraken",
+      "d7": 26.02,
+      "d30": 45.62,
+      "rs": 22.72,
+      "funding": 0.0082940866666664,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -1628,16 +1627,16 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_LTCUSD",
-        "observed_at": "2026-09-26T14:00:00Z",
-        "raw_relative_rate": 7.899145833333e-06
+        "observed_at": "2026-09-26T15:00:00Z",
+        "raw_relative_rate": 1.0367608333333e-05
       },
       "model_version": "4.3-data-reliability",
       "e20": 60.25240396035022,
       "e50": 54.50268732510128,
-      "rsi4h": 60.16569568026719,
+      "rsi4h": 63.57390069870507,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -1645,9 +1644,9 @@
       "symbol": "CC",
       "name": "Canton",
       "rank": 25,
-      "price": 0.137009,
+      "price": 0.137226,
       "tier": "CORE",
-      "quality": 64,
+      "quality": 63,
       "final": 55,
       "action_score": 55,
       "confidence": 80,
@@ -1685,10 +1684,10 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+no-derivatives",
-      "d7": 24.53,
-      "d30": 19.75,
-      "rs": 21.27,
+      "data_source": "coingecko-live+no-derivatives",
+      "d7": 23.04,
+      "d30": 17.49,
+      "rs": 19.74,
       "funding": null,
       "funding_meta": {
         "source": "kraken",
@@ -1702,10 +1701,10 @@
       "model_version": "4.3-data-reliability",
       "e20": 0.11192574957376972,
       "e50": 0.1116367360833692,
-      "rsi4h": 91.95510269620547,
+      "rsi4h": 85.8254563130755,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -1713,9 +1712,9 @@
       "symbol": "AVAX",
       "name": "Avalanche",
       "rank": 27,
-      "price": 10.93,
+      "price": 11.06,
       "tier": "CORE",
-      "quality": 70,
+      "quality": 71,
       "final": 55,
       "action_score": 55,
       "confidence": 95,
@@ -1753,11 +1752,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 16.12,
-      "d30": 46.46,
-      "rs": 12.86,
-      "funding": 0.02395811,
+      "data_source": "coingecko-live+kraken",
+      "d7": 17.74,
+      "d30": 47.73,
+      "rs": 14.44,
+      "funding": 0.0245416233333336,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -1766,16 +1765,16 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_AVAXUSD",
-        "observed_at": "2026-09-26T14:00:00Z",
-        "raw_relative_rate": 2.99476375e-05
+        "observed_at": "2026-09-26T15:00:00Z",
+        "raw_relative_rate": 3.0677029166667e-05
       },
       "model_version": "4.3-data-reliability",
       "e20": 9.289734372913596,
       "e50": 8.213967116225064,
-      "rsi4h": 63.65343709445774,
+      "rsi4h": 68.45378175697775,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -1823,10 +1822,10 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+no-derivatives",
-      "d7": 38.13,
-      "d30": 52.99,
-      "rs": 34.87,
+      "data_source": "coingecko-live+no-derivatives",
+      "d7": 38.28,
+      "d30": 51.91,
+      "rs": 34.98,
       "funding": null,
       "funding_meta": {
         "source": "kraken",
@@ -1839,10 +1838,10 @@
       "model_version": "4.3-data-reliability",
       "e20": 0.9097542292920263,
       "e50": 0.8216949276642697,
-      "rsi4h": 82.67773349668758,
+      "rsi4h": 81.66982129018781,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -1850,7 +1849,7 @@
       "symbol": "GRAM",
       "name": "Gram (prev. Toncoin)",
       "rank": 31,
-      "price": 1.48,
+      "price": 1.47,
       "tier": "CORE",
       "quality": 53,
       "final": 65,
@@ -1895,10 +1894,10 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+no-derivatives",
-      "d7": 6.43,
-      "d30": 5.81,
-      "rs": 3.16,
+      "data_source": "coingecko-live+no-derivatives",
+      "d7": 6.4,
+      "d30": 5.85,
+      "rs": 3.1,
       "funding": null,
       "funding_meta": {
         "source": "kraken",
@@ -1912,10 +1911,10 @@
       "model_version": "4.3-data-reliability",
       "e20": 1.401323439978586,
       "e50": 1.4077369340224126,
-      "rsi4h": 64.10178168264905,
+      "rsi4h": 63.87508265484704,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -1923,11 +1922,11 @@
       "symbol": "HBAR",
       "name": "Hedera",
       "rank": 32,
-      "price": 0.093912,
+      "price": 0.094367,
       "tier": "CORE",
       "quality": 61,
-      "final": 65,
-      "action_score": 65,
+      "final": 66,
+      "action_score": 66,
       "confidence": 95,
       "status": "WAIT",
       "base_status": "WAIT",
@@ -1963,11 +1962,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 15.81,
-      "d30": 19.03,
-      "rs": 12.55,
-      "funding": 0.0234189733333336,
+      "data_source": "coingecko-live+kraken",
+      "d7": 16.34,
+      "d30": 19.79,
+      "rs": 13.04,
+      "funding": 0.03298306,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -1976,162 +1975,149 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_HBARUSD",
-        "observed_at": "2026-09-26T14:00:00Z",
-        "raw_relative_rate": 2.9273716666667e-05
+        "observed_at": "2026-09-26T15:00:00Z",
+        "raw_relative_rate": 4.1228825e-05
       },
       "model_version": "4.3-data-reliability",
       "e20": 0.08515327145152746,
       "e50": 0.07948685154302756,
-      "rsi4h": 57.681111865602766,
+      "rsi4h": 64.2498148630703,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     }
   ],
   "opportunity": [
     {
-      "id": "aerodrome-finance",
-      "symbol": "AERO",
-      "name": "Aerodrome Finance",
-      "rank": 86,
-      "price": 0.901134,
-      "tier": "OPPORTUNITY",
-      "quality": 85,
-      "status": "RADAR",
-      "d7": 33.0,
-      "d30": 74.85,
-      "rs": 29.74
-    },
-    {
-      "id": "fetch-ai",
-      "symbol": "FET",
-      "name": "Artificial Superintelligence Alliance",
-      "rank": 106,
-      "price": 0.246427,
-      "tier": "OPPORTUNITY",
-      "quality": 82,
-      "status": "RADAR",
-      "d7": 33.58,
-      "d30": 49.19,
-      "rs": 30.31
-    },
-    {
-      "id": "dash",
-      "symbol": "DASH",
-      "name": "Dash",
-      "rank": 85,
-      "price": 70.79,
+      "id": "ethena",
+      "symbol": "ENA",
+      "name": "Ethena",
+      "rank": 37,
+      "price": 0.27605,
       "tier": "OPPORTUNITY",
       "quality": 80,
       "status": "RADAR",
-      "d7": 17.08,
-      "d30": 81.9,
-      "rs": 13.82
+      "d7": 39.38,
+      "d30": 79.3,
+      "rs": 36.08
     },
     {
       "id": "plasma",
       "symbol": "XPL",
       "name": "Plasma",
-      "rank": 111,
-      "price": 0.117783,
+      "rank": 112,
+      "price": 0.117393,
       "tier": "OPPORTUNITY",
       "quality": 79,
       "status": "RADAR",
-      "d7": 29.02,
-      "d30": 34.33,
-      "rs": 25.76
+      "d7": 28.98,
+      "d30": 35.06,
+      "rs": 25.68
+    },
+    {
+      "id": "aerodrome-finance",
+      "symbol": "AERO",
+      "name": "Aerodrome Finance",
+      "rank": 86,
+      "price": 0.900102,
+      "tier": "OPPORTUNITY",
+      "quality": 77,
+      "status": "RADAR",
+      "d7": 34.07,
+      "d30": 73.94,
+      "rs": 30.77
     },
     {
       "id": "pyth-network",
       "symbol": "PYTH",
       "name": "Pyth Network",
-      "rank": 101,
-      "price": 0.077536,
+      "rank": 103,
+      "price": 0.077088,
       "tier": "OPPORTUNITY",
       "quality": 77,
       "status": "RADAR",
-      "d7": 28.02,
-      "d30": 59.52,
-      "rs": 24.75
-    },
-    {
-      "id": "jupiter-exchange-solana",
-      "symbol": "JUP",
-      "name": "Jupiter",
-      "rank": 76,
-      "price": 0.347574,
-      "tier": "OPPORTUNITY",
-      "quality": 76,
-      "status": "RADAR",
-      "d7": 25.8,
-      "d30": 56.33,
-      "rs": 22.54
+      "d7": 28.48,
+      "d30": 59.46,
+      "rs": 25.18
     },
     {
       "id": "ondo-finance",
       "symbol": "ONDO",
       "name": "Ondo",
       "rank": 41,
-      "price": 0.54739,
+      "price": 0.548527,
       "tier": "OPPORTUNITY",
       "quality": 75,
       "status": "RADAR",
-      "d7": 29.24,
-      "d30": 47.17,
-      "rs": 25.98
+      "d7": 29.5,
+      "d30": 46.07,
+      "rs": 26.2
     },
     {
-      "id": "ethena",
-      "symbol": "ENA",
-      "name": "Ethena",
-      "rank": 37,
-      "price": 0.277144,
+      "id": "jupiter-exchange-solana",
+      "symbol": "JUP",
+      "name": "Jupiter",
+      "rank": 76,
+      "price": 0.346772,
       "tier": "OPPORTUNITY",
-      "quality": 72,
+      "quality": 75,
       "status": "RADAR",
-      "d7": 42.21,
-      "d30": 91.78,
-      "rs": 38.95
+      "d7": 25.63,
+      "d30": 53.18,
+      "rs": 22.33
     },
     {
-      "id": "filecoin",
-      "symbol": "FIL",
-      "name": "Filecoin",
-      "rank": 84,
-      "price": 1.12,
+      "id": "fetch-ai",
+      "symbol": "FET",
+      "name": "Artificial Superintelligence Alliance",
+      "rank": 105,
+      "price": 0.255808,
       "tier": "OPPORTUNITY",
-      "quality": 72,
+      "quality": 74,
       "status": "RADAR",
-      "d7": 11.42,
-      "d30": 54.37,
-      "rs": 8.16
+      "d7": 38.76,
+      "d30": 52.77,
+      "rs": 35.46
+    },
+    {
+      "id": "dash",
+      "symbol": "DASH",
+      "name": "Dash",
+      "rank": 85,
+      "price": 72.22,
+      "tier": "OPPORTUNITY",
+      "quality": 74,
+      "status": "RADAR",
+      "d7": 21.09,
+      "d30": 83.96,
+      "rs": 17.79
     },
     {
       "id": "pudgy-penguins",
       "symbol": "PENGU",
       "name": "Pudgy Penguins",
-      "rank": 100,
-      "price": 0.0100889,
+      "rank": 98,
+      "price": 0.01026485,
       "tier": "OPPORTUNITY",
-      "quality": 71,
+      "quality": 72,
       "status": "RADAR",
-      "d7": 26.54,
-      "d30": 5.71,
-      "rs": 23.28
+      "d7": 29.35,
+      "d30": 3.9,
+      "rs": 26.05
     },
     {
       "id": "aptos",
       "symbol": "APT",
       "name": "Aptos",
-      "rank": 93,
-      "price": 0.86198,
+      "rank": 92,
+      "price": 0.882563,
       "tier": "OPPORTUNITY",
-      "quality": 71,
+      "quality": 72,
       "status": "RADAR",
-      "d7": 16.72,
-      "d30": 51.22,
-      "rs": 13.46
+      "d7": 19.13,
+      "d30": 52.11,
+      "rs": 15.83
     },
     {
       "id": "pancakeswap-token",
@@ -2142,180 +2128,193 @@
       "tier": "OPPORTUNITY",
       "quality": 71,
       "status": "RADAR",
-      "d7": 13.5,
-      "d30": 60.53,
-      "rs": 10.24
-    },
-    {
-      "id": "worldcoin-wld",
-      "symbol": "WLD",
-      "name": "Worldcoin",
-      "rank": 55,
-      "price": 0.504385,
-      "tier": "OPPORTUNITY",
-      "quality": 69,
-      "status": "RADAR",
-      "d7": 14.04,
-      "d30": 21.98,
-      "rs": 10.78
-    },
-    {
-      "id": "bittensor",
-      "symbol": "TAO",
-      "name": "Bittensor",
-      "rank": 33,
-      "price": 327.07,
-      "tier": "OPPORTUNITY",
-      "quality": 68,
-      "status": "RADAR",
-      "d7": 23.07,
-      "d30": 27.46,
-      "rs": 19.8
+      "d7": 14.22,
+      "d30": 59.52,
+      "rs": 10.92
     },
     {
       "id": "render-token",
       "symbol": "RENDER",
       "name": "Render",
       "rank": 78,
-      "price": 1.99,
+      "price": 2.03,
       "tier": "OPPORTUNITY",
-      "quality": 67,
+      "quality": 70,
       "status": "RADAR",
-      "d7": 21.92,
-      "d30": 28.79,
-      "rs": 18.66
+      "d7": 26.22,
+      "d30": 31.08,
+      "rs": 22.92
+    },
+    {
+      "id": "filecoin",
+      "symbol": "FIL",
+      "name": "Filecoin",
+      "rank": 83,
+      "price": 1.2,
+      "tier": "OPPORTUNITY",
+      "quality": 70,
+      "status": "RADAR",
+      "d7": 18.29,
+      "d30": 63.43,
+      "rs": 14.99
+    },
+    {
+      "id": "layerzero",
+      "symbol": "ZRO",
+      "name": "LayerZero",
+      "rank": 106,
+      "price": 1.67,
+      "tier": "OPPORTUNITY",
+      "quality": 68,
+      "status": "RADAR",
+      "d7": 43.73,
+      "d30": 34.85,
+      "rs": 40.43
+    },
+    {
+      "id": "kaspa",
+      "symbol": "KAS",
+      "name": "Kaspa",
+      "rank": 71,
+      "price": 0.04842715,
+      "tier": "OPPORTUNITY",
+      "quality": 68,
+      "status": "RADAR",
+      "d7": 26.47,
+      "d30": 71.98,
+      "rs": 23.17
     }
   ],
   "promotions": [
     {
-      "id": "aerodrome-finance",
-      "symbol": "AERO",
-      "name": "Aerodrome Finance",
-      "rank": 86,
-      "price": 0.901134,
-      "tier": "OPPORTUNITY",
-      "quality": 85,
-      "status": "RADAR",
-      "d7": 33.0,
-      "d30": 74.85,
-      "rs": 29.74
-    },
-    {
-      "id": "fetch-ai",
-      "symbol": "FET",
-      "name": "Artificial Superintelligence Alliance",
-      "rank": 106,
-      "price": 0.246427,
-      "tier": "OPPORTUNITY",
-      "quality": 82,
-      "status": "RADAR",
-      "d7": 33.58,
-      "d30": 49.19,
-      "rs": 30.31
-    },
-    {
-      "id": "dash",
-      "symbol": "DASH",
-      "name": "Dash",
-      "rank": 85,
-      "price": 70.79,
+      "id": "ethena",
+      "symbol": "ENA",
+      "name": "Ethena",
+      "rank": 37,
+      "price": 0.27605,
       "tier": "OPPORTUNITY",
       "quality": 80,
       "status": "RADAR",
-      "d7": 17.08,
-      "d30": 81.9,
-      "rs": 13.82
+      "d7": 39.38,
+      "d30": 79.3,
+      "rs": 36.08
     },
     {
       "id": "plasma",
       "symbol": "XPL",
       "name": "Plasma",
-      "rank": 111,
-      "price": 0.117783,
+      "rank": 112,
+      "price": 0.117393,
       "tier": "OPPORTUNITY",
       "quality": 79,
       "status": "RADAR",
-      "d7": 29.02,
-      "d30": 34.33,
-      "rs": 25.76
+      "d7": 28.98,
+      "d30": 35.06,
+      "rs": 25.68
+    },
+    {
+      "id": "aerodrome-finance",
+      "symbol": "AERO",
+      "name": "Aerodrome Finance",
+      "rank": 86,
+      "price": 0.900102,
+      "tier": "OPPORTUNITY",
+      "quality": 77,
+      "status": "RADAR",
+      "d7": 34.07,
+      "d30": 73.94,
+      "rs": 30.77
     },
     {
       "id": "pyth-network",
       "symbol": "PYTH",
       "name": "Pyth Network",
-      "rank": 101,
-      "price": 0.077536,
+      "rank": 103,
+      "price": 0.077088,
       "tier": "OPPORTUNITY",
       "quality": 77,
       "status": "RADAR",
-      "d7": 28.02,
-      "d30": 59.52,
-      "rs": 24.75
-    },
-    {
-      "id": "jupiter-exchange-solana",
-      "symbol": "JUP",
-      "name": "Jupiter",
-      "rank": 76,
-      "price": 0.347574,
-      "tier": "OPPORTUNITY",
-      "quality": 76,
-      "status": "RADAR",
-      "d7": 25.8,
-      "d30": 56.33,
-      "rs": 22.54
+      "d7": 28.48,
+      "d30": 59.46,
+      "rs": 25.18
     },
     {
       "id": "ondo-finance",
       "symbol": "ONDO",
       "name": "Ondo",
       "rank": 41,
-      "price": 0.54739,
+      "price": 0.548527,
       "tier": "OPPORTUNITY",
       "quality": 75,
       "status": "RADAR",
-      "d7": 29.24,
-      "d30": 47.17,
-      "rs": 25.98
+      "d7": 29.5,
+      "d30": 46.07,
+      "rs": 26.2
     },
     {
-      "id": "ethena",
-      "symbol": "ENA",
-      "name": "Ethena",
-      "rank": 37,
-      "price": 0.277144,
+      "id": "jupiter-exchange-solana",
+      "symbol": "JUP",
+      "name": "Jupiter",
+      "rank": 76,
+      "price": 0.346772,
       "tier": "OPPORTUNITY",
-      "quality": 72,
+      "quality": 75,
       "status": "RADAR",
-      "d7": 42.21,
-      "d30": 91.78,
-      "rs": 38.95
+      "d7": 25.63,
+      "d30": 53.18,
+      "rs": 22.33
     },
     {
-      "id": "filecoin",
-      "symbol": "FIL",
-      "name": "Filecoin",
-      "rank": 84,
-      "price": 1.12,
+      "id": "fetch-ai",
+      "symbol": "FET",
+      "name": "Artificial Superintelligence Alliance",
+      "rank": 105,
+      "price": 0.255808,
       "tier": "OPPORTUNITY",
-      "quality": 72,
+      "quality": 74,
       "status": "RADAR",
-      "d7": 11.42,
-      "d30": 54.37,
-      "rs": 8.16
+      "d7": 38.76,
+      "d30": 52.77,
+      "rs": 35.46
+    },
+    {
+      "id": "dash",
+      "symbol": "DASH",
+      "name": "Dash",
+      "rank": 85,
+      "price": 72.22,
+      "tier": "OPPORTUNITY",
+      "quality": 74,
+      "status": "RADAR",
+      "d7": 21.09,
+      "d30": 83.96,
+      "rs": 17.79
     },
     {
       "id": "pudgy-penguins",
       "symbol": "PENGU",
       "name": "Pudgy Penguins",
-      "rank": 100,
-      "price": 0.0100889,
+      "rank": 98,
+      "price": 0.01026485,
       "tier": "OPPORTUNITY",
-      "quality": 71,
+      "quality": 72,
       "status": "RADAR",
-      "d7": 26.54,
-      "d30": 5.71,
-      "rs": 23.28
+      "d7": 29.35,
+      "d30": 3.9,
+      "rs": 26.05
+    },
+    {
+      "id": "aptos",
+      "symbol": "APT",
+      "name": "Aptos",
+      "rank": 92,
+      "price": 0.882563,
+      "tier": "OPPORTUNITY",
+      "quality": 72,
+      "status": "RADAR",
+      "d7": 19.13,
+      "d30": 52.11,
+      "rs": 15.83
     }
   ],
   "alerts": [],

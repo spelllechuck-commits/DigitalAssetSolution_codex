@@ -2,13 +2,13 @@
   "version": "4.3-data-reliability",
   "collection_health": {
     "calls": {
-      "api.coingecko.com": 7,
+      "api.coingecko.com": 3,
       "futures.kraken.com": 20
     },
     "errors": {},
     "blocked_providers": {}
   },
-  "updated_at": "2026-09-26T05:20:23.812273+00:00",
+  "updated_at": "2026-09-26T05:41:33.901215+00:00",
   "market_risk": "HIGH",
   "active_event_count": 17,
   "regime": {
@@ -34,7 +34,7 @@
       "symbol": "BTC",
       "name": "Bitcoin",
       "rank": 1,
-      "price": 83944,
+      "price": 83932,
       "tier": "CORE",
       "quality": 53,
       "final": 65,
@@ -144,7 +144,7 @@
           ]
         }
       ],
-      "data_source": "coingecko-live+kraken",
+      "data_source": "coingecko-cache+kraken",
       "d7": 3.51,
       "d30": 6.53,
       "rs": 0.0,
@@ -166,7 +166,7 @@
       "rsi4h": 44.79538745398072,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "LIVE"
+        "intraday": "CACHE"
       }
     },
     {
@@ -174,7 +174,7 @@
       "symbol": "ETH",
       "name": "Ethereum",
       "rank": 2,
-      "price": 2687.47,
+      "price": 2687.03,
       "tier": "CORE",
       "quality": 53,
       "final": 65,
@@ -316,7 +316,7 @@
       "symbol": "BNB",
       "name": "BNB",
       "rank": 4,
-      "price": 773.48,
+      "price": 773.31,
       "tier": "CORE",
       "quality": 52,
       "final": 65,
@@ -488,7 +488,7 @@
       "symbol": "SOL",
       "name": "Solana",
       "rank": 7,
-      "price": 120.43,
+      "price": 120.6,
       "tier": "CORE",
       "quality": 59,
       "final": 67,
@@ -558,7 +558,7 @@
       "symbol": "TRX",
       "name": "TRON",
       "rank": 8,
-      "price": 0.337582,
+      "price": 0.337502,
       "tier": "CORE",
       "quality": 49,
       "final": 65,
@@ -602,7 +602,7 @@
           ]
         }
       ],
-      "data_source": "coingecko-live+kraken",
+      "data_source": "coingecko-cache+kraken",
       "d7": -0.31,
       "d30": 0.98,
       "rs": -3.82,
@@ -624,7 +624,7 @@
       "rsi4h": 38.43789817103068,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "LIVE"
+        "intraday": "CACHE"
       }
     },
     {
@@ -632,7 +632,7 @@
       "symbol": "ZEC",
       "name": "Zcash",
       "rank": 9,
-      "price": 1531.82,
+      "price": 1536.07,
       "tier": "CORE",
       "quality": 58,
       "final": 63,
@@ -672,7 +672,7 @@
           ]
         }
       ],
-      "data_source": "coingecko-live+kraken",
+      "data_source": "coingecko-cache+kraken",
       "d7": 0.28,
       "d30": 96.83,
       "rs": -3.23,
@@ -694,7 +694,7 @@
       "rsi4h": 52.901111265705225,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "LIVE"
+        "intraday": "CACHE"
       }
     },
     {
@@ -702,7 +702,7 @@
       "symbol": "HYPE",
       "name": "Hyperliquid",
       "rank": 11,
-      "price": 91.85,
+      "price": 91.81,
       "tier": "CORE",
       "quality": 53,
       "final": 65,
@@ -747,7 +747,7 @@
           ]
         }
       ],
-      "data_source": "coingecko-live+kraken",
+      "data_source": "coingecko-cache+kraken",
       "d7": -1.53,
       "d30": 14.05,
       "rs": -5.04,
@@ -769,7 +769,7 @@
       "rsi4h": 45.892679188919445,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "LIVE"
+        "intraday": "CACHE"
       }
     },
     {
@@ -777,7 +777,7 @@
       "symbol": "DOGE",
       "name": "Dogecoin",
       "rank": 12,
-      "price": 0.097586,
+      "price": 0.097593,
       "tier": "CORE",
       "quality": 59,
       "final": 65,
@@ -847,81 +847,11 @@
       }
     },
     {
-      "id": "chainlink",
-      "symbol": "LINK",
-      "name": "Chainlink",
-      "rank": 13,
-      "price": 14.1,
-      "tier": "CORE",
-      "quality": 63,
-      "final": 70,
-      "action_score": 70,
-      "confidence": 95,
-      "status": "WAIT",
-      "base_status": "WAIT",
-      "confirmation_score": 0,
-      "confirmation_checks": [],
-      "entry_signal": false,
-      "event_risk": "LOW",
-      "catalyst": "NEUTRAL",
-      "event_score": -0.56,
-      "events": [
-        {
-          "id": "2026-09-16-fed-first-rate-hike-since-2023",
-          "timestamp": "2026-09-16T18:00:00Z",
-          "expires_at": "2026-10-01T23:59:59Z",
-          "severity": "HIGH",
-          "scope": "MARKET",
-          "type": "MACRO",
-          "affected_symbols": [
-            "BTC",
-            "ETH",
-            "SOL",
-            "XRP"
-          ],
-          "direction": "NEGATIVE",
-          "confidence": "HIGH",
-          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
-          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
-          "source_urls": [
-            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
-            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
-            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
-          ]
-        }
-      ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 14.11,
-      "d30": 22.78,
-      "rs": 10.6,
-      "funding": -0.0234931833333336,
-      "funding_meta": {
-        "source": "kraken",
-        "status": "VERIFIED",
-        "unit": "percent",
-        "normalized_period_hours": 8,
-        "source_period_hours": 1,
-        "basis": "latest_historical_hourly_rate_8h_equivalent",
-        "instrument": "PF_LINKUSD",
-        "observed_at": "2026-09-26T05:00:00Z",
-        "raw_relative_rate": -2.9366479166667e-05
-      },
-      "model_version": "4.3-data-reliability",
-      "e20": 12.427079096726011,
-      "e50": 11.373692769614529,
-      "rsi4h": 86.66811515788557,
-      "technical_components": {
-        "daily": "CACHE",
-        "intraday": "CACHE"
-      }
-    },
-    {
       "id": "monero",
       "symbol": "XMR",
       "name": "Monero",
-      "rank": 14,
-      "price": 556.89,
+      "rank": 13,
+      "price": 559.8,
       "tier": "CORE",
       "quality": 54,
       "final": 65,
@@ -985,6 +915,76 @@
       "e20": 538.3870894665305,
       "e50": 489.9423166793582,
       "rsi4h": 53.02058011647805,
+      "technical_components": {
+        "daily": "CACHE",
+        "intraday": "CACHE"
+      }
+    },
+    {
+      "id": "chainlink",
+      "symbol": "LINK",
+      "name": "Chainlink",
+      "rank": 14,
+      "price": 14.06,
+      "tier": "CORE",
+      "quality": 63,
+      "final": 70,
+      "action_score": 70,
+      "confidence": 95,
+      "status": "WAIT",
+      "base_status": "WAIT",
+      "confirmation_score": 0,
+      "confirmation_checks": [],
+      "entry_signal": false,
+      "event_risk": "LOW",
+      "catalyst": "NEUTRAL",
+      "event_score": -0.56,
+      "events": [
+        {
+          "id": "2026-09-16-fed-first-rate-hike-since-2023",
+          "timestamp": "2026-09-16T18:00:00Z",
+          "expires_at": "2026-10-01T23:59:59Z",
+          "severity": "HIGH",
+          "scope": "MARKET",
+          "type": "MACRO",
+          "affected_symbols": [
+            "BTC",
+            "ETH",
+            "SOL",
+            "XRP"
+          ],
+          "direction": "NEGATIVE",
+          "confidence": "HIGH",
+          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
+          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
+          "source_urls": [
+            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
+            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
+            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
+          ]
+        }
+      ],
+      "data_source": "coingecko-cache+kraken",
+      "d7": 14.11,
+      "d30": 22.78,
+      "rs": 10.6,
+      "funding": -0.0234931833333336,
+      "funding_meta": {
+        "source": "kraken",
+        "status": "VERIFIED",
+        "unit": "percent",
+        "normalized_period_hours": 8,
+        "source_period_hours": 1,
+        "basis": "latest_historical_hourly_rate_8h_equivalent",
+        "instrument": "PF_LINKUSD",
+        "observed_at": "2026-09-26T05:00:00Z",
+        "raw_relative_rate": -2.9366479166667e-05
+      },
+      "model_version": "4.3-data-reliability",
+      "e20": 12.427079096726011,
+      "e50": 11.373692769614529,
+      "rsi4h": 86.66811515788557,
       "technical_components": {
         "daily": "CACHE",
         "intraday": "CACHE"
@@ -1065,7 +1065,7 @@
       "symbol": "ADA",
       "name": "Cardano",
       "rank": 17,
-      "price": 0.255488,
+      "price": 0.255368,
       "tier": "CORE",
       "quality": 61,
       "final": 63,
@@ -1105,7 +1105,7 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
+      "data_source": "coingecko-live+kraken",
       "d7": 11.0,
       "d30": 22.65,
       "rs": 7.48,
@@ -1124,10 +1124,10 @@
       "model_version": "4.3-data-reliability",
       "e20": 0.22916201515408713,
       "e50": 0.21287613086689908,
-      "rsi4h": 73.00813484456684,
+      "rsi4h": 66.28434484121578,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -1206,7 +1206,7 @@
       "symbol": "RAIN",
       "name": "Rain",
       "rank": 19,
-      "price": 0.01141048,
+      "price": 0.01153843,
       "tier": "CORE",
       "quality": 35,
       "final": 35,
@@ -1273,7 +1273,7 @@
       "symbol": "XLM",
       "name": "Stellar",
       "rank": 20,
-      "price": 0.217942,
+      "price": 0.218281,
       "tier": "CORE",
       "quality": 60,
       "final": 64,
@@ -1364,7 +1364,7 @@
       "symbol": "BCH",
       "name": "Bitcoin Cash",
       "rank": 21,
-      "price": 336.38,
+      "price": 336.2,
       "tier": "CORE",
       "quality": 61,
       "final": 55,
@@ -1434,7 +1434,7 @@
       "symbol": "NEAR",
       "name": "NEAR Protocol",
       "rank": 22,
-      "price": 4.88,
+      "price": 4.92,
       "tier": "CORE",
       "quality": 77,
       "final": 55,
@@ -1504,7 +1504,7 @@
       "symbol": "UNI",
       "name": "Uniswap",
       "rank": 23,
-      "price": 9.67,
+      "price": 9.71,
       "tier": "CORE",
       "quality": 66,
       "final": 55,
@@ -1574,7 +1574,7 @@
       "symbol": "LTC",
       "name": "Litecoin",
       "rank": 24,
-      "price": 71.97,
+      "price": 72.09,
       "tier": "CORE",
       "quality": 73,
       "final": 55,
@@ -1644,7 +1644,7 @@
       "symbol": "CC",
       "name": "Canton",
       "rank": 25,
-      "price": 0.131471,
+      "price": 0.133608,
       "tier": "CORE",
       "quality": 51,
       "final": 55,
@@ -1684,7 +1684,7 @@
           ]
         }
       ],
-      "data_source": "coingecko-live+no-derivatives",
+      "data_source": "coingecko-cache+no-derivatives",
       "d7": 16.66,
       "d30": 13.44,
       "rs": 13.15,
@@ -1704,7 +1704,7 @@
       "rsi4h": 92.53273752899588,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "LIVE"
+        "intraday": "CACHE"
       }
     },
     {
@@ -1779,7 +1779,7 @@
       "symbol": "AVAX",
       "name": "Avalanche",
       "rank": 28,
-      "price": 10.63,
+      "price": 10.66,
       "tier": "CORE",
       "quality": 74,
       "final": 70,
@@ -1849,7 +1849,7 @@
       "symbol": "HBAR",
       "name": "Hedera",
       "rank": 31,
-      "price": 0.093931,
+      "price": 0.093808,
       "tier": "CORE",
       "quality": 63,
       "final": 67,
@@ -1993,7 +1993,7 @@
       "symbol": "ONDO",
       "name": "Ondo",
       "rank": 41,
-      "price": 0.542649,
+      "price": 0.544334,
       "tier": "OPPORTUNITY",
       "quality": 81,
       "status": "RADAR",
@@ -2005,8 +2005,8 @@
       "id": "plasma",
       "symbol": "XPL",
       "name": "Plasma",
-      "rank": 113,
-      "price": 0.111357,
+      "rank": 112,
+      "price": 0.112112,
       "tier": "OPPORTUNITY",
       "quality": 76,
       "status": "RADAR",
@@ -2019,7 +2019,7 @@
       "symbol": "FET",
       "name": "Artificial Superintelligence Alliance",
       "rank": 106,
-      "price": 0.243848,
+      "price": 0.244678,
       "tier": "OPPORTUNITY",
       "quality": 75,
       "status": "RADAR",
@@ -2045,7 +2045,7 @@
       "symbol": "PENGU",
       "name": "Pudgy Penguins",
       "rank": 98,
-      "price": 0.0101144,
+      "price": 0.01012421,
       "tier": "OPPORTUNITY",
       "quality": 73,
       "status": "RADAR",
@@ -2058,7 +2058,7 @@
       "symbol": "PYTH",
       "name": "Pyth Network",
       "rank": 105,
-      "price": 0.073668,
+      "price": 0.073754,
       "tier": "OPPORTUNITY",
       "quality": 73,
       "status": "RADAR",
@@ -2071,7 +2071,7 @@
       "symbol": "INJ",
       "name": "Injective",
       "rank": 90,
-      "price": 7.75,
+      "price": 7.77,
       "tier": "OPPORTUNITY",
       "quality": 72,
       "status": "RADAR",
@@ -2084,7 +2084,7 @@
       "symbol": "QNT",
       "name": "Quant",
       "rank": 67,
-      "price": 99.16,
+      "price": 99.77,
       "tier": "OPPORTUNITY",
       "quality": 71,
       "status": "RADAR",
@@ -2097,7 +2097,7 @@
       "symbol": "VET",
       "name": "VeChain",
       "rank": 88,
-      "price": 0.00978751,
+      "price": 0.00978247,
       "tier": "OPPORTUNITY",
       "quality": 71,
       "status": "RADAR",
@@ -2106,11 +2106,24 @@
       "rs": 20.79
     },
     {
+      "id": "aptos",
+      "symbol": "APT",
+      "name": "Aptos",
+      "rank": 94,
+      "price": 0.846226,
+      "tier": "OPPORTUNITY",
+      "quality": 70,
+      "status": "RADAR",
+      "d7": 11.25,
+      "d30": 50.91,
+      "rs": 7.74
+    },
+    {
       "id": "dash",
       "symbol": "DASH",
       "name": "Dash",
       "rank": 89,
-      "price": 62.48,
+      "price": 62.89,
       "tier": "OPPORTUNITY",
       "quality": 70,
       "status": "RADAR",
@@ -2136,7 +2149,7 @@
       "symbol": "TAO",
       "name": "Bittensor",
       "rank": 33,
-      "price": 311.82,
+      "price": 310.47,
       "tier": "OPPORTUNITY",
       "quality": 69,
       "status": "RADAR",
@@ -2149,7 +2162,7 @@
       "symbol": "WLD",
       "name": "Worldcoin",
       "rank": 58,
-      "price": 0.480363,
+      "price": 0.478603,
       "tier": "OPPORTUNITY",
       "quality": 69,
       "status": "RADAR",
@@ -2158,24 +2171,11 @@
       "rs": 9.01
     },
     {
-      "id": "aptos",
-      "symbol": "APT",
-      "name": "Aptos",
-      "rank": 94,
-      "price": 0.851317,
-      "tier": "OPPORTUNITY",
-      "quality": 69,
-      "status": "RADAR",
-      "d7": 11.25,
-      "d30": 50.91,
-      "rs": 7.74
-    },
-    {
       "id": "aerodrome-finance",
       "symbol": "AERO",
       "name": "Aerodrome Finance",
       "rank": 84,
-      "price": 0.898186,
+      "price": 0.897641,
       "tier": "OPPORTUNITY",
       "quality": 68,
       "status": "RADAR",
@@ -2190,7 +2190,7 @@
       "symbol": "ONDO",
       "name": "Ondo",
       "rank": 41,
-      "price": 0.542649,
+      "price": 0.544334,
       "tier": "OPPORTUNITY",
       "quality": 81,
       "status": "RADAR",
@@ -2202,8 +2202,8 @@
       "id": "plasma",
       "symbol": "XPL",
       "name": "Plasma",
-      "rank": 113,
-      "price": 0.111357,
+      "rank": 112,
+      "price": 0.112112,
       "tier": "OPPORTUNITY",
       "quality": 76,
       "status": "RADAR",
@@ -2216,7 +2216,7 @@
       "symbol": "FET",
       "name": "Artificial Superintelligence Alliance",
       "rank": 106,
-      "price": 0.243848,
+      "price": 0.244678,
       "tier": "OPPORTUNITY",
       "quality": 75,
       "status": "RADAR",
@@ -2242,7 +2242,7 @@
       "symbol": "PENGU",
       "name": "Pudgy Penguins",
       "rank": 98,
-      "price": 0.0101144,
+      "price": 0.01012421,
       "tier": "OPPORTUNITY",
       "quality": 73,
       "status": "RADAR",
@@ -2255,7 +2255,7 @@
       "symbol": "PYTH",
       "name": "Pyth Network",
       "rank": 105,
-      "price": 0.073668,
+      "price": 0.073754,
       "tier": "OPPORTUNITY",
       "quality": 73,
       "status": "RADAR",
@@ -2268,7 +2268,7 @@
       "symbol": "INJ",
       "name": "Injective",
       "rank": 90,
-      "price": 7.75,
+      "price": 7.77,
       "tier": "OPPORTUNITY",
       "quality": 72,
       "status": "RADAR",
@@ -2281,7 +2281,7 @@
       "symbol": "QNT",
       "name": "Quant",
       "rank": 67,
-      "price": 99.16,
+      "price": 99.77,
       "tier": "OPPORTUNITY",
       "quality": 71,
       "status": "RADAR",
@@ -2294,7 +2294,7 @@
       "symbol": "VET",
       "name": "VeChain",
       "rank": 88,
-      "price": 0.00978751,
+      "price": 0.00978247,
       "tier": "OPPORTUNITY",
       "quality": 71,
       "status": "RADAR",
@@ -2303,17 +2303,17 @@
       "rs": 20.79
     },
     {
-      "id": "layerzero",
-      "symbol": "ZRO",
-      "name": "LayerZero",
-      "rank": 107,
-      "price": 1.58,
+      "id": "aptos",
+      "symbol": "APT",
+      "name": "Aptos",
+      "rank": 94,
+      "price": 0.846226,
       "tier": "OPPORTUNITY",
-      "quality": 69,
+      "quality": 70,
       "status": "RADAR",
-      "d7": 36.88,
-      "d30": 34.94,
-      "rs": 33.37
+      "d7": 11.25,
+      "d30": 50.91,
+      "rs": 7.74
     }
   ],
   "alerts": [],

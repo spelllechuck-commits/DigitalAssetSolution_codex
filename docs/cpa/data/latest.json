@@ -2,19 +2,19 @@
   "version": "4.3-data-reliability",
   "collection_health": {
     "calls": {
-      "api.coingecko.com": 2,
+      "api.coingecko.com": 23,
       "futures.kraken.com": 20
     },
     "errors": {},
     "blocked_providers": {}
   },
-  "updated_at": "2026-09-28T14:48:49.616779+00:00",
+  "updated_at": "2026-09-28T15:27:58.408029+00:00",
   "market_risk": "HIGH",
   "active_event_count": 17,
   "regime": {
-    "score": 55,
+    "score": 53,
     "name": "NEUTRAL",
-    "breadth": 58.5
+    "breadth": 51.5
   },
   "tiers": {
     "core_count": 25,
@@ -34,7 +34,7 @@
       "symbol": "BTC",
       "name": "Bitcoin",
       "rank": 1,
-      "price": 82926,
+      "price": 82880,
       "tier": "CORE",
       "quality": 52,
       "final": 65,
@@ -145,10 +145,10 @@
         }
       ],
       "data_source": "coingecko-cache+kraken",
-      "d7": -1.96,
-      "d30": 7.78,
+      "d7": -3.0,
+      "d30": 6.68,
       "rs": 0.0,
-      "funding": 0.0055824433333336,
+      "funding": 0.006596526666666399,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -157,8 +157,8 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_XBTUSD",
-        "observed_at": "2026-09-28T14:00:00Z",
-        "raw_relative_rate": 6.978054166667e-06
+        "observed_at": "2026-09-28T15:00:00Z",
+        "raw_relative_rate": 8.245658333333e-06
       },
       "model_version": "4.3-data-reliability",
       "e20": 81651.88476409923,
@@ -174,19 +174,18 @@
       "symbol": "ETH",
       "name": "Ethereum",
       "rank": 2,
-      "price": 2662.3,
+      "price": 2659.54,
       "tier": "CORE",
-      "quality": 54,
+      "quality": 53,
       "final": 65,
       "action_score": 65,
       "confidence": 95,
       "status": "EVENT HOLD",
       "base_status": "CONFIRMED",
-      "confirmation_score": 5,
+      "confirmation_score": 4,
       "confirmation_checks": [
         "20EMA support",
         "RSI balanced",
-        "4H turn up",
         "BTC relative strength",
         "funding not overheated"
       ],
@@ -287,11 +286,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": -1.58,
-      "d30": 10.52,
-      "rs": 0.38,
-      "funding": 0.0059323100000000005,
+      "data_source": "coingecko-live+kraken",
+      "d7": -2.52,
+      "d30": 9.36,
+      "rs": 0.48,
+      "funding": 0.0029187133333336,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -300,16 +299,16 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_ETHUSD",
-        "observed_at": "2026-09-28T14:00:00Z",
-        "raw_relative_rate": 7.4153875e-06
+        "observed_at": "2026-09-28T15:00:00Z",
+        "raw_relative_rate": 3.648391666667e-06
       },
       "model_version": "4.3-data-reliability",
       "e20": 2601.3737575811087,
       "e50": 2425.034868047478,
-      "rsi4h": 50.46822828481914,
+      "rsi4h": 40.9325181146427,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -317,7 +316,7 @@
       "symbol": "BNB",
       "name": "BNB",
       "rank": 4,
-      "price": 759.14,
+      "price": 757.55,
       "tier": "CORE",
       "quality": 52,
       "final": 65,
@@ -325,10 +324,9 @@
       "confidence": 95,
       "status": "EVENT HOLD",
       "base_status": "NEAR ENTRY",
-      "confirmation_score": 3,
+      "confirmation_score": 2,
       "confirmation_checks": [
         "20EMA support",
-        "RSI balanced",
         "funding not overheated"
       ],
       "entry_signal": false,
@@ -361,11 +359,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": -2.97,
-      "d30": 11.38,
-      "rs": -1.01,
-      "funding": 0.00028771333333359997,
+      "data_source": "coingecko-live+kraken",
+      "d7": -4.57,
+      "d30": 10.08,
+      "rs": -1.57,
+      "funding": -0.0246971166666664,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -374,16 +372,16 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_BNBUSD",
-        "observed_at": "2026-09-28T14:00:00Z",
-        "raw_relative_rate": 3.59641666667e-07
+        "observed_at": "2026-09-28T15:00:00Z",
+        "raw_relative_rate": -3.0871395833333e-05
       },
       "model_version": "4.3-data-reliability",
       "e20": 755.4479491604231,
       "e50": 712.5595254467845,
-      "rsi4h": 41.77871316010968,
+      "rsi4h": 37.22878016873693,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -391,9 +389,9 @@
       "symbol": "XRP",
       "name": "XRP",
       "rank": 5,
-      "price": 1.49,
+      "price": 1.48,
       "tier": "CORE",
-      "quality": 55,
+      "quality": 54,
       "final": 65,
       "action_score": 65,
       "confidence": 95,
@@ -460,10 +458,10 @@
         }
       ],
       "data_source": "coingecko-cache+kraken",
-      "d7": 2.3,
-      "d30": 9.85,
-      "rs": 4.26,
-      "funding": -0.0181065333333336,
+      "d7": -0.48,
+      "d30": 6.88,
+      "rs": 2.52,
+      "funding": -0.00375936,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -472,8 +470,8 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_XRPUSD",
-        "observed_at": "2026-09-28T14:00:00Z",
-        "raw_relative_rate": -2.2633166666667e-05
+        "observed_at": "2026-09-28T15:00:00Z",
+        "raw_relative_rate": -4.6992e-06
       },
       "model_version": "4.3-data-reliability",
       "e20": 1.4531733278552526,
@@ -489,7 +487,588 @@
       "symbol": "SOL",
       "name": "Solana",
       "rank": 7,
-      "price": 118.2,
+      "price": 117.78,
+      "tier": "CORE",
+      "quality": 56,
+      "final": 65,
+      "action_score": 65,
+      "confidence": 95,
+      "status": "EVENT HOLD",
+      "base_status": "CONFIRMED",
+      "confirmation_score": 4,
+      "confirmation_checks": [
+        "20EMA support",
+        "RSI balanced",
+        "BTC relative strength",
+        "funding not overheated"
+      ],
+      "entry_signal": false,
+      "event_risk": "LOW",
+      "catalyst": "NEUTRAL",
+      "event_score": -0.56,
+      "events": [
+        {
+          "id": "2026-09-16-fed-first-rate-hike-since-2023",
+          "timestamp": "2026-09-16T18:00:00Z",
+          "expires_at": "2026-10-01T23:59:59Z",
+          "severity": "HIGH",
+          "scope": "MARKET",
+          "type": "MACRO",
+          "affected_symbols": [
+            "BTC",
+            "ETH",
+            "SOL",
+            "XRP"
+          ],
+          "direction": "NEGATIVE",
+          "confidence": "HIGH",
+          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
+          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
+          "source_urls": [
+            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
+            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
+            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
+          ]
+        }
+      ],
+      "data_source": "coingecko-live+kraken",
+      "d7": -0.23,
+      "d30": 13.58,
+      "rs": 2.77,
+      "funding": -0.0013928166666664,
+      "funding_meta": {
+        "source": "kraken",
+        "status": "VERIFIED",
+        "unit": "percent",
+        "normalized_period_hours": 8,
+        "source_period_hours": 1,
+        "basis": "latest_historical_hourly_rate_8h_equivalent",
+        "instrument": "PF_SOLUSD",
+        "observed_at": "2026-09-28T15:00:00Z",
+        "raw_relative_rate": -1.741020833333e-06
+      },
+      "model_version": "4.3-data-reliability",
+      "e20": 112.09461828175782,
+      "e50": 101.8563166655996,
+      "rsi4h": 43.896113824294964,
+      "technical_components": {
+        "daily": "CACHE",
+        "intraday": "LIVE"
+      }
+    },
+    {
+      "id": "tron",
+      "symbol": "TRX",
+      "name": "TRON",
+      "rank": 8,
+      "price": 0.33361,
+      "tier": "CORE",
+      "quality": 50,
+      "final": 65,
+      "action_score": 65,
+      "confidence": 95,
+      "status": "EVENT HOLD",
+      "base_status": "NEAR ENTRY",
+      "confirmation_score": 2,
+      "confirmation_checks": [
+        "20EMA support",
+        "funding not overheated"
+      ],
+      "entry_signal": false,
+      "event_risk": "LOW",
+      "catalyst": "NEUTRAL",
+      "event_score": -0.56,
+      "events": [
+        {
+          "id": "2026-09-16-fed-first-rate-hike-since-2023",
+          "timestamp": "2026-09-16T18:00:00Z",
+          "expires_at": "2026-10-01T23:59:59Z",
+          "severity": "HIGH",
+          "scope": "MARKET",
+          "type": "MACRO",
+          "affected_symbols": [
+            "BTC",
+            "ETH",
+            "SOL",
+            "XRP"
+          ],
+          "direction": "NEGATIVE",
+          "confidence": "HIGH",
+          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
+          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
+          "source_urls": [
+            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
+            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
+            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
+          ]
+        }
+      ],
+      "data_source": "coingecko-live+kraken",
+      "d7": -3.15,
+      "d30": -1.33,
+      "rs": -0.15,
+      "funding": -0.0703355433333336,
+      "funding_meta": {
+        "source": "kraken",
+        "status": "VERIFIED",
+        "unit": "percent",
+        "normalized_period_hours": 8,
+        "source_period_hours": 1,
+        "basis": "latest_historical_hourly_rate_8h_equivalent",
+        "instrument": "PF_TRXUSD",
+        "observed_at": "2026-09-28T15:00:00Z",
+        "raw_relative_rate": -8.7919429166667e-05
+      },
+      "model_version": "4.3-data-reliability",
+      "e20": 0.3373892110349353,
+      "e50": 0.3357670940638654,
+      "rsi4h": 30.63643827099949,
+      "technical_components": {
+        "daily": "CACHE",
+        "intraday": "LIVE"
+      }
+    },
+    {
+      "id": "zcash",
+      "symbol": "ZEC",
+      "name": "Zcash",
+      "rank": 9,
+      "price": 1529.05,
+      "tier": "CORE",
+      "quality": 59,
+      "final": 65,
+      "action_score": 65,
+      "confidence": 95,
+      "status": "EVENT HOLD",
+      "base_status": "CONFIRMED",
+      "confirmation_score": 4,
+      "confirmation_checks": [
+        "20EMA support",
+        "RSI balanced",
+        "BTC relative strength",
+        "funding not overheated"
+      ],
+      "entry_signal": false,
+      "event_risk": "LOW",
+      "catalyst": "NEUTRAL",
+      "event_score": -0.56,
+      "events": [
+        {
+          "id": "2026-09-16-fed-first-rate-hike-since-2023",
+          "timestamp": "2026-09-16T18:00:00Z",
+          "expires_at": "2026-10-01T23:59:59Z",
+          "severity": "HIGH",
+          "scope": "MARKET",
+          "type": "MACRO",
+          "affected_symbols": [
+            "BTC",
+            "ETH",
+            "SOL",
+            "XRP"
+          ],
+          "direction": "NEGATIVE",
+          "confidence": "HIGH",
+          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
+          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
+          "source_urls": [
+            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
+            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
+            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
+          ]
+        }
+      ],
+      "data_source": "coingecko-live+kraken",
+      "d7": -0.17,
+      "d30": 88.81,
+      "rs": 2.83,
+      "funding": -0.01544209,
+      "funding_meta": {
+        "source": "kraken",
+        "status": "VERIFIED",
+        "unit": "percent",
+        "normalized_period_hours": 8,
+        "source_period_hours": 1,
+        "basis": "latest_historical_hourly_rate_8h_equivalent",
+        "instrument": "PF_ZECUSD",
+        "observed_at": "2026-09-28T15:00:00Z",
+        "raw_relative_rate": -1.93026125e-05
+      },
+      "model_version": "4.3-data-reliability",
+      "e20": 1402.831594617777,
+      "e50": 1113.870608340229,
+      "rsi4h": 49.50583578142586,
+      "technical_components": {
+        "daily": "CACHE",
+        "intraday": "LIVE"
+      }
+    },
+    {
+      "id": "hyperliquid",
+      "symbol": "HYPE",
+      "name": "Hyperliquid",
+      "rank": 11,
+      "price": 87.44,
+      "tier": "CORE",
+      "quality": 51,
+      "final": 65,
+      "action_score": 65,
+      "confidence": 95,
+      "status": "EVENT HOLD",
+      "base_status": "NEAR ENTRY",
+      "confirmation_score": 2,
+      "confirmation_checks": [
+        "20EMA support",
+        "funding not overheated"
+      ],
+      "entry_signal": false,
+      "event_risk": "LOW",
+      "catalyst": "NEUTRAL",
+      "event_score": -0.56,
+      "events": [
+        {
+          "id": "2026-09-16-fed-first-rate-hike-since-2023",
+          "timestamp": "2026-09-16T18:00:00Z",
+          "expires_at": "2026-10-01T23:59:59Z",
+          "severity": "HIGH",
+          "scope": "MARKET",
+          "type": "MACRO",
+          "affected_symbols": [
+            "BTC",
+            "ETH",
+            "SOL",
+            "XRP"
+          ],
+          "direction": "NEGATIVE",
+          "confidence": "HIGH",
+          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
+          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
+          "source_urls": [
+            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
+            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
+            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
+          ]
+        }
+      ],
+      "data_source": "coingecko-live+kraken",
+      "d7": -7.95,
+      "d30": 6.57,
+      "rs": -4.95,
+      "funding": -0.0066724633333336,
+      "funding_meta": {
+        "source": "kraken",
+        "status": "VERIFIED",
+        "unit": "percent",
+        "normalized_period_hours": 8,
+        "source_period_hours": 1,
+        "basis": "latest_historical_hourly_rate_8h_equivalent",
+        "instrument": "PF_HYPEUSD",
+        "observed_at": "2026-09-28T15:00:00Z",
+        "raw_relative_rate": -8.340579166667e-06
+      },
+      "model_version": "4.3-data-reliability",
+      "e20": 88.4973258110375,
+      "e50": 80.97672116871173,
+      "rsi4h": 33.64984173116622,
+      "technical_components": {
+        "daily": "CACHE",
+        "intraday": "LIVE"
+      }
+    },
+    {
+      "id": "dogecoin",
+      "symbol": "DOGE",
+      "name": "Dogecoin",
+      "rank": 12,
+      "price": 0.092185,
+      "tier": "CORE",
+      "quality": 55,
+      "final": 65,
+      "action_score": 65,
+      "confidence": 95,
+      "status": "EVENT HOLD",
+      "base_status": "NEAR ENTRY",
+      "confirmation_score": 3,
+      "confirmation_checks": [
+        "20EMA support",
+        "BTC relative strength",
+        "funding not overheated"
+      ],
+      "entry_signal": false,
+      "event_risk": "LOW",
+      "catalyst": "NEUTRAL",
+      "event_score": -0.56,
+      "events": [
+        {
+          "id": "2026-09-16-fed-first-rate-hike-since-2023",
+          "timestamp": "2026-09-16T18:00:00Z",
+          "expires_at": "2026-10-01T23:59:59Z",
+          "severity": "HIGH",
+          "scope": "MARKET",
+          "type": "MACRO",
+          "affected_symbols": [
+            "BTC",
+            "ETH",
+            "SOL",
+            "XRP"
+          ],
+          "direction": "NEGATIVE",
+          "confidence": "HIGH",
+          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
+          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
+          "source_urls": [
+            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
+            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
+            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
+          ]
+        }
+      ],
+      "data_source": "coingecko-live+kraken",
+      "d7": -1.2,
+      "d30": 8.49,
+      "rs": 1.8,
+      "funding": -0.00928241,
+      "funding_meta": {
+        "source": "kraken",
+        "status": "VERIFIED",
+        "unit": "percent",
+        "normalized_period_hours": 8,
+        "source_period_hours": 1,
+        "basis": "latest_historical_hourly_rate_8h_equivalent",
+        "instrument": "PF_DOGEUSD",
+        "observed_at": "2026-09-28T15:00:00Z",
+        "raw_relative_rate": -1.16030125e-05
+      },
+      "model_version": "4.3-data-reliability",
+      "e20": 0.091336340758036,
+      "e50": 0.08622648899941195,
+      "rsi4h": 28.614645521340037,
+      "technical_components": {
+        "daily": "CACHE",
+        "intraday": "LIVE"
+      }
+    },
+    {
+      "id": "chainlink",
+      "symbol": "LINK",
+      "name": "Chainlink",
+      "rank": 13,
+      "price": 14.16,
+      "tier": "CORE",
+      "quality": 63,
+      "final": 71,
+      "action_score": 71,
+      "confidence": 95,
+      "status": "WAIT",
+      "base_status": "WAIT",
+      "confirmation_score": 0,
+      "confirmation_checks": [],
+      "entry_signal": false,
+      "event_risk": "LOW",
+      "catalyst": "NEUTRAL",
+      "event_score": -0.56,
+      "events": [
+        {
+          "id": "2026-09-16-fed-first-rate-hike-since-2023",
+          "timestamp": "2026-09-16T18:00:00Z",
+          "expires_at": "2026-10-01T23:59:59Z",
+          "severity": "HIGH",
+          "scope": "MARKET",
+          "type": "MACRO",
+          "affected_symbols": [
+            "BTC",
+            "ETH",
+            "SOL",
+            "XRP"
+          ],
+          "direction": "NEGATIVE",
+          "confidence": "HIGH",
+          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
+          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
+          "source_urls": [
+            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
+            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
+            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
+          ]
+        }
+      ],
+      "data_source": "coingecko-cache+kraken",
+      "d7": 8.72,
+      "d30": 25.15,
+      "rs": 11.72,
+      "funding": -0.07858093000000001,
+      "funding_meta": {
+        "source": "kraken",
+        "status": "VERIFIED",
+        "unit": "percent",
+        "normalized_period_hours": 8,
+        "source_period_hours": 1,
+        "basis": "latest_historical_hourly_rate_8h_equivalent",
+        "instrument": "PF_LINKUSD",
+        "observed_at": "2026-09-28T15:00:00Z",
+        "raw_relative_rate": -9.82261625e-05
+      },
+      "model_version": "4.3-data-reliability",
+      "e20": 12.733370016544214,
+      "e50": 11.58475079870331,
+      "rsi4h": 61.070645072536514,
+      "technical_components": {
+        "daily": "CACHE",
+        "intraday": "CACHE"
+      }
+    },
+    {
+      "id": "monero",
+      "symbol": "XMR",
+      "name": "Monero",
+      "rank": 14,
+      "price": 528.38,
+      "tier": "CORE",
+      "quality": 51,
+      "final": 65,
+      "action_score": 65,
+      "confidence": 95,
+      "status": "EVENT HOLD",
+      "base_status": "NEAR ENTRY",
+      "confirmation_score": 1,
+      "confirmation_checks": [
+        "funding not overheated"
+      ],
+      "entry_signal": false,
+      "event_risk": "LOW",
+      "catalyst": "NEUTRAL",
+      "event_score": -0.56,
+      "events": [
+        {
+          "id": "2026-09-16-fed-first-rate-hike-since-2023",
+          "timestamp": "2026-09-16T18:00:00Z",
+          "expires_at": "2026-10-01T23:59:59Z",
+          "severity": "HIGH",
+          "scope": "MARKET",
+          "type": "MACRO",
+          "affected_symbols": [
+            "BTC",
+            "ETH",
+            "SOL",
+            "XRP"
+          ],
+          "direction": "NEGATIVE",
+          "confidence": "HIGH",
+          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
+          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
+          "source_urls": [
+            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
+            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
+            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
+          ]
+        }
+      ],
+      "data_source": "coingecko-cache+kraken",
+      "d7": -8.02,
+      "d30": 13.4,
+      "rs": -5.02,
+      "funding": -0.014635120000000001,
+      "funding_meta": {
+        "source": "kraken",
+        "status": "VERIFIED",
+        "unit": "percent",
+        "normalized_period_hours": 8,
+        "source_period_hours": 1,
+        "basis": "latest_historical_hourly_rate_8h_equivalent",
+        "instrument": "PF_XMRUSD",
+        "observed_at": "2026-09-28T15:00:00Z",
+        "raw_relative_rate": -1.82939e-05
+      },
+      "model_version": "4.3-data-reliability",
+      "e20": 539.3564312710291,
+      "e50": 494.09021296776024,
+      "rsi4h": 28.702903134044874,
+      "technical_components": {
+        "daily": "CACHE",
+        "intraday": "CACHE"
+      }
+    },
+    {
+      "id": "whitebit",
+      "symbol": "WBT",
+      "name": "WhiteBIT Coin",
+      "rank": 15,
+      "price": 82.86,
+      "tier": "CORE",
+      "quality": 53,
+      "final": 65,
+      "action_score": 65,
+      "confidence": 80,
+      "status": "EVENT HOLD",
+      "base_status": "NEAR ENTRY",
+      "confirmation_score": 1,
+      "confirmation_checks": [
+        "20EMA support"
+      ],
+      "entry_signal": false,
+      "event_risk": "LOW",
+      "catalyst": "NEUTRAL",
+      "event_score": -0.56,
+      "events": [
+        {
+          "id": "2026-09-16-fed-first-rate-hike-since-2023",
+          "timestamp": "2026-09-16T18:00:00Z",
+          "expires_at": "2026-10-01T23:59:59Z",
+          "severity": "HIGH",
+          "scope": "MARKET",
+          "type": "MACRO",
+          "affected_symbols": [
+            "BTC",
+            "ETH",
+            "SOL",
+            "XRP"
+          ],
+          "direction": "NEGATIVE",
+          "confidence": "HIGH",
+          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
+          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
+          "source_urls": [
+            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
+            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
+            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
+          ]
+        }
+      ],
+      "data_source": "coingecko-live+no-derivatives",
+      "d7": -3.64,
+      "d30": 15.74,
+      "rs": -0.64,
+      "funding": null,
+      "funding_meta": {
+        "source": "kraken",
+        "status": "UNMAPPED_ASSET",
+        "unit": "percent",
+        "normalized_period_hours": 8,
+        "source_period_hours": 1,
+        "basis": "latest_historical_hourly_rate_8h_equivalent"
+      },
+      "model_version": "4.3-data-reliability",
+      "e20": 81.5440099191525,
+      "e50": 74.72544759113207,
+      "rsi4h": 36.4514287050467,
+      "technical_components": {
+        "daily": "CACHE",
+        "intraday": "LIVE"
+      }
+    },
+    {
+      "id": "cardano",
+      "symbol": "ADA",
+      "name": "Cardano",
+      "rank": 17,
+      "price": 0.240418,
       "tier": "CORE",
       "quality": 57,
       "final": 65,
@@ -535,588 +1114,10 @@
         }
       ],
       "data_source": "coingecko-cache+kraken",
-      "d7": 2.59,
-      "d30": 15.65,
-      "rs": 4.55,
-      "funding": -0.00807355,
-      "funding_meta": {
-        "source": "kraken",
-        "status": "VERIFIED",
-        "unit": "percent",
-        "normalized_period_hours": 8,
-        "source_period_hours": 1,
-        "basis": "latest_historical_hourly_rate_8h_equivalent",
-        "instrument": "PF_SOLUSD",
-        "observed_at": "2026-09-28T14:00:00Z",
-        "raw_relative_rate": -1.00919375e-05
-      },
-      "model_version": "4.3-data-reliability",
-      "e20": 112.09461828175782,
-      "e50": 101.8563166655996,
-      "rsi4h": 46.71663959854361,
-      "technical_components": {
-        "daily": "CACHE",
-        "intraday": "CACHE"
-      }
-    },
-    {
-      "id": "tron",
-      "symbol": "TRX",
-      "name": "TRON",
-      "rank": 8,
-      "price": 0.334046,
-      "tier": "CORE",
-      "quality": 50,
-      "final": 65,
-      "action_score": 65,
-      "confidence": 95,
-      "status": "EVENT HOLD",
-      "base_status": "NEAR ENTRY",
-      "confirmation_score": 3,
-      "confirmation_checks": [
-        "20EMA support",
-        "4H turn up",
-        "funding not overheated"
-      ],
-      "entry_signal": false,
-      "event_risk": "LOW",
-      "catalyst": "NEUTRAL",
-      "event_score": -0.56,
-      "events": [
-        {
-          "id": "2026-09-16-fed-first-rate-hike-since-2023",
-          "timestamp": "2026-09-16T18:00:00Z",
-          "expires_at": "2026-10-01T23:59:59Z",
-          "severity": "HIGH",
-          "scope": "MARKET",
-          "type": "MACRO",
-          "affected_symbols": [
-            "BTC",
-            "ETH",
-            "SOL",
-            "XRP"
-          ],
-          "direction": "NEGATIVE",
-          "confidence": "HIGH",
-          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
-          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
-          "source_urls": [
-            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
-            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
-            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
-          ]
-        }
-      ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": -2.81,
-      "d30": -1.14,
-      "rs": -0.85,
-      "funding": -0.0503341233333336,
-      "funding_meta": {
-        "source": "kraken",
-        "status": "VERIFIED",
-        "unit": "percent",
-        "normalized_period_hours": 8,
-        "source_period_hours": 1,
-        "basis": "latest_historical_hourly_rate_8h_equivalent",
-        "instrument": "PF_TRXUSD",
-        "observed_at": "2026-09-28T14:00:00Z",
-        "raw_relative_rate": -6.2917654166667e-05
-      },
-      "model_version": "4.3-data-reliability",
-      "e20": 0.3373892110349353,
-      "e50": 0.3357670940638654,
-      "rsi4h": 32.807266967776386,
-      "technical_components": {
-        "daily": "CACHE",
-        "intraday": "CACHE"
-      }
-    },
-    {
-      "id": "zcash",
-      "symbol": "ZEC",
-      "name": "Zcash",
-      "rank": 9,
-      "price": 1562.51,
-      "tier": "CORE",
-      "quality": 60,
-      "final": 68,
-      "action_score": 68,
-      "confidence": 95,
-      "status": "WAIT",
-      "base_status": "WAIT",
-      "confirmation_score": 0,
-      "confirmation_checks": [],
-      "entry_signal": false,
-      "event_risk": "LOW",
-      "catalyst": "NEUTRAL",
-      "event_score": -0.56,
-      "events": [
-        {
-          "id": "2026-09-16-fed-first-rate-hike-since-2023",
-          "timestamp": "2026-09-16T18:00:00Z",
-          "expires_at": "2026-10-01T23:59:59Z",
-          "severity": "HIGH",
-          "scope": "MARKET",
-          "type": "MACRO",
-          "affected_symbols": [
-            "BTC",
-            "ETH",
-            "SOL",
-            "XRP"
-          ],
-          "direction": "NEGATIVE",
-          "confidence": "HIGH",
-          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
-          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
-          "source_urls": [
-            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
-            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
-            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
-          ]
-        }
-      ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 2.97,
-      "d30": 96.09,
-      "rs": 4.93,
-      "funding": -0.0047547266666664,
-      "funding_meta": {
-        "source": "kraken",
-        "status": "VERIFIED",
-        "unit": "percent",
-        "normalized_period_hours": 8,
-        "source_period_hours": 1,
-        "basis": "latest_historical_hourly_rate_8h_equivalent",
-        "instrument": "PF_ZECUSD",
-        "observed_at": "2026-09-28T14:00:00Z",
-        "raw_relative_rate": -5.943408333333e-06
-      },
-      "model_version": "4.3-data-reliability",
-      "e20": 1402.831594617777,
-      "e50": 1113.870608340229,
-      "rsi4h": 56.80184741271757,
-      "technical_components": {
-        "daily": "CACHE",
-        "intraday": "CACHE"
-      }
-    },
-    {
-      "id": "hyperliquid",
-      "symbol": "HYPE",
-      "name": "Hyperliquid",
-      "rank": 11,
-      "price": 87.18,
-      "tier": "CORE",
-      "quality": 52,
-      "final": 65,
-      "action_score": 65,
-      "confidence": 95,
-      "status": "EVENT HOLD",
-      "base_status": "NEAR ENTRY",
-      "confirmation_score": 3,
-      "confirmation_checks": [
-        "20EMA support",
-        "4H turn up",
-        "funding not overheated"
-      ],
-      "entry_signal": false,
-      "event_risk": "LOW",
-      "catalyst": "NEUTRAL",
-      "event_score": -0.56,
-      "events": [
-        {
-          "id": "2026-09-16-fed-first-rate-hike-since-2023",
-          "timestamp": "2026-09-16T18:00:00Z",
-          "expires_at": "2026-10-01T23:59:59Z",
-          "severity": "HIGH",
-          "scope": "MARKET",
-          "type": "MACRO",
-          "affected_symbols": [
-            "BTC",
-            "ETH",
-            "SOL",
-            "XRP"
-          ],
-          "direction": "NEGATIVE",
-          "confidence": "HIGH",
-          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
-          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
-          "source_urls": [
-            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
-            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
-            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
-          ]
-        }
-      ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": -6.48,
-      "d30": 9.44,
-      "rs": -4.52,
-      "funding": 0.013201193333333602,
-      "funding_meta": {
-        "source": "kraken",
-        "status": "VERIFIED",
-        "unit": "percent",
-        "normalized_period_hours": 8,
-        "source_period_hours": 1,
-        "basis": "latest_historical_hourly_rate_8h_equivalent",
-        "instrument": "PF_HYPEUSD",
-        "observed_at": "2026-09-28T14:00:00Z",
-        "raw_relative_rate": 1.6501491666667e-05
-      },
-      "model_version": "4.3-data-reliability",
-      "e20": 88.4973258110375,
-      "e50": 80.97672116871173,
-      "rsi4h": 32.87718851791509,
-      "technical_components": {
-        "daily": "CACHE",
-        "intraday": "CACHE"
-      }
-    },
-    {
-      "id": "dogecoin",
-      "symbol": "DOGE",
-      "name": "Dogecoin",
-      "rank": 12,
-      "price": 0.092066,
-      "tier": "CORE",
-      "quality": 56,
-      "final": 65,
-      "action_score": 65,
-      "confidence": 95,
-      "status": "EVENT HOLD",
-      "base_status": "NEAR ENTRY",
-      "confirmation_score": 3,
-      "confirmation_checks": [
-        "20EMA support",
-        "BTC relative strength",
-        "funding not overheated"
-      ],
-      "entry_signal": false,
-      "event_risk": "LOW",
-      "catalyst": "NEUTRAL",
-      "event_score": -0.56,
-      "events": [
-        {
-          "id": "2026-09-16-fed-first-rate-hike-since-2023",
-          "timestamp": "2026-09-16T18:00:00Z",
-          "expires_at": "2026-10-01T23:59:59Z",
-          "severity": "HIGH",
-          "scope": "MARKET",
-          "type": "MACRO",
-          "affected_symbols": [
-            "BTC",
-            "ETH",
-            "SOL",
-            "XRP"
-          ],
-          "direction": "NEGATIVE",
-          "confidence": "HIGH",
-          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
-          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
-          "source_urls": [
-            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
-            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
-            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
-          ]
-        }
-      ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 0.64,
-      "d30": 10.89,
-      "rs": 2.6,
-      "funding": 0.00729733,
-      "funding_meta": {
-        "source": "kraken",
-        "status": "VERIFIED",
-        "unit": "percent",
-        "normalized_period_hours": 8,
-        "source_period_hours": 1,
-        "basis": "latest_historical_hourly_rate_8h_equivalent",
-        "instrument": "PF_DOGEUSD",
-        "observed_at": "2026-09-28T14:00:00Z",
-        "raw_relative_rate": 9.1216625e-06
-      },
-      "model_version": "4.3-data-reliability",
-      "e20": 0.091336340758036,
-      "e50": 0.08622648899941195,
-      "rsi4h": 35.74527128873473,
-      "technical_components": {
-        "daily": "CACHE",
-        "intraday": "CACHE"
-      }
-    },
-    {
-      "id": "chainlink",
-      "symbol": "LINK",
-      "name": "Chainlink",
-      "rank": 13,
-      "price": 14.25,
-      "tier": "CORE",
-      "quality": 65,
-      "final": 72,
-      "action_score": 72,
-      "confidence": 95,
-      "status": "WAIT",
-      "base_status": "WAIT",
-      "confirmation_score": 0,
-      "confirmation_checks": [],
-      "entry_signal": false,
-      "event_risk": "LOW",
-      "catalyst": "NEUTRAL",
-      "event_score": -0.56,
-      "events": [
-        {
-          "id": "2026-09-16-fed-first-rate-hike-since-2023",
-          "timestamp": "2026-09-16T18:00:00Z",
-          "expires_at": "2026-10-01T23:59:59Z",
-          "severity": "HIGH",
-          "scope": "MARKET",
-          "type": "MACRO",
-          "affected_symbols": [
-            "BTC",
-            "ETH",
-            "SOL",
-            "XRP"
-          ],
-          "direction": "NEGATIVE",
-          "confidence": "HIGH",
-          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
-          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
-          "source_urls": [
-            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
-            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
-            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
-          ]
-        }
-      ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 12.65,
-      "d30": 30.55,
-      "rs": 14.61,
-      "funding": -0.0437784166666664,
-      "funding_meta": {
-        "source": "kraken",
-        "status": "VERIFIED",
-        "unit": "percent",
-        "normalized_period_hours": 8,
-        "source_period_hours": 1,
-        "basis": "latest_historical_hourly_rate_8h_equivalent",
-        "instrument": "PF_LINKUSD",
-        "observed_at": "2026-09-28T14:00:00Z",
-        "raw_relative_rate": -5.4723020833333e-05
-      },
-      "model_version": "4.3-data-reliability",
-      "e20": 12.733370016544214,
-      "e50": 11.58475079870331,
-      "rsi4h": 61.070645072536514,
-      "technical_components": {
-        "daily": "CACHE",
-        "intraday": "CACHE"
-      }
-    },
-    {
-      "id": "monero",
-      "symbol": "XMR",
-      "name": "Monero",
-      "rank": 14,
-      "price": 528.16,
-      "tier": "CORE",
-      "quality": 51,
-      "final": 65,
-      "action_score": 65,
-      "confidence": 95,
-      "status": "EVENT HOLD",
-      "base_status": "NEAR ENTRY",
-      "confirmation_score": 1,
-      "confirmation_checks": [
-        "funding not overheated"
-      ],
-      "entry_signal": false,
-      "event_risk": "LOW",
-      "catalyst": "NEUTRAL",
-      "event_score": -0.56,
-      "events": [
-        {
-          "id": "2026-09-16-fed-first-rate-hike-since-2023",
-          "timestamp": "2026-09-16T18:00:00Z",
-          "expires_at": "2026-10-01T23:59:59Z",
-          "severity": "HIGH",
-          "scope": "MARKET",
-          "type": "MACRO",
-          "affected_symbols": [
-            "BTC",
-            "ETH",
-            "SOL",
-            "XRP"
-          ],
-          "direction": "NEGATIVE",
-          "confidence": "HIGH",
-          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
-          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
-          "source_urls": [
-            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
-            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
-            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
-          ]
-        }
-      ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": -6.85,
-      "d30": 13.86,
-      "rs": -4.89,
-      "funding": 0.0453056333333336,
-      "funding_meta": {
-        "source": "kraken",
-        "status": "VERIFIED",
-        "unit": "percent",
-        "normalized_period_hours": 8,
-        "source_period_hours": 1,
-        "basis": "latest_historical_hourly_rate_8h_equivalent",
-        "instrument": "PF_XMRUSD",
-        "observed_at": "2026-09-28T14:00:00Z",
-        "raw_relative_rate": 5.6632041666667e-05
-      },
-      "model_version": "4.3-data-reliability",
-      "e20": 539.3564312710291,
-      "e50": 494.09021296776024,
-      "rsi4h": 28.702903134044874,
-      "technical_components": {
-        "daily": "CACHE",
-        "intraday": "CACHE"
-      }
-    },
-    {
-      "id": "whitebit",
-      "symbol": "WBT",
-      "name": "WhiteBIT Coin",
-      "rank": 15,
-      "price": 82.96,
-      "tier": "CORE",
-      "quality": 53,
-      "final": 65,
-      "action_score": 65,
-      "confidence": 80,
-      "status": "EVENT HOLD",
-      "base_status": "NEAR ENTRY",
-      "confirmation_score": 1,
-      "confirmation_checks": [
-        "20EMA support"
-      ],
-      "entry_signal": false,
-      "event_risk": "LOW",
-      "catalyst": "NEUTRAL",
-      "event_score": -0.56,
-      "events": [
-        {
-          "id": "2026-09-16-fed-first-rate-hike-since-2023",
-          "timestamp": "2026-09-16T18:00:00Z",
-          "expires_at": "2026-10-01T23:59:59Z",
-          "severity": "HIGH",
-          "scope": "MARKET",
-          "type": "MACRO",
-          "affected_symbols": [
-            "BTC",
-            "ETH",
-            "SOL",
-            "XRP"
-          ],
-          "direction": "NEGATIVE",
-          "confidence": "HIGH",
-          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
-          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
-          "source_urls": [
-            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
-            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
-            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
-          ]
-        }
-      ],
-      "data_source": "coingecko-cache+no-derivatives",
-      "d7": -3.26,
-      "d30": 16.91,
-      "rs": -1.3,
-      "funding": null,
-      "funding_meta": {
-        "source": "kraken",
-        "status": "UNMAPPED_ASSET",
-        "unit": "percent",
-        "normalized_period_hours": 8,
-        "source_period_hours": 1,
-        "basis": "latest_historical_hourly_rate_8h_equivalent"
-      },
-      "model_version": "4.3-data-reliability",
-      "e20": 81.5440099191525,
-      "e50": 74.72544759113207,
-      "rsi4h": 30.283645290965325,
-      "technical_components": {
-        "daily": "CACHE",
-        "intraday": "CACHE"
-      }
-    },
-    {
-      "id": "cardano",
-      "symbol": "ADA",
-      "name": "Cardano",
-      "rank": 17,
-      "price": 0.242224,
-      "tier": "CORE",
-      "quality": 59,
-      "final": 65,
-      "action_score": 65,
-      "confidence": 95,
-      "status": "EVENT HOLD",
-      "base_status": "CONFIRMED",
-      "confirmation_score": 4,
-      "confirmation_checks": [
-        "20EMA support",
-        "RSI balanced",
-        "BTC relative strength",
-        "funding not overheated"
-      ],
-      "entry_signal": false,
-      "event_risk": "LOW",
-      "catalyst": "NEUTRAL",
-      "event_score": -0.56,
-      "events": [
-        {
-          "id": "2026-09-16-fed-first-rate-hike-since-2023",
-          "timestamp": "2026-09-16T18:00:00Z",
-          "expires_at": "2026-10-01T23:59:59Z",
-          "severity": "HIGH",
-          "scope": "MARKET",
-          "type": "MACRO",
-          "affected_symbols": [
-            "BTC",
-            "ETH",
-            "SOL",
-            "XRP"
-          ],
-          "direction": "NEGATIVE",
-          "confidence": "HIGH",
-          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
-          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
-          "source_urls": [
-            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
-            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
-            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
-          ]
-        }
-      ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 1.58,
-      "d30": 24.73,
-      "rs": 3.54,
-      "funding": -0.01800166,
+      "d7": -1.3,
+      "d30": 20.17,
+      "rs": 1.7,
+      "funding": -0.03489519,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -1125,8 +1126,8 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_ADAUSD",
-        "observed_at": "2026-09-28T14:00:00Z",
-        "raw_relative_rate": -2.2502075e-05
+        "observed_at": "2026-09-28T15:00:00Z",
+        "raw_relative_rate": -4.36189875e-05
       },
       "model_version": "4.3-data-reliability",
       "e20": 0.23346751634552532,
@@ -1142,7 +1143,7 @@
       "symbol": "RAIN",
       "name": "Rain",
       "rank": 18,
-      "price": 0.01253764,
+      "price": 0.01250834,
       "tier": "CORE",
       "quality": 40,
       "final": 35,
@@ -1183,9 +1184,9 @@
         }
       ],
       "data_source": "coingecko-cache+no-derivatives",
-      "d7": -10.75,
-      "d30": -28.51,
-      "rs": -8.79,
+      "d7": -11.26,
+      "d30": -28.89,
+      "rs": -8.26,
       "funding": null,
       "funding_meta": {
         "source": "kraken",
@@ -1209,17 +1210,18 @@
       "symbol": "LEO",
       "name": "LEO Token",
       "rank": 19,
-      "price": 9.0,
+      "price": 9.04,
       "tier": "CORE",
-      "quality": 49,
+      "quality": 50,
       "final": 65,
       "action_score": 65,
       "confidence": 80,
       "status": "EVENT HOLD",
       "base_status": "NEAR ENTRY",
-      "confirmation_score": 2,
+      "confirmation_score": 3,
       "confirmation_checks": [
         "20EMA support",
+        "RSI balanced",
         "BTC relative strength"
       ],
       "entry_signal": false,
@@ -1252,10 +1254,10 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+no-derivatives",
-      "d7": 0.69,
-      "d30": -6.85,
-      "rs": 2.65,
+      "data_source": "coingecko-live+no-derivatives",
+      "d7": 0.17,
+      "d30": -6.66,
+      "rs": 3.17,
       "funding": null,
       "funding_meta": {
         "source": "kraken",
@@ -1268,10 +1270,10 @@
       "model_version": "4.3-data-reliability",
       "e20": 9.02724813097626,
       "e50": 9.193038857410897,
-      "rsi4h": 68.28517348574387,
+      "rsi4h": 63.90095704732274,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -1279,9 +1281,9 @@
       "symbol": "XLM",
       "name": "Stellar",
       "rank": 20,
-      "price": 0.216417,
+      "price": 0.21448,
       "tier": "CORE",
-      "quality": 61,
+      "quality": 59,
       "final": 65,
       "action_score": 65,
       "confidence": 95,
@@ -1347,10 +1349,10 @@
         }
       ],
       "data_source": "coingecko-cache+kraken",
-      "d7": 6.5,
-      "d30": 25.69,
-      "rs": 8.46,
-      "funding": 0.017824806666666398,
+      "d7": 3.32,
+      "d30": 21.67,
+      "rs": 6.32,
+      "funding": -0.0080767666666664,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -1359,8 +1361,8 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_XLMUSD",
-        "observed_at": "2026-09-28T14:00:00Z",
-        "raw_relative_rate": 2.2281008333333e-05
+        "observed_at": "2026-09-28T15:00:00Z",
+        "raw_relative_rate": -1.0095958333333e-05
       },
       "model_version": "4.3-data-reliability",
       "e20": 0.20128324697429495,
@@ -1376,9 +1378,9 @@
       "symbol": "NEAR",
       "name": "NEAR Protocol",
       "rank": 21,
-      "price": 5.01,
+      "price": 4.85,
       "tier": "CORE",
-      "quality": 75,
+      "quality": 74,
       "final": 55,
       "action_score": 55,
       "confidence": 95,
@@ -1417,10 +1419,10 @@
         }
       ],
       "data_source": "coingecko-cache+kraken",
-      "d7": 25.45,
-      "d30": 190.67,
-      "rs": 27.41,
-      "funding": 0.03326229,
+      "d7": 21.68,
+      "d30": 177.5,
+      "rs": 24.69,
+      "funding": 0.0639124766666664,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -1429,8 +1431,8 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_NEARUSD",
-        "observed_at": "2026-09-28T14:00:00Z",
-        "raw_relative_rate": 4.15778625e-05
+        "observed_at": "2026-09-28T15:00:00Z",
+        "raw_relative_rate": 7.9890595833333e-05
       },
       "model_version": "4.3-data-reliability",
       "e20": 3.907015302544462,
@@ -1446,7 +1448,7 @@
       "symbol": "BCH",
       "name": "Bitcoin Cash",
       "rank": 22,
-      "price": 308.99,
+      "price": 307.3,
       "tier": "CORE",
       "quality": 65,
       "final": 65,
@@ -1491,10 +1493,10 @@
         }
       ],
       "data_source": "coingecko-cache+kraken",
-      "d7": 16.15,
-      "d30": 28.7,
-      "rs": 18.11,
-      "funding": 0.0413098033333336,
+      "d7": 14.72,
+      "d30": 25.84,
+      "rs": 17.72,
+      "funding": 0.037509343333333604,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -1503,8 +1505,8 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_BCHUSD",
-        "observed_at": "2026-09-28T14:00:00Z",
-        "raw_relative_rate": 5.1637254166667e-05
+        "observed_at": "2026-09-28T15:00:00Z",
+        "raw_relative_rate": 4.6886679166667e-05
       },
       "model_version": "4.3-data-reliability",
       "e20": 289.76910757468204,
@@ -1520,9 +1522,9 @@
       "symbol": "UNI",
       "name": "Uniswap",
       "rank": 23,
-      "price": 8.76,
+      "price": 8.73,
       "tier": "CORE",
-      "quality": 64,
+      "quality": 63,
       "final": 65,
       "action_score": 65,
       "confidence": 95,
@@ -1564,11 +1566,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": -0.33,
-      "d30": 104.47,
-      "rs": 1.63,
-      "funding": 0.0153606933333336,
+      "data_source": "coingecko-live+kraken",
+      "d7": -1.8,
+      "d30": 98.36,
+      "rs": 1.2,
+      "funding": 0.0290922266666664,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -1577,16 +1579,16 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_UNIUSD",
-        "observed_at": "2026-09-28T14:00:00Z",
-        "raw_relative_rate": 1.9200866666667e-05
+        "observed_at": "2026-09-28T15:00:00Z",
+        "raw_relative_rate": 3.6365283333333e-05
       },
       "model_version": "4.3-data-reliability",
       "e20": 8.309841630226488,
       "e50": 6.680015532338181,
-      "rsi4h": 31.91061914438592,
+      "rsi4h": 30.77201672943943,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     },
     {
@@ -1594,9 +1596,9 @@
       "symbol": "LTC",
       "name": "Litecoin",
       "rank": 24,
-      "price": 69.16,
+      "price": 69.15,
       "tier": "CORE",
-      "quality": 69,
+      "quality": 68,
       "final": 72,
       "action_score": 72,
       "confidence": 95,
@@ -1634,11 +1636,11 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 11.95,
-      "d30": 44.11,
-      "rs": 13.91,
-      "funding": 0.0005913466666664,
+      "data_source": "coingecko-live+kraken",
+      "d7": 11.12,
+      "d30": 41.95,
+      "rs": 14.12,
+      "funding": -0.0055796133333336,
       "funding_meta": {
         "source": "kraken",
         "status": "VERIFIED",
@@ -1647,26 +1649,305 @@
         "source_period_hours": 1,
         "basis": "latest_historical_hourly_rate_8h_equivalent",
         "instrument": "PF_LTCUSD",
-        "observed_at": "2026-09-28T14:00:00Z",
-        "raw_relative_rate": 7.39183333333e-07
+        "observed_at": "2026-09-28T15:00:00Z",
+        "raw_relative_rate": -6.974516666667e-06
       },
       "model_version": "4.3-data-reliability",
       "e20": 62.125379029025616,
       "e50": 55.737621033778105,
-      "rsi4h": 42.240272897586124,
+      "rsi4h": 47.87313016391474,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
+      }
+    },
+    {
+      "id": "hedera-hashgraph",
+      "symbol": "HBAR",
+      "name": "Hedera",
+      "rank": 25,
+      "price": 0.1159,
+      "tier": "CORE",
+      "quality": 74,
+      "final": 55,
+      "action_score": 55,
+      "confidence": 95,
+      "status": "OVEREXTENDED",
+      "base_status": "OVEREXTENDED",
+      "confirmation_score": 0,
+      "confirmation_checks": [],
+      "entry_signal": false,
+      "event_risk": "LOW",
+      "catalyst": "NEUTRAL",
+      "event_score": -0.56,
+      "events": [
+        {
+          "id": "2026-09-16-fed-first-rate-hike-since-2023",
+          "timestamp": "2026-09-16T18:00:00Z",
+          "expires_at": "2026-10-01T23:59:59Z",
+          "severity": "HIGH",
+          "scope": "MARKET",
+          "type": "MACRO",
+          "affected_symbols": [
+            "BTC",
+            "ETH",
+            "SOL",
+            "XRP"
+          ],
+          "direction": "NEGATIVE",
+          "confidence": "HIGH",
+          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
+          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
+          "source_urls": [
+            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
+            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
+            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
+          ]
+        }
+      ],
+      "data_source": "coingecko-live+kraken",
+      "d7": 29.09,
+      "d30": 56.66,
+      "rs": 32.09,
+      "funding": -0.00375172,
+      "funding_meta": {
+        "source": "kraken",
+        "status": "VERIFIED",
+        "unit": "percent",
+        "normalized_period_hours": 8,
+        "source_period_hours": 1,
+        "basis": "latest_historical_hourly_rate_8h_equivalent",
+        "instrument": "PF_HBARUSD",
+        "observed_at": "2026-09-28T15:00:00Z",
+        "raw_relative_rate": -4.68965e-06
+      },
+      "model_version": "4.3-data-reliability",
+      "e20": 0.08696712199011977,
+      "e50": 0.08068626466319476,
+      "rsi4h": 88.00498429750714,
+      "technical_components": {
+        "daily": "CACHE",
+        "intraday": "LIVE"
       }
     },
     {
       "id": "canton-network",
       "symbol": "CC",
       "name": "Canton",
-      "rank": 25,
-      "price": 0.130687,
+      "rank": 26,
+      "price": 0.127883,
       "tier": "CORE",
       "quality": 60,
+      "final": 66,
+      "action_score": 66,
+      "confidence": 80,
+      "status": "WAIT",
+      "base_status": "WAIT",
+      "confirmation_score": 0,
+      "confirmation_checks": [],
+      "entry_signal": false,
+      "event_risk": "LOW",
+      "catalyst": "NEUTRAL",
+      "event_score": -0.56,
+      "events": [
+        {
+          "id": "2026-09-16-fed-first-rate-hike-since-2023",
+          "timestamp": "2026-09-16T18:00:00Z",
+          "expires_at": "2026-10-01T23:59:59Z",
+          "severity": "HIGH",
+          "scope": "MARKET",
+          "type": "MACRO",
+          "affected_symbols": [
+            "BTC",
+            "ETH",
+            "SOL",
+            "XRP"
+          ],
+          "direction": "NEGATIVE",
+          "confidence": "HIGH",
+          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
+          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
+          "source_urls": [
+            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
+            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
+            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
+          ]
+        }
+      ],
+      "data_source": "coingecko-live+no-derivatives",
+      "d7": 13.02,
+      "d30": 13.24,
+      "rs": 16.02,
+      "funding": null,
+      "funding_meta": {
+        "source": "kraken",
+        "status": "NO_LISTED_CONTRACT",
+        "unit": "percent",
+        "normalized_period_hours": 8,
+        "source_period_hours": 1,
+        "basis": "latest_historical_hourly_rate_8h_equivalent",
+        "instrument": "PF_CCUSD"
+      },
+      "model_version": "4.3-data-reliability",
+      "e20": 0.11722045790319469,
+      "e50": 0.11391370381784578,
+      "rsi4h": 36.995571699380264,
+      "technical_components": {
+        "daily": "CACHE",
+        "intraday": "LIVE"
+      }
+    },
+    {
+      "id": "avalanche-2",
+      "symbol": "AVAX",
+      "name": "Avalanche",
+      "rank": 28,
+      "price": 10.17,
+      "tier": "CORE",
+      "quality": 60,
+      "final": 62,
+      "action_score": 62,
+      "confidence": 95,
+      "status": "EVENT HOLD",
+      "base_status": "NEAR ENTRY",
+      "confirmation_score": 3,
+      "confirmation_checks": [
+        "20EMA support",
+        "RSI balanced",
+        "funding not overheated"
+      ],
+      "entry_signal": false,
+      "event_risk": "LOW",
+      "catalyst": "NEUTRAL",
+      "event_score": -0.56,
+      "events": [
+        {
+          "id": "2026-09-16-fed-first-rate-hike-since-2023",
+          "timestamp": "2026-09-16T18:00:00Z",
+          "expires_at": "2026-10-01T23:59:59Z",
+          "severity": "HIGH",
+          "scope": "MARKET",
+          "type": "MACRO",
+          "affected_symbols": [
+            "BTC",
+            "ETH",
+            "SOL",
+            "XRP"
+          ],
+          "direction": "NEGATIVE",
+          "confidence": "HIGH",
+          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
+          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
+          "source_urls": [
+            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
+            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
+            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
+          ]
+        }
+      ],
+      "data_source": "coingecko-live+kraken",
+      "d7": -9.32,
+      "d30": 40.06,
+      "rs": -6.32,
+      "funding": 0.0029006633333336002,
+      "funding_meta": {
+        "source": "kraken",
+        "status": "VERIFIED",
+        "unit": "percent",
+        "normalized_period_hours": 8,
+        "source_period_hours": 1,
+        "basis": "latest_historical_hourly_rate_8h_equivalent",
+        "instrument": "PF_AVAXUSD",
+        "observed_at": "2026-09-28T15:00:00Z",
+        "raw_relative_rate": 3.625829166667e-06
+      },
+      "model_version": "4.3-data-reliability",
+      "e20": 9.572463271674414,
+      "e50": 8.416404737775176,
+      "rsi4h": 47.07270999322448,
+      "technical_components": {
+        "daily": "CACHE",
+        "intraday": "LIVE"
+      }
+    },
+    {
+      "id": "sui",
+      "symbol": "SUI",
+      "name": "Sui",
+      "rank": 29,
+      "price": 1.14,
+      "tier": "CORE",
+      "quality": 78,
+      "final": 55,
+      "action_score": 55,
+      "confidence": 80,
+      "status": "OVEREXTENDED",
+      "base_status": "OVEREXTENDED",
+      "confirmation_score": 0,
+      "confirmation_checks": [],
+      "entry_signal": false,
+      "event_risk": "LOW",
+      "catalyst": "NEUTRAL",
+      "event_score": -0.56,
+      "events": [
+        {
+          "id": "2026-09-16-fed-first-rate-hike-since-2023",
+          "timestamp": "2026-09-16T18:00:00Z",
+          "expires_at": "2026-10-01T23:59:59Z",
+          "severity": "HIGH",
+          "scope": "MARKET",
+          "type": "MACRO",
+          "affected_symbols": [
+            "BTC",
+            "ETH",
+            "SOL",
+            "XRP"
+          ],
+          "direction": "NEGATIVE",
+          "confidence": "HIGH",
+          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
+          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
+          "source_urls": [
+            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
+            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
+            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
+            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
+          ]
+        }
+      ],
+      "data_source": "coingecko-live+no-derivatives",
+      "d7": 11.09,
+      "d30": 56.06,
+      "rs": 14.09,
+      "funding": null,
+      "funding_meta": {
+        "source": "kraken",
+        "status": "UNMAPPED_ASSET",
+        "unit": "percent",
+        "normalized_period_hours": 8,
+        "source_period_hours": 1,
+        "basis": "latest_historical_hourly_rate_8h_equivalent"
+      },
+      "model_version": "4.3-data-reliability",
+      "e20": 0.9720388657018598,
+      "e50": 0.8548308907304634,
+      "rsi4h": 46.65698599471243,
+      "technical_components": {
+        "daily": "CACHE",
+        "intraday": "LIVE"
+      }
+    },
+    {
+      "id": "the-open-network",
+      "symbol": "GRAM",
+      "name": "Gram (prev. Toncoin)",
+      "rank": 31,
+      "price": 1.6,
+      "tier": "CORE",
+      "quality": 61,
       "final": 65,
       "action_score": 65,
       "confidence": 80,
@@ -1704,288 +1985,10 @@
           ]
         }
       ],
-      "data_source": "coingecko-cache+no-derivatives",
-      "d7": 13.4,
-      "d30": 15.07,
-      "rs": 15.36,
-      "funding": null,
-      "funding_meta": {
-        "source": "kraken",
-        "status": "NO_LISTED_CONTRACT",
-        "unit": "percent",
-        "normalized_period_hours": 8,
-        "source_period_hours": 1,
-        "basis": "latest_historical_hourly_rate_8h_equivalent",
-        "instrument": "PF_CCUSD"
-      },
-      "model_version": "4.3-data-reliability",
-      "e20": 0.11722045790319469,
-      "e50": 0.11391370381784578,
-      "rsi4h": 49.09773049679268,
-      "technical_components": {
-        "daily": "CACHE",
-        "intraday": "CACHE"
-      }
-    },
-    {
-      "id": "hedera-hashgraph",
-      "symbol": "HBAR",
-      "name": "Hedera",
-      "rank": 26,
-      "price": 0.118572,
-      "tier": "CORE",
-      "quality": 76,
-      "final": 55,
-      "action_score": 55,
-      "confidence": 95,
-      "status": "OVEREXTENDED",
-      "base_status": "OVEREXTENDED",
-      "confirmation_score": 0,
-      "confirmation_checks": [],
-      "entry_signal": false,
-      "event_risk": "LOW",
-      "catalyst": "NEUTRAL",
-      "event_score": -0.56,
-      "events": [
-        {
-          "id": "2026-09-16-fed-first-rate-hike-since-2023",
-          "timestamp": "2026-09-16T18:00:00Z",
-          "expires_at": "2026-10-01T23:59:59Z",
-          "severity": "HIGH",
-          "scope": "MARKET",
-          "type": "MACRO",
-          "affected_symbols": [
-            "BTC",
-            "ETH",
-            "SOL",
-            "XRP"
-          ],
-          "direction": "NEGATIVE",
-          "confidence": "HIGH",
-          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
-          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
-          "source_urls": [
-            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
-            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
-            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
-          ]
-        }
-      ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": 31.64,
-      "d30": 60.77,
-      "rs": 33.6,
-      "funding": 0.0481755733333336,
-      "funding_meta": {
-        "source": "kraken",
-        "status": "VERIFIED",
-        "unit": "percent",
-        "normalized_period_hours": 8,
-        "source_period_hours": 1,
-        "basis": "latest_historical_hourly_rate_8h_equivalent",
-        "instrument": "PF_HBARUSD",
-        "observed_at": "2026-09-28T14:00:00Z",
-        "raw_relative_rate": 6.0219466666667e-05
-      },
-      "model_version": "4.3-data-reliability",
-      "e20": 0.08696712199011977,
-      "e50": 0.08068626466319476,
-      "rsi4h": 92.20803271973811,
-      "technical_components": {
-        "daily": "CACHE",
-        "intraday": "CACHE"
-      }
-    },
-    {
-      "id": "avalanche-2",
-      "symbol": "AVAX",
-      "name": "Avalanche",
-      "rank": 28,
-      "price": 10.26,
-      "tier": "CORE",
-      "quality": 61,
-      "final": 62,
-      "action_score": 62,
-      "confidence": 95,
-      "status": "EVENT HOLD",
-      "base_status": "NEAR ENTRY",
-      "confirmation_score": 2,
-      "confirmation_checks": [
-        "20EMA support",
-        "funding not overheated"
-      ],
-      "entry_signal": false,
-      "event_risk": "LOW",
-      "catalyst": "NEUTRAL",
-      "event_score": -0.56,
-      "events": [
-        {
-          "id": "2026-09-16-fed-first-rate-hike-since-2023",
-          "timestamp": "2026-09-16T18:00:00Z",
-          "expires_at": "2026-10-01T23:59:59Z",
-          "severity": "HIGH",
-          "scope": "MARKET",
-          "type": "MACRO",
-          "affected_symbols": [
-            "BTC",
-            "ETH",
-            "SOL",
-            "XRP"
-          ],
-          "direction": "NEGATIVE",
-          "confidence": "HIGH",
-          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
-          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
-          "source_urls": [
-            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
-            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
-            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
-          ]
-        }
-      ],
-      "data_source": "coingecko-cache+kraken",
-      "d7": -8.24,
-      "d30": 44.24,
-      "rs": -6.28,
-      "funding": -0.00418533,
-      "funding_meta": {
-        "source": "kraken",
-        "status": "VERIFIED",
-        "unit": "percent",
-        "normalized_period_hours": 8,
-        "source_period_hours": 1,
-        "basis": "latest_historical_hourly_rate_8h_equivalent",
-        "instrument": "PF_AVAXUSD",
-        "observed_at": "2026-09-28T14:00:00Z",
-        "raw_relative_rate": -5.2316625e-06
-      },
-      "model_version": "4.3-data-reliability",
-      "e20": 9.572463271674414,
-      "e50": 8.416404737775176,
-      "rsi4h": 36.992824066310206,
-      "technical_components": {
-        "daily": "CACHE",
-        "intraday": "CACHE"
-      }
-    },
-    {
-      "id": "sui",
-      "symbol": "SUI",
-      "name": "Sui",
-      "rank": 29,
-      "price": 1.16,
-      "tier": "CORE",
-      "quality": 80,
-      "final": 55,
-      "action_score": 55,
-      "confidence": 80,
-      "status": "OVEREXTENDED",
-      "base_status": "OVEREXTENDED",
-      "confirmation_score": 0,
-      "confirmation_checks": [],
-      "entry_signal": false,
-      "event_risk": "LOW",
-      "catalyst": "NEUTRAL",
-      "event_score": -0.56,
-      "events": [
-        {
-          "id": "2026-09-16-fed-first-rate-hike-since-2023",
-          "timestamp": "2026-09-16T18:00:00Z",
-          "expires_at": "2026-10-01T23:59:59Z",
-          "severity": "HIGH",
-          "scope": "MARKET",
-          "type": "MACRO",
-          "affected_symbols": [
-            "BTC",
-            "ETH",
-            "SOL",
-            "XRP"
-          ],
-          "direction": "NEGATIVE",
-          "confidence": "HIGH",
-          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
-          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
-          "source_urls": [
-            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
-            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
-            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
-          ]
-        }
-      ],
-      "data_source": "coingecko-cache+no-derivatives",
-      "d7": 13.98,
-      "d30": 60.68,
-      "rs": 15.94,
-      "funding": null,
-      "funding_meta": {
-        "source": "kraken",
-        "status": "UNMAPPED_ASSET",
-        "unit": "percent",
-        "normalized_period_hours": 8,
-        "source_period_hours": 1,
-        "basis": "latest_historical_hourly_rate_8h_equivalent"
-      },
-      "model_version": "4.3-data-reliability",
-      "e20": 0.9720388657018598,
-      "e50": 0.8548308907304634,
-      "rsi4h": 47.37481098959289,
-      "technical_components": {
-        "daily": "CACHE",
-        "intraday": "CACHE"
-      }
-    },
-    {
-      "id": "the-open-network",
-      "symbol": "GRAM",
-      "name": "Gram (prev. Toncoin)",
-      "rank": 30,
-      "price": 1.63,
-      "tier": "CORE",
-      "quality": 65,
-      "final": 68,
-      "action_score": 68,
-      "confidence": 80,
-      "status": "WAIT",
-      "base_status": "WAIT",
-      "confirmation_score": 0,
-      "confirmation_checks": [],
-      "entry_signal": false,
-      "event_risk": "LOW",
-      "catalyst": "NEUTRAL",
-      "event_score": -0.56,
-      "events": [
-        {
-          "id": "2026-09-16-fed-first-rate-hike-since-2023",
-          "timestamp": "2026-09-16T18:00:00Z",
-          "expires_at": "2026-10-01T23:59:59Z",
-          "severity": "HIGH",
-          "scope": "MARKET",
-          "type": "MACRO",
-          "affected_symbols": [
-            "BTC",
-            "ETH",
-            "SOL",
-            "XRP"
-          ],
-          "direction": "NEGATIVE",
-          "confidence": "HIGH",
-          "headline": "Federal Reserve raises rates 25 basis points and projects further tightening",
-          "summary": "The FOMC voted unanimously to raise the federal funds target range by 25 basis points to 3.75%-4.00%, the first increase since 2023. Its September projections put the median end-2026 policy rate at 4.1%, up from 3.8% in June, implying another quarter-point increase this year, while median 2026 PCE inflation rose to 3.7%. Bitcoin and Ether remained near $75,700 and $2,392 at the latest check, indicating the decision was substantially anticipated, but the renewed tightening cycle raises the dollar, yield and crypto-liquidity risk.",
-          "source_urls": [
-            "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
-            "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
-            "https://www.reuters.com/world/india/gold-muted-investors-brace-fed-rate-decision-2026-09-16/",
-            "https://apnews.com/article/bab1bcb07e973bfb2dd0c3e5fbbb73b1"
-          ]
-        }
-      ],
-      "data_source": "coingecko-cache+no-derivatives",
-      "d7": 18.07,
-      "d30": 23.37,
-      "rs": 20.03,
+      "data_source": "coingecko-live+no-derivatives",
+      "d7": 12.22,
+      "d30": 18.22,
+      "rs": 15.23,
       "funding": null,
       "funding_meta": {
         "source": "kraken",
@@ -1999,10 +2002,10 @@
       "model_version": "4.3-data-reliability",
       "e20": 1.4569421946697536,
       "e50": 1.4313269618034434,
-      "rsi4h": 78.78026663209727,
+      "rsi4h": 65.46319083890788,
       "technical_components": {
         "daily": "CACHE",
-        "intraday": "CACHE"
+        "intraday": "LIVE"
       }
     }
   ],
@@ -2012,195 +2015,195 @@
       "symbol": "SEI",
       "name": "Sei",
       "rank": 110,
-      "price": 0.076783,
+      "price": 0.076457,
       "tier": "OPPORTUNITY",
-      "quality": 88,
+      "quality": 87,
       "status": "RADAR",
-      "d7": 30.27,
-      "d30": 72.44,
-      "rs": 32.23
+      "d7": 26.52,
+      "d30": 68.03,
+      "rs": 29.52
     },
     {
       "id": "ethena",
       "symbol": "ENA",
       "name": "Ethena",
-      "rank": 41,
-      "price": 0.261597,
-      "tier": "OPPORTUNITY",
-      "quality": 82,
-      "status": "RADAR",
-      "d7": 18.31,
-      "d30": 73.38,
-      "rs": 20.27
-    },
-    {
-      "id": "fetch-ai",
-      "symbol": "FET",
-      "name": "Artificial Superintelligence Alliance",
-      "rank": 109,
-      "price": 0.225933,
+      "rank": 42,
+      "price": 0.256895,
       "tier": "OPPORTUNITY",
       "quality": 81,
       "status": "RADAR",
-      "d7": 17.92,
-      "d30": 59.43,
-      "rs": 19.88
+      "d7": 16.05,
+      "d30": 67.6,
+      "rs": 19.05
     },
     {
       "id": "layerzero",
       "symbol": "ZRO",
       "name": "LayerZero",
       "rank": 107,
-      "price": 1.54,
+      "price": 1.49,
       "tier": "OPPORTUNITY",
-      "quality": 79,
+      "quality": 78,
       "status": "RADAR",
-      "d7": 27.8,
-      "d30": 47.44,
-      "rs": 29.76
+      "d7": 25.45,
+      "d30": 41.8,
+      "rs": 28.45
     },
     {
       "id": "pyth-network",
       "symbol": "PYTH",
       "name": "Pyth Network",
       "rank": 99,
-      "price": 0.078428,
+      "price": 0.0781,
       "tier": "OPPORTUNITY",
-      "quality": 79,
+      "quality": 77,
       "status": "RADAR",
-      "d7": 23.98,
-      "d30": 68.91,
-      "rs": 25.94
+      "d7": 21.52,
+      "d30": 65.04,
+      "rs": 24.52
     },
     {
       "id": "ondo-finance",
       "symbol": "ONDO",
       "name": "Ondo",
-      "rank": 44,
-      "price": 0.510981,
+      "rank": 43,
+      "price": 0.512224,
       "tier": "OPPORTUNITY",
-      "quality": 78,
+      "quality": 77,
       "status": "RADAR",
-      "d7": 15.36,
-      "d30": 49.73,
-      "rs": 17.32
+      "d7": 13.35,
+      "d30": 45.99,
+      "rs": 16.35
     },
     {
-      "id": "algorand",
-      "symbol": "ALGO",
-      "name": "Algorand",
-      "rank": 74,
-      "price": 0.130289,
+      "id": "fetch-ai",
+      "symbol": "FET",
+      "name": "Artificial Superintelligence Alliance",
+      "rank": 109,
+      "price": 0.223772,
       "tier": "OPPORTUNITY",
       "quality": 76,
       "status": "RADAR",
-      "d7": 17.49,
-      "d30": 57.68,
-      "rs": 19.45
-    },
-    {
-      "id": "dash",
-      "symbol": "DASH",
-      "name": "Dash",
-      "rank": 87,
-      "price": 64.64,
-      "tier": "OPPORTUNITY",
-      "quality": 76,
-      "status": "RADAR",
-      "d7": 10.83,
-      "d30": 65.93,
-      "rs": 12.79
+      "d7": 8.91,
+      "d30": 52.27,
+      "rs": 11.91
     },
     {
       "id": "aerodrome-finance",
       "symbol": "AERO",
       "name": "Aerodrome Finance",
       "rank": 88,
-      "price": 0.775124,
+      "price": 0.7693,
       "tier": "OPPORTUNITY",
-      "quality": 74,
+      "quality": 73,
       "status": "RADAR",
-      "d7": 13.78,
-      "d30": 64.74,
-      "rs": 15.74
+      "d7": 13.3,
+      "d30": 62.05,
+      "rs": 16.3
+    },
+    {
+      "id": "dash",
+      "symbol": "DASH",
+      "name": "Dash",
+      "rank": 87,
+      "price": 63.48,
+      "tier": "OPPORTUNITY",
+      "quality": 73,
+      "status": "RADAR",
+      "d7": 6.71,
+      "d30": 55.93,
+      "rs": 9.71
+    },
+    {
+      "id": "algorand",
+      "symbol": "ALGO",
+      "name": "Algorand",
+      "rank": 74,
+      "price": 0.130086,
+      "tier": "OPPORTUNITY",
+      "quality": 72,
+      "status": "RADAR",
+      "d7": 11.62,
+      "d30": 48.61,
+      "rs": 14.62
     },
     {
       "id": "worldcoin-wld",
       "symbol": "WLD",
       "name": "Worldcoin",
       "rank": 56,
-      "price": 0.483571,
+      "price": 0.481291,
       "tier": "OPPORTUNITY",
-      "quality": 74,
+      "quality": 71,
       "status": "RADAR",
-      "d7": 13.0,
-      "d30": 36.28,
-      "rs": 14.96
-    },
-    {
-      "id": "jupiter-exchange-solana",
-      "symbol": "JUP",
-      "name": "Jupiter",
-      "rank": 76,
-      "price": 0.329782,
-      "tier": "OPPORTUNITY",
-      "quality": 73,
-      "status": "RADAR",
-      "d7": 12.26,
-      "d30": 57.43,
-      "rs": 14.22
-    },
-    {
-      "id": "kaspa",
-      "symbol": "KAS",
-      "name": "Kaspa",
-      "rank": 72,
-      "price": 0.04621613,
-      "tier": "OPPORTUNITY",
-      "quality": 72,
-      "status": "RADAR",
-      "d7": 14.47,
-      "d30": 72.89,
-      "rs": 16.43
+      "d7": 8.64,
+      "d30": 29.44,
+      "rs": 11.64
     },
     {
       "id": "filecoin",
       "symbol": "FIL",
       "name": "Filecoin",
       "rank": 85,
-      "price": 1.028,
+      "price": 1.024,
       "tier": "OPPORTUNITY",
-      "quality": 72,
+      "quality": 71,
       "status": "RADAR",
-      "d7": 6.76,
-      "d30": 56.33,
-      "rs": 8.72
+      "d7": 4.6,
+      "d30": 50.93,
+      "rs": 7.6
+    },
+    {
+      "id": "kaspa",
+      "symbol": "KAS",
+      "name": "Kaspa",
+      "rank": 72,
+      "price": 0.045639,
+      "tier": "OPPORTUNITY",
+      "quality": 70,
+      "status": "RADAR",
+      "d7": 9.6,
+      "d30": 65.21,
+      "rs": 12.6
+    },
+    {
+      "id": "quant-network",
+      "symbol": "QNT",
+      "name": "Quant",
+      "rank": 34,
+      "price": 229.6,
+      "tier": "OPPORTUNITY",
+      "quality": 69,
+      "status": "RADAR",
+      "d7": 240.44,
+      "d30": 277.07,
+      "rs": 243.44
     },
     {
       "id": "pudgy-penguins",
       "symbol": "PENGU",
       "name": "Pudgy Penguins",
-      "rank": 101,
-      "price": 0.00955526,
+      "rank": 103,
+      "price": 0.00931567,
       "tier": "OPPORTUNITY",
-      "quality": 71,
+      "quality": 69,
       "status": "RADAR",
-      "d7": 19.75,
-      "d30": 10.5,
-      "rs": 21.71
+      "d7": 15.41,
+      "d30": 5.42,
+      "rs": 18.41
     },
     {
-      "id": "virtual-protocol",
-      "symbol": "VIRTUAL",
-      "name": "Virtuals Protocol",
-      "rank": 111,
-      "price": 0.784122,
+      "id": "jupiter-exchange-solana",
+      "symbol": "JUP",
+      "name": "Jupiter",
+      "rank": 76,
+      "price": 0.327502,
       "tier": "OPPORTUNITY",
-      "quality": 71,
+      "quality": 69,
       "status": "RADAR",
-      "d7": 15.06,
-      "d30": 18.97,
-      "rs": 17.02
+      "d7": 6.39,
+      "d30": 48.64,
+      "rs": 9.39
     }
   ],
   "promotions": [
@@ -2209,139 +2212,139 @@
       "symbol": "SEI",
       "name": "Sei",
       "rank": 110,
-      "price": 0.076783,
+      "price": 0.076457,
       "tier": "OPPORTUNITY",
-      "quality": 88,
+      "quality": 87,
       "status": "RADAR",
-      "d7": 30.27,
-      "d30": 72.44,
-      "rs": 32.23
+      "d7": 26.52,
+      "d30": 68.03,
+      "rs": 29.52
     },
     {
       "id": "ethena",
       "symbol": "ENA",
       "name": "Ethena",
-      "rank": 41,
-      "price": 0.261597,
-      "tier": "OPPORTUNITY",
-      "quality": 82,
-      "status": "RADAR",
-      "d7": 18.31,
-      "d30": 73.38,
-      "rs": 20.27
-    },
-    {
-      "id": "fetch-ai",
-      "symbol": "FET",
-      "name": "Artificial Superintelligence Alliance",
-      "rank": 109,
-      "price": 0.225933,
+      "rank": 42,
+      "price": 0.256895,
       "tier": "OPPORTUNITY",
       "quality": 81,
       "status": "RADAR",
-      "d7": 17.92,
-      "d30": 59.43,
-      "rs": 19.88
+      "d7": 16.05,
+      "d30": 67.6,
+      "rs": 19.05
     },
     {
       "id": "layerzero",
       "symbol": "ZRO",
       "name": "LayerZero",
       "rank": 107,
-      "price": 1.54,
+      "price": 1.49,
       "tier": "OPPORTUNITY",
-      "quality": 79,
+      "quality": 78,
       "status": "RADAR",
-      "d7": 27.8,
-      "d30": 47.44,
-      "rs": 29.76
+      "d7": 25.45,
+      "d30": 41.8,
+      "rs": 28.45
     },
     {
       "id": "pyth-network",
       "symbol": "PYTH",
       "name": "Pyth Network",
       "rank": 99,
-      "price": 0.078428,
+      "price": 0.0781,
       "tier": "OPPORTUNITY",
-      "quality": 79,
+      "quality": 77,
       "status": "RADAR",
-      "d7": 23.98,
-      "d30": 68.91,
-      "rs": 25.94
+      "d7": 21.52,
+      "d30": 65.04,
+      "rs": 24.52
     },
     {
       "id": "ondo-finance",
       "symbol": "ONDO",
       "name": "Ondo",
-      "rank": 44,
-      "price": 0.510981,
+      "rank": 43,
+      "price": 0.512224,
       "tier": "OPPORTUNITY",
-      "quality": 78,
+      "quality": 77,
       "status": "RADAR",
-      "d7": 15.36,
-      "d30": 49.73,
-      "rs": 17.32
+      "d7": 13.35,
+      "d30": 45.99,
+      "rs": 16.35
     },
     {
-      "id": "algorand",
-      "symbol": "ALGO",
-      "name": "Algorand",
-      "rank": 74,
-      "price": 0.130289,
+      "id": "fetch-ai",
+      "symbol": "FET",
+      "name": "Artificial Superintelligence Alliance",
+      "rank": 109,
+      "price": 0.223772,
       "tier": "OPPORTUNITY",
       "quality": 76,
       "status": "RADAR",
-      "d7": 17.49,
-      "d30": 57.68,
-      "rs": 19.45
-    },
-    {
-      "id": "dash",
-      "symbol": "DASH",
-      "name": "Dash",
-      "rank": 87,
-      "price": 64.64,
-      "tier": "OPPORTUNITY",
-      "quality": 76,
-      "status": "RADAR",
-      "d7": 10.83,
-      "d30": 65.93,
-      "rs": 12.79
+      "d7": 8.91,
+      "d30": 52.27,
+      "rs": 11.91
     },
     {
       "id": "aerodrome-finance",
       "symbol": "AERO",
       "name": "Aerodrome Finance",
       "rank": 88,
-      "price": 0.775124,
+      "price": 0.7693,
       "tier": "OPPORTUNITY",
-      "quality": 74,
+      "quality": 73,
       "status": "RADAR",
-      "d7": 13.78,
-      "d30": 64.74,
-      "rs": 15.74
+      "d7": 13.3,
+      "d30": 62.05,
+      "rs": 16.3
+    },
+    {
+      "id": "dash",
+      "symbol": "DASH",
+      "name": "Dash",
+      "rank": 87,
+      "price": 63.48,
+      "tier": "OPPORTUNITY",
+      "quality": 73,
+      "status": "RADAR",
+      "d7": 6.71,
+      "d30": 55.93,
+      "rs": 9.71
+    },
+    {
+      "id": "algorand",
+      "symbol": "ALGO",
+      "name": "Algorand",
+      "rank": 74,
+      "price": 0.130086,
+      "tier": "OPPORTUNITY",
+      "quality": 72,
+      "status": "RADAR",
+      "d7": 11.62,
+      "d30": 48.61,
+      "rs": 14.62
     },
     {
       "id": "worldcoin-wld",
       "symbol": "WLD",
       "name": "Worldcoin",
       "rank": 56,
-      "price": 0.483571,
+      "price": 0.481291,
       "tier": "OPPORTUNITY",
-      "quality": 74,
+      "quality": 71,
       "status": "RADAR",
-      "d7": 13.0,
-      "d30": 36.28,
-      "rs": 14.96
+      "d7": 8.64,
+      "d30": 29.44,
+      "rs": 11.64
     }
   ],
   "alerts": [
     {
-      "id": "stellar",
-      "symbol": "XLM",
+      "id": "zcash",
+      "symbol": "ZEC",
       "from": "WAIT",
       "to": "EVENT HOLD",
-      "price": 0.216417,
+      "price": 1529.05,
       "final": 65
     }
   ],
